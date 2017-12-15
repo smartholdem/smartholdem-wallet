@@ -99,7 +99,7 @@
             symbol: 'STH',
             version: 63,
             slip44: 255, //0x800000ff
-            explorer: 'https://explorer.smartholdem.io',
+            explorer: 'http://explorer.smartholdem.io',
             background: 'url(assets/images/textures/Fabric.png)',
             theme: 'default',
             themeDark: true
