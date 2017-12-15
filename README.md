@@ -1,2 +1,6 @@
-# smartholdem-wallet
-SmartHoldem Desktop Wallet
+# Smartholdem Desktop Wallet
+
+# For dev
+
+npm install
+npm start
