@@ -1,0 +1,348 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2017-11-09 21:49+0000\n"
+"PO-Revision-Date: 2017-11-09 21:49+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Account added!"
+msgstr "Аккаунт добавлен!"
+
+msgid "Account deleted!"
+msgstr "Аккаунт удалён!"
+
+msgid "Account successfully created:"
+msgstr "Учетная запись успешно создана:"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Add Account"
+msgstr "Добавить Аккаунт"
+
+msgid "Add Address"
+msgstr "Добавить Адрес"
+
+msgid "Add Delegate"
+msgstr "Добавить Делегата"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Amount"
+msgstr "Количество"
+
+msgid "Amount"
+msgstr "Количество"
+
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgid "SmartHoldem Client"
+msgstr "Клиент SmartHoldem"
+
+msgid "Balance"
+msgstr "Баланс"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Cannot find delegate:"
+msgstr "Не возможно найти делегата:"
+
+msgid "Cannot find delegates from this term:"
+msgstr "Не можете найти делегатов от этого термина:"
+
+msgid "Cannot get sponsors"
+msgstr "Не удается получить спонсоров"
+
+msgid "Cannot get transactions"
+msgstr "Невозможно получить транзакцию"
+
+msgid "Change 1h/7h/7d"
+msgstr "Изменение 1ч / 7ч / 7д"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Create Account"
+msgstr "Регистрация"
+
+msgid "Create Virtual Folder"
+msgstr "Создать виртуальную папку"
+
+msgid "Create a new virtual folder"
+msgstr "Создать новую виртуальную папку"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Delay"
+msgstr "Задержка"
+
+msgid "Delegate"
+msgstr "Делегат"
+
+msgid "Delegate name"
+msgstr "Имя Делегата"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Delete Account"
+msgstr "Удалить Аккаунт"
+
+msgid "Delete permanently this account"
+msgstr "Удалить навсегда эту учетную запись"
+
+msgid "Destination Address"
+msgstr "Адрес Назначения"
+
+msgid "Enable Virtual Folders"
+msgstr "Включить Виртуальные Папки"
+
+msgid "Error when trying to login:"
+msgstr "Ошибка при попытке авторизации:"
+
+msgid "Error:"
+msgstr "Ошибка:"
+
+msgid "Exchange"
+msgstr "Обмен"
+
+msgid "Fee (STH)"
+msgstr "Комиссия (STH)\n"
+
+msgid "Folder Name"
+msgstr "Имя Папки"
+
+msgid "From"
+msgstr "Отправитель"
+
+msgid "Full Screen"
+msgstr "Полноэкранный режим"
+
+msgid "Hand crafted with ❤ by"
+msgstr "Сделано с ❤"
+
+msgid "Height"
+msgstr "Высота"
+
+msgid "If you own this account, you can enable Voting"
+msgstr "Если этот аккаунт принадлежит вам можно включить режим голосования"
+
+msgid "If you own this account, you can enable virtual folders. Virtual Folders are simple subaccounts to better organise your money, without needing to send a real transaction and pay a fee. <br>\n                          Moreover, this account will move under the \"My Accounts\" list."
+msgstr "Если вы являетесь владельцем этой учетной записи, вы можете включить виртуальные папки. Виртуальные папки представляют собой простые субсчета, чтобы лучше организовать свои деньги, без необходимости отправлять реальную транзакцию и платить комиссию. <br> \nБолее того, этот счет будет двигаться по списку \"Мои счета\"."
+
+msgid "Label"
+msgstr "Метка"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Last checked"
+msgstr "Последняя проверка"
+
+msgid "List full or delegate already voted."
+msgstr "Список полон или делегат уже выбран."
+
+msgid "Login"
+msgstr "Вход"
+
+msgid "Manage Networks"
+msgstr "Управление сетями"
+
+msgid "Market Cap."
+msgstr "Капитализация"
+
+msgid "Maximize"
+msgstr "Развернуть"
+
+msgid "Minify"
+msgstr "Свернуть"
+
+msgid "My Accounts"
+msgstr "Мои Аккаунты"
+
+msgid "Network"
+msgstr "Сеть"
+
+msgid "Network connected and healthy!"
+msgstr "Соединение установлено!"
+
+msgid "Network disconected!"
+msgstr "Соединение прервано!"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "No difference from original delegate list"
+msgstr "Нет отличий от оригинального списка делегатов"
+
+msgid "No publicKey"
+msgstr "Отсутствует Публичный ключ"
+
+msgid "Not enough STH on your account"
+msgstr "Не хватает STH на вашем счету"
+
+msgid "Open Delegate Monitor"
+msgstr "Открыть монитор делегатов"
+
+msgid "Optional"
+msgstr "Опционально"
+
+msgid "Other Accounts"
+msgstr "Прочие аккаунты"
+
+msgid "Passphrase"
+msgstr "Секретная фраза"
+
+msgid "Passphrase does not match your address"
+msgstr "Секретная фраза не совпадает с адресом"
+
+msgid "Passphrase is not corresponding to account"
+msgstr "Секретная фраза не соответствует счету"
+
+msgid "Passphrases deleted"
+msgstr "Секретная фраза удалена"
+
+msgid "Please backup securely the passphrase, this client does NOT store it and thus cannot recover your passphrase"
+msgstr "Пожалуйста,  скопируйте и надежно сохраните вашу секретную фразу, этот клиент НЕ хранит её и таким образом, вы не сможет восстановить вашу секретную фразу"
+
+msgid "Please enter a folder name."
+msgstr "Введите имя папки."
+
+msgid "Please enter a new address."
+msgstr "Введите новый адрес."
+
+msgid "Please enter a short label."
+msgstr "Введите метку."
+
+msgid "Please enter this account passphrase to login."
+msgstr "Пожалуйста, введите вашу секретную фразу для входа."
+
+msgid "Price"
+msgstr "Цена"
+
+msgid "Productivity"
+msgstr "Производительность"
+
+msgid "Quit"
+msgstr "Выход"
+
+msgid "Quit SmartHoldem Client?"
+msgstr "Завершить клиент SmartHoldem?"
+
+msgid "Receive STH"
+msgstr "Получить STH"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Restart"
+msgstr "Обновить"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save Passphrases for"
+msgstr "Сохранить секретную фразу для"
+
+msgid "Second Passphrase"
+msgstr "Дополнительный пароль"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "Send STH"
+msgstr "Отправить STH"
+
+msgid "Send STH from"
+msgstr "Отправить STH из"
+
+msgid "Set"
+msgstr "Установить"
+
+msgid "Succesfully Logged In!"
+msgstr "Авторизация прошла успешно!"
+
+msgid "The destination address"
+msgstr "Адрес получателя"
+
+msgid "This account has never interacted with the network. This is a cold wallet."
+msgstr "Этот счет никогда не взаимодействовали с сетью. Это холодный бумажник."
+
+msgid "Total {{ul.network.symbol}}"
+msgstr "Всего {{ul.network.symbol}}"
+
+msgid "Transaction"
+msgstr "Транзакция"
+
+msgid "Transactions"
+msgstr "Транзакции"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Virtual folder added!"
+msgstr "Виртуальная папка добавлена!"
+
+msgid "Vote"
+msgstr "Голос"
+
+msgid "Votes"
+msgstr "Голоса"
+
+msgid "address"
+msgstr "адрес"
+
+msgid "folder name"
+msgstr "имя папки"
+
+msgid "is erroneous"
+msgstr "ошибочно"
+
+msgid "is not recognised"
+msgstr "не признается"
+
+msgid "label"
+msgstr "метка"
+
+msgid "missed blocks"
+msgstr "пропущено блоков"
+
+msgid "now!"
+msgstr "сейчас!"
+
+msgid "passphrase"
+msgstr "секретная фраза"
+
+msgid "sent with success!"
+msgstr "отправлено успешно!"
+
+msgid "you need at least 1 STH to vote"
+msgstr "Для голосования необходимо иметь хотя бы 1STH"
+
+msgid "you need at least 55 STH to register delegate"
+msgstr "вам нужно как минимум 55 STH для регистрации делегата"
+
+msgid "Passphrase is <strong>case sensitive</strong>, each character change will result in importing a different SmartHoldem address! Passphrases are <strong>not saved</strong> on this computer so always make sure you have them <strong>backed up safely!</strong>"
+msgstr "Пароль <strong> чувствителен к регистру </strong>, каждое изменение символа приведет к импорту другого адреса SmartHoldem! На компьютере пароли <strong> не сохраняются </strong>!"

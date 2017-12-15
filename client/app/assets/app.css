@@ -1,0 +1,520 @@
+html,
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-position: center;
+    min-width: 800px;
+}
+
+.md-select-menu-container {
+    z-index: 100;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    visibility: hidden;
+}
+
+::-webkit-scrollbar-track:hover {
+    visibility: visible;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(100, 100, 100, 0.3);
+    transition: background linear 0.5s;
+}
+
+
+/* Toolbar area */
+
+.menu {
+    min-width: 40px !important;
+}
+
+.md-toolbar-tools {
+    min-height: 64px;
+    -webkit-app-region: drag;
+}
+
+.selectcoin {
+    min-height: 125px;
+}
+
+md-toolbar h3 {
+    margin: auto;
+    font-weight: 500;
+}
+
+
+/* Sidenav area */
+
+md-list.left-list md-list-item {
+    text-align: left !important;
+}
+
+md-list.left-list md-list-item md-icon {
+    margin-right: 16px;
+}
+/* Since icons are text, avoids using the text cursor */
+md-list.left-list md-list-item:not(.md-clickable) {
+    cursor: default;
+}
+md-list.left-list md-list-item md-select {
+    margin: 0;
+}
+md-list.left-list md-list-item md-select.currency {
+    text-transform: uppercase;
+}
+/* "Play sound" option */
+md-list.left-list md-list-item.md-clickable:hover {
+  background-color: rgba(158, 158, 158, 0.4);
+}
+md-list.left-list md-list-item.md-clickable .md-list-item-inner p {
+  margin-right: 20px
+}
+md-list.left-list md-list-item.md-clickable:not(.md-proxy-focus) p, md-list-item.md-clickable:not(.md-proxy-focus) ~ md-list-item p {
+  text-transform: uppercase;
+}
+md-list.left-list hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+}
+/* md-list.left-list md-list-item.md-proxy-focus p {
+  text-transform: none!important;
+} */
+
+.md-button.md-focused:not(:hover):focus {
+    background-color: transparent;
+}
+
+md-list .md-button.selected {
+    color: #f47403;
+}
+
+md-sidenav md-list {
+    padding: 0px 0px 8px 0px;
+}
+
+
+/* Primary content area */
+
+.no-errors .md-errors-spacer {
+    display: none;
+}
+
+#content {
+    overflow: scroll;
+}
+
+#content {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 5px;
+}
+
+#content div.share {
+    background-color: transparent;
+    border: none;
+    margin: 8px auto 16px 0;
+    position: absolute;
+    top: 10px;
+    right: 45px;
+}
+
+#content md-icon.avatar {
+    margin-top: 10px;
+}
+
+#content .md-button.share>md-icon {
+    fill: black;
+    width: 36px;
+    height: 36px;
+}
+
+md-button.menuBtn>md-icon {
+    fill: white;
+    width: 24px;
+    height: 24px;
+}
+
+#content .md-button.share:active>md-icon {
+    background-color: #dadada;
+    border-radius: 0%;
+    padding: 4px;
+    transition: all 100ms ease-out 30ms;
+}
+
+#content img {
+    display: block;
+    height: auto;
+    max-width: 500px;
+}
+
+#content .md-headline .delegate-name, .md-subhead .balance {
+    padding: 0 15px;
+}
+
+
+/* Utils */
+
+.content-wrapper {
+    position: relative;
+}
+
+
+/* Typography support coming in 0.8.0 */
+
+md-toolbar h1 {
+    font-size: 1.250em;
+    font-weight: 400;
+}
+
+.md-toolbar-tools button {
+    -webkit-app-region: no-drag;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.avatar {
+    position: relative;
+    width: 128px;
+    height: 128px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px;
+    vertical-align: middle;
+    zoom: 0.70;
+    transform: translateZ(0);
+    -webkit-transform: scale(0.70);
+    -moz-transform: scale(0.70);
+}
+
+md-bottom-sheet {
+    padding-bottom: 130px;
+}
+
+md-bottom-sheet md-icon {
+    margin-right: 20px;
+}
+
+span.name {
+    font-weight: bold;
+    font-size: 1.1em;
+    padding-left: 5px;
+}
+
+.hint {
+    /* Position the hint */
+    position: absolute;
+    left: 2px;
+    right: auto;
+    bottom: 7px;
+    /* Copy styles from ng-messages */
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    /* Set our own color */
+    color: grey;
+}
+
+.footer,
+.footer a {
+  transition: color linear 0.2s;
+  color: white;
+}
+.footer > a:hover {
+  color: rgb(198, 198, 198);
+}
+
+#dashboard .main-actions {
+    padding: 0;
+}
+
+#dashboard .main-actions .watch-only-address {
+    width: 120%;
+}
+
+.import-account-dialog {
+    min-width: 700px;
+}
+
+#vote-help {
+    color: #555;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.tab-text-only-content {
+    padding: 20px;
+}
+
+account-box {
+  min-width: 50%;
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0.9;
+}
+#home-box-accounts {
+    min-height: 180px;
+}
+
+#home-box-row {
+    min-height: 180px;
+}
+
+#home-box-price,
+#home-box-network {
+    /*min-height: 100px;*/
+  margin:10px;
+  border-radius: 10px;
+  width: 360px;
+  opacity:0.9;
+}
+
+table#tx-list.md-table tbody.md-body>tr.md-row>td.md-cell,
+table#tx-list.md-table thead.md-head>tr.md-row>th.md-column {
+    padding: 5px !important;
+    text-align: center;
+}
+
+body>.md-open-menu-container {
+    margin-top: 50px;
+}
+
+md-dialog {
+    width: 90%;
+    max-width: 700px;
+    max-height: 90%;
+}
+
+md-toast.error .md-toast-content {
+    background-color: #FF0000;
+    font-weight: bold;
+}
+
+md-toast.success .md-toast-content {
+    background-color: #2E8B57;
+    font-weight: bold;
+}
+
+md-toast.warn .md-toast-content {
+    background-color: #FF8C00;
+    font-weight: bold;
+}
+
+md-toast.log .md-toast-content {
+    background-color: #A9A9A9;
+    font-weight: bold;
+}
+
+md-toast.debug .md-toast-content {
+    background-color: #4169E1;
+    font-weight: bold;
+}
+
+.background-item {
+    cursor: pointer;
+    outline: none;
+}
+
+.background-item:hover {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.background-item md-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  outline: none;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.background-item.active h3,
+.theme-item.active h3 {
+    font-weight: bold
+}
+
+.remaining-balance .md-caption {
+    text-transform: uppercase;
+    color: #616161;
+    margin-bottom: 2px;
+}
+
+.qrcode-video-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.qrcode-video-container:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 250px;
+    height: 250px;
+    border: 3px solid red;
+    box-shadow: 0px 0px 0px 2000px rgba(0, 0, 0, 0.4);
+}
+
+.qrcode-video-container video {
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    object-fit: cover;
+}
+
+md-bottom-sheet button md-icon.material-icons {
+    font-size: 36px;
+    padding: 15px;
+}
+
+.warning {
+    background-color: #FFFFD9;
+    color: red;
+    font-weight: 400;
+}
+
+md-input-container:not(.md-input-has-value) input:not(:focus) {
+    color: inherit;
+}
+
+md-autocomplete .md-errors-spacer {
+    min-height: 0px !important;
+}
+
+.new-version-button {
+    padding: 0 1em;
+    background-color: rgba(38, 151, 200, 0.5);
+    font-weight: bold;
+    color: white;
+}
+
+.new-version-button:hover {
+    background-color: rgba(38, 151, 200, 0.8)!important;
+}
+
+#price-list{
+    margin-left: 0.5em;
+}
+#exit-app-button {
+    text-align: left;
+}
+
+md-tooltip.tooltip-multiline {
+    height: auto;
+}
+
+.md-open-menu-container.md-dark-theme md-menu-content,
+.md-open-menu-container.md-dark-theme md-menu-content md-menu-item,
+md-bottom-sheet.md-dark-theme {
+  background: #2f2f3b;
+  color: white;
+}
+
+md-bottom-sheet.md-dark-theme {
+  border-top-color: #1d1d25;
+}
+
+.md-dark-theme .md-table .md-column,
+.md-dark-theme .md-table .md-cell {
+  color: rgba(255, 255, 255, 0.8);
+}
+table.md-table.md-row-select tbody.md-body>tr.md-row:not([disabled]):hover {
+  background-color: rgba(47, 47, 59, 1)!important;
+}
+
+.md-dark-theme .md-table .md-selected {
+  background-color: rgba(47, 47, 59, 0.7)!important;
+}
+
+/* Main toolbar is transparent in almost all cases */
+body md-toolbar.navbar {
+  background-color: transparent !important;
+}
+/* Useful with light background textures to outline the main toolbar buttons */
+body.too-pale-background md-toolbar.navbar {
+  background-color: rgba(20, 20, 20, 0.2) !important;
+}
+
+md-toast.announcement {
+  /* Announcement toast should occupy the entire width */
+  left: 0px !important;
+  right: 0px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0% !important;
+  border: 0px !important;
+  padding: 0px !important;
+
+  background-color: rgb(11, 13, 15) !important;
+}
+
+md-toast.announcement > .md-toast-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+md-toast.announcement > .md-toast-content > div {
+  flex: 1 1 0
+}
+
+md-toast.announcement > .md-toast-content > div, a {
+  color: white;
+  font-weight: bold;
+}
+
+md-toast.announcement > .md-toast-content > div:first-child {
+  /* Compensates the margin and padding of the × button */
+  padding-left: 14px;
+}
+md-toast.announcement > .md-toast-content > div:first-child > span {
+  margin-left: 10px;
+  color: rgb(130, 133, 135);
+}
+
+md-toast.announcement > .md-toast-content > div:nth-child(2) {
+  text-align: center;
+}
+md-toast.announcement > .md-toast-content > div:nth-child(2) > a {
+  text-decoration: none;
+  transition: color linear 0.2s;
+}
+md-toast.announcement > .md-toast-content > div:nth-child(2) > a:hover {
+  color: rgb(130, 133, 135);
+}
+
+md-toast.announcement > .md-toast-content .md-button {
+  float: right;
+}
+md-toast.announcement > .md-toast-content .material-icons {
+  color: white;
+}

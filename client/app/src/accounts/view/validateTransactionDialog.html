@@ -1,0 +1,55 @@
+<md-dialog aria-label="Transaction" ng-cloak md-theme="ul.currentTheme">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2><span translate>Transaction</span></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="validate.cancel()">
+          <md-icon md-font-library="material-icons">clear</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-list>
+          <md-list-item>
+            <b>ID</b> <span class="md-secondary">{{validate.transaction.id}}</span>
+          </md-list-item>
+          <md-list-item>
+            <b translate>Type</b> <span class="md-secondary">{{validate.label}}</span>
+          </md-list-item>
+          <md-list-item>
+            <b translate>From</b> <span class="md-secondary">{{validate.transaction.senderId}}</span>
+          </md-list-item>
+          <md-list-item ng-if="validate.transaction.type==0">
+            <b translate>To</b> <span class="md-secondary">{{validate.transaction.recipientId}}</span>
+          </md-list-item>
+          <md-list-item ng-if="validate.transaction.username">
+            <b translate>Username</b> <span class="md-secondary">{{validate.transaction.username}}</span>
+          </md-list-item>
+          <md-list-item ng-if="validate.transaction.vendorField">
+            <b translate>Smartevents</b> <span class="md-secondary">{{validate.transaction.vendorField}}</span>
+          </md-list-item>
+          <md-list-item ng-if="validate.transaction.amount">
+            <b translate>Amount ({{ul.network.symbol}})</b> <span class="md-secondary">{{validate.humanAmount}}</span>
+          </md-list-item>
+          <md-list-item>
+            <b translate>Fee ({{ul.network.symbol}})</b> <span class="md-secondary">{{validate.transaction.fee | convertToSTHValue}}</span>
+          </md-list-item>
+        </md-list>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="md-primary" ng-click="validate.saveFile()">
+        <span translate>Save Tx Offline</span>
+      </md-button>
+      <span flex></span>
+      <md-button class="md-raised md-primary" ng-click="validate.send()">
+        <span translate>Send</span> {{ul.network.symbol}}{{validate.totalAmount}} <span translate>now!</span>
+      </md-button>
+      <md-button ng-click="validate.cancel()" style="margin-right:20px;">
+        <translate>Cancel</translate>
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

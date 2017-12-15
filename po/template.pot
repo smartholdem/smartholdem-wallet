@@ -1,0 +1,1145 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: client/app/src/accounts/view/timestampDocument.html:22
+msgid "- This also can help to prove if a file has been tampered with if the SHA256 signature does not match with the one recorded on blockchain"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:20
+msgid "- This means that the owner of this account can prove that he had in hand this file at the block timestamp."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:681
+msgid "A folder with that name already exists."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1661
+msgid "Account successfully created:"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1731
+msgid "Account successfully imported:"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1721
+msgid "Account was already imported:"
+msgstr ""
+
+#: client/app/src/components/dashboard/account-box.html:35
+msgid "Accounts"
+msgstr ""
+
+#: client/app/src/components/account/signing-tab.html:43
+msgid "Actions"
+msgstr ""
+
+#: client/app/src/accounts/view/addDelegate.html:31
+msgid "Active delegates (forging)"
+msgstr ""
+
+#: client/app/src/accounts/view/addDelegate.html:46
+#: client/app/src/accounts/view/addWatchOnlyAddress.html:23
+#: client/app/src/components/addressbook/addContact.html:26
+msgid "Add"
+msgstr ""
+
+#: client/app/src/components/account/main-sidenav.html:51
+#: client/app/src/components/addressbook/addContact.html:5
+#: client/app/src/components/layout/main-navbar.html:77
+msgid "Add Contact"
+msgstr ""
+
+#: client/app/src/accounts/view/addDelegate.html:5
+#: client/app/src/components/account/votes-tab.html:63
+msgid "Add Delegate"
+msgstr ""
+
+#: client/app/src/accounts/view/addWatchOnlyAddress.html:5
+msgid "Add Watch-Only Address"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:950
+#: client/app/src/accounts/view/addWatchOnlyAddress.html:15
+#: client/app/src/accounts/view/signMessage.html:15
+#: client/app/src/components/account/votes-tab.html:36
+#: client/app/src/components/account/votes-tab.html:78
+#: client/app/src/components/addressbook/addContact.html:19
+#: client/app/src/components/addressbook/editContact.html:19
+msgid "Address"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:24
+msgid "Address version"
+msgstr ""
+
+#: client/app/src/accounts/view/createSecondPassphrase.html:20
+msgid "After creating the second passphrase if you are having issues with forms (second passphrase field not showing up) please restart your client."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:160
+msgid "All your data, including created accounts, networks and contacts will be removed from the app and reset to default."
+msgstr ""
+
+#: client/app/src/components/account/exchange-tab.html:114
+#: client/app/src/components/account/exchange-tab.html:53
+#: client/app/src/components/account/offchain-tab.html:59
+#: client/app/src/components/account/templates/send-transaction-dialog.html:29
+msgid "Amount"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:34
+msgid "Amount ({{ul.network.symbol}})"
+msgstr ""
+
+#: client/app/src/accounts/view/manageBackground.html:4
+#: client/app/src/components/layout/main-navbar.html:85
+msgid "Appearance"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:164
+msgid "Application"
+msgstr ""
+
+#: client/app/src/components/account/delegate-tab.html:15
+#: client/app/src/components/account/votes-tab.html:39
+#: client/app/src/components/account/votes-tab.html:81
+msgid "Approval"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:75
+msgid "Arabic"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1522
+msgid "Are you sure you want to remove this network and all data (accounts and settings) associated with it from your computer. Your accounts are still safe on the blockchain."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:158
+msgid "Are you sure?"
+msgstr ""
+
+#: client/app/index.html:5
+msgid "SmartHoldem Client"
+msgstr ""
+
+#: client/app/src/accounts/view/manageBackground.html:13
+msgid "Background"
+msgstr ""
+
+#: client/app/src/components/account/templates/account-card.html:67
+msgid "Balance"
+msgstr ""
+
+#: client/app/src/accounts/view/createAccount.html:18
+msgid "Before proceeding further, first <strong>BACKUP THE PASSPHRASE SECURELY</strong>, this client does NOT store it and thus cannot recover your passphrase! If you lose it, delete it, or it gets stolen - we CANNOT help you recover it. There is no forgot my passphrase option!"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:76
+msgid "Bulgarian"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:143
+#: client/app/src/accounts/account.controller.js:1524
+#: client/app/src/accounts/account.controller.js:163
+#: client/app/src/accounts/account.controller.js:678
+#: client/app/src/accounts/account.controller.js:701
+#: client/app/src/accounts/view/addDelegate.html:49
+#: client/app/src/accounts/view/addWatchOnlyAddress.html:26
+#: client/app/src/accounts/view/createAccount.html:57
+#: client/app/src/accounts/view/createDelegate.html:49
+#: client/app/src/accounts/view/createSecondPassphrase.html:51
+#: client/app/src/accounts/view/importAccount.html:41
+#: client/app/src/accounts/view/manageBackground.html:65
+#: client/app/src/accounts/view/manageNetwork.html:63
+#: client/app/src/accounts/view/manageNetwork.html:90
+#: client/app/src/accounts/view/savePassphrases.html:37
+#: client/app/src/accounts/view/signMessage.html:34
+#: client/app/src/accounts/view/timestampDocument.html:58
+#: client/app/src/accounts/view/validateTransactionDialog.html:51
+#: client/app/src/accounts/view/verifyMessage.html:39
+#: client/app/src/accounts/view/verifyMessage.html:68
+#: client/app/src/accounts/view/vote.html:39
+#: client/app/src/components/account/account-card.controller.js:64
+#: client/app/src/components/account/account-card.controller.js:93
+#: client/app/src/components/account/templates/send-transaction-dialog.html:88
+#: client/app/src/components/addressbook/addContact.html:29
+#: client/app/src/components/qrScanner/qrScanner.html:17
+msgid "Cancel"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:362
+msgid "Cannot find delegate:"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:379
+msgid "Cannot find delegates from this term:"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:382
+msgid "Cannot find delegates on this peer:"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:341
+#: client/app/src/accounts/account.service.js:344
+msgid "Cannot get registered delegates"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:691
+msgid "Cannot get sponsors"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:307
+#: client/app/src/accounts/account.service.js:310
+msgid "Cannot get transactions"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:398
+msgid "Cannot get voted delegates"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:329
+msgid "Cannot state if account is a delegate"
+msgstr ""
+
+#: client/app/src/components/dashboard/market-box.html:11
+#: client/app/src/components/layout/main-navbar.html:140
+msgid "Change 1h/7h/7d"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:97
+msgid "Chinese - China"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:98
+msgid "Chinese - Taiwan"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:7
+msgid "Client"
+msgstr ""
+
+#: client/app/src/components/addressbook/editContact.html:32
+msgid "Close"
+msgstr ""
+
+#: client/app/src/components/account/exchange-tab.html:7
+msgid "Coming Soon"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:161
+msgid "Confirm"
+msgstr ""
+
+#: client/app/src/components/account/transaction-tab.html:10
+#: client/app/src/components/account/transaction-tab.html:28
+msgid "Confirmations"
+msgstr ""
+
+#: client/app/src/components/account/main-sidenav.html:30
+msgid "Contacts"
+msgstr ""
+
+#: client/app/src/components/account/signing-tab.html:60
+#: client/app/src/components/account/templates/account-card.html:55
+msgid "Copy"
+msgstr ""
+
+#: client/app/src/accounts/view/createAccount.html:54
+#: client/app/src/accounts/view/createSecondPassphrase.html:48
+#: client/app/src/accounts/view/manageNetwork.html:87
+msgid "Create"
+msgstr ""
+
+#: client/app/src/accounts/view/createAccount.html:5
+#: client/app/src/components/dashboard/account-box.html:22
+#: client/app/src/components/layout/main-navbar.html:73
+msgid "Create Account"
+msgstr ""
+
+#: client/app/src/accounts/view/createSecondPassphrase.html:5
+msgid "Create Second Passphrase"
+msgstr ""
+
+#: client/app/src/components/account/offchain-tab.html:68
+msgid "Create a new virtual folder"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:44
+msgid "Currency"
+msgstr ""
+
+#: client/app/src/accounts/view/manageBackground.html:55
+msgid "Dark Mode"
+msgstr ""
+
+#: client/app/src/components/account/transaction-tab.html:13
+msgid "Date"
+msgstr ""
+
+#: client/app/src/components/account/offchain-tab.html:31
+msgid "Default"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:115
+msgid "Delay"
+msgstr ""
+
+#: client/app/src/components/account/delegate-tab.html:3
+msgid "Delegate"
+msgstr ""
+
+#: client/app/src/accounts/view/addDelegate.html:38
+msgid "Delegate name"
+msgstr ""
+
+#: client/app/src/components/account/signing-tab.html:66
+msgid "Delete"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:87
+msgid "Dutch"
+msgstr ""
+
+#: client/app/src/components/account/templates/account-card.html:29
+#: client/app/src/components/addressbook/editContact.html:5
+msgid "Edit Contact"
+msgstr ""
+
+#: client/app/src/components/account/signing-tab.html:19
+msgid "Enable Signing"
+msgstr ""
+
+#: client/app/src/components/account/offchain-tab.html:22
+msgid "Enable Virtual Folders"
+msgstr ""
+
+#: client/app/src/components/account/votes-tab.html:19
+msgid "Enable Votes"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:74
+msgid "English"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1922
+#: client/app/src/accounts/account.service.js:418
+msgid "Error in signature processing"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:409
+msgid "Error in your Input."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:707
+msgid "Error when trying to login:"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:351
+msgid "Error:"
+msgstr ""
+
+#: client/app/src/components/account/exchange-tab.html:3
+msgid "Exchange"
+msgstr ""
+
+#: client/app/src/components/account/main-sidenav.html:41
+msgid "Expense"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:49
+msgid "Explorer"
+msgstr ""
+
+#: client/app/src/components/account/templates/account-card.html:21
+msgid "Export Account"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1974
+msgid "Failed to save transaction file"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:37
+msgid "Fee ({{ul.network.symbol}})"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:33
+msgid "File"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:80
+msgid "Finish"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:676
+msgid "Folder Name"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:674
+msgid "Folder name"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:81
+msgid "Force"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:43
+msgid "Force?"
+msgstr ""
+
+#: client/app/src/accounts/view/verifyMessage.html:57
+msgid "Format"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:81
+msgid "French"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:22
+#: client/app/src/components/account/transaction-tab.html:17
+msgid "From"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:77
+msgid "German"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:78
+msgid "Greek"
+msgstr ""
+
+#: client/app/src/components/dashboard/templates/dashboard.html:9
+msgid "Hand crafted with ❤ by"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:106
+msgid "Height"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:82
+msgid "Hungarish"
+msgstr ""
+
+#: client/app/src/components/account/transaction-tab.html:7
+msgid "Id"
+msgstr ""
+
+#: client/app/src/components/account/signing-tab.html:15
+msgid "If you own this account, you can enable Message Signing"
+msgstr ""
+
+#: client/app/src/components/account/votes-tab.html:15
+msgid "If you own this account, you can enable Voting"
+msgstr ""
+
+#: client/app/src/components/account/offchain-tab.html:17
+msgid ""
+"If you own this account, you can enable virtual folders. Virtual Folders are simple subaccounts to better organise your money, without needing to send a real transaction and pay a fee. <br> Moreover, this account will move under\n"
+"                the \"My Accounts\" list."
+msgstr ""
+
+#: client/app/src/accounts/view/importAccount.html:38
+msgid "Import"
+msgstr ""
+
+#: client/app/src/accounts/view/importAccount.html:5
+#: client/app/src/components/dashboard/account-box.html:17
+#: client/app/src/components/layout/main-navbar.html:69
+msgid "Import Account"
+msgstr ""
+
+#: client/app/src/components/account/main-sidenav.html:43
+msgid "Income"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:83
+msgid "Indonesian"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:84
+msgid "Italian"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:85
+msgid "Japanese"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:86
+msgid "Korean"
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:124
+#: client/app/src/components/account/account-card.controller.js:86
+#: client/app/src/components/account/account-card.controller.js:87
+#: client/app/src/components/account/account-card.controller.js:90
+msgid "Label"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:51
+msgid "Language"
+msgstr ""
+
+#: client/app/src/components/dashboard/network-box.html:12
+#: client/app/src/components/layout/main-navbar.html:109
+#: client/app/src/components/layout/main-navbar.html:155
+msgid "Last checked"
+msgstr ""
+
+#: client/app/src/components/account/main-sidenav.html:3
+msgid "Ledger Nano S"
+msgstr ""
+
+#: client/app/src/components/account/templates/send-transaction-dialog.html:81
+msgid "Load Tx From File"
+msgstr ""
+
+#: client/app/index.html:57
+msgid "Loading..."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:695
+#: client/app/src/accounts/account.controller.js:700
+msgid "Login"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:4
+#: client/app/src/components/layout/main-navbar.html:81
+msgid "Manage Networks"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:123
+msgid "Market"
+msgstr ""
+
+#: client/app/src/components/dashboard/market-box.html:19
+#: client/app/src/components/layout/main-navbar.html:149
+msgid "Market Cap."
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:186
+msgid "Maximize"
+msgstr ""
+
+#: client/app/src/accounts/view/signMessage.html:23
+#: client/app/src/accounts/view/verifyMessage.html:21
+#: client/app/src/components/account/signing-tab.html:37
+msgid "Message"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:182
+msgid "Minimize"
+msgstr ""
+
+#: client/app/src/components/account/main-sidenav.html:17
+#: client/app/src/components/dashboard/account-box.html:4
+msgid "My Accounts"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:70
+#: client/app/src/components/addressbook/addContact.html:15
+#: client/app/src/components/addressbook/editContact.html:15
+msgid "Name"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:28
+msgid "Nethash"
+msgstr ""
+
+#: client/app/src/components/dashboard/network-box.html:4
+msgid "Network"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:9
+msgid "New version available!"
+msgstr ""
+
+#: client/app/src/components/dashboard/templates/announcement.html:4
+msgid "News<span>({{announcement.date | date: 'mediumDate'}})</span>"
+msgstr ""
+
+#: client/app/src/accounts/view/createAccount.html:51
+#: client/app/src/accounts/view/createDelegate.html:45
+#: client/app/src/accounts/view/createSecondPassphrase.html:45
+#: client/app/src/accounts/view/timestampDocument.html:54
+#: client/app/src/accounts/view/vote.html:35
+#: client/app/src/components/account/templates/send-transaction-dialog.html:84
+msgid "Next"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:320
+msgid "No publicKey"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:372
+msgid "No search term"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:463
+#: client/app/src/accounts/account.service.js:499
+#: client/app/src/accounts/account.service.js:534
+#: client/app/src/accounts/account.service.js:570
+msgid "Not enough STH on your account"
+msgstr ""
+
+#: client/app/src/components/account/offchain-tab.html:3
+msgid "OffChain"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1849
+msgid "Ok"
+msgstr ""
+
+#: client/app/src/components/account/votes-tab.html:66
+msgid "Open Delegate Monitor"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:31
+msgid "Open File"
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:112
+msgid "Open in explorer"
+msgstr ""
+
+#: client/app/src/components/account/templates/send-transaction-dialog.html:42
+msgid "Optional"
+msgstr ""
+
+#: client/app/src/accounts/view/createSecondPassphrase.html:29
+msgid "Original Passphrase"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:699
+#: client/app/src/accounts/view/createAccount.html:28
+#: client/app/src/accounts/view/createDelegate.html:28
+#: client/app/src/accounts/view/importAccount.html:27
+#: client/app/src/accounts/view/savePassphrases.html:24
+#: client/app/src/accounts/view/signMessage.html:19
+#: client/app/src/accounts/view/timestampDocument.html:41
+#: client/app/src/accounts/view/vote.html:18
+#: client/app/src/components/account/templates/send-transaction-dialog.html:51
+msgid "Passphrase"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:169
+#: client/app/src/accounts/account.service.js:187
+#: client/app/src/accounts/account.service.js:705
+msgid "Passphrase does not match your address"
+msgstr ""
+
+#: client/app/src/accounts/view/importAccount.html:16
+msgid "Passphrase is <strong>case sensitive</strong>, each character change will result in importing a different SmartHoldem address! Passphrases are <strong>not saved</strong> on this computer so always make sure you have them <strong>backed up safely!</strong>"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:492
+#: client/app/src/accounts/account.service.js:527
+#: client/app/src/accounts/account.service.js:563
+#: client/app/src/accounts/account.service.js:599
+msgid "Passphrase is not corresponding to account"
+msgstr ""
+
+#: client/app/src/accounts/view/savePassphrases.html:16
+msgid ""
+"Passphrases are not secured with high standard. <br>\n"
+"              Use this feature only on safe computers and for accounts you can afford to lose balance."
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:193
+msgid "Passphrases deleted"
+msgstr ""
+
+#: client/app/src/accounts/view/verifyMessage.html:54
+msgid "Paste the entire signed message:"
+msgstr ""
+
+#: client/app/src/components/dashboard/network-box.html:8
+#: client/app/src/components/layout/main-navbar.html:102
+msgid "Peer"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:93
+msgid "Peer Status"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:58
+msgid "Play sound when receiving transactions?"
+msgstr ""
+
+#: client/app/src/accounts/view/createSecondPassphrase.html:18
+msgid "Please backup securely the second passphrase before continuing, this client does NOT store it and thus cannot recover your passphrase!"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:14
+msgid "Please choose a file to be timestamped on the blockchain."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:673
+msgid "Please enter a folder name."
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:89
+msgid "Please enter a short label."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:697
+msgid "Please enter this account passphrase to login."
+msgstr ""
+
+#: client/app/src/accounts/view/createSecondPassphrase.html:25
+msgid "Please paste the original and second passphrase to validate the creation."
+msgstr ""
+
+#: client/app/src/accounts/view/createDelegate.html:17
+msgid "Please restart your client after the delegate registration has been put in a block to reflect the changes."
+msgstr ""
+
+#: client/app/src/accounts/view/createAccount.html:24
+msgid "Please type word 3, 6 and 9 from your passphrase to validate the account creation."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:88
+msgid "Polish"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:89
+msgid "Portuguese - Brazil"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:90
+msgid "Portuguese - Portugal"
+msgstr ""
+
+#: client/app/src/components/dashboard/market-box.html:5
+#: client/app/src/components/layout/main-navbar.html:134
+msgid "Price"
+msgstr ""
+
+#: client/app/src/components/account/delegate-tab.html:18
+#: client/app/src/components/account/votes-tab.html:42
+#: client/app/src/components/account/votes-tab.html:84
+msgid "Productivity"
+msgstr ""
+
+#: client/app/src/accounts/view/verifyMessage.html:25
+msgid "Public Key"
+msgstr ""
+
+#: client/app/src/components/qrScanner/qrScanner.html:4
+msgid "QR Scanner"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:142
+#: client/app/src/components/layout/main-navbar.html:174
+msgid "Quit"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:140
+msgid "Quit SmartHoldem Wallet?"
+msgstr ""
+
+#: client/app/src/components/account/delegate-tab.html:12
+#: client/app/src/components/account/votes-tab.html:30
+#: client/app/src/components/account/votes-tab.html:72
+msgid "Rank"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:243
+msgid "Receive STH"
+msgstr ""
+
+#: client/app/src/components/account/templates/account-card.html:7
+msgid "Refresh Account"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:63
+msgid "Refresh accounts automatically?"
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:121
+msgid "Register Delegate"
+msgstr ""
+
+#: client/app/src/accounts/view/createDelegate.html:5
+msgid "Register delegate for"
+msgstr ""
+
+#: client/app/src/components/account/templates/send-transaction-dialog.html:75
+msgid "Remaining balance"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:56
+#: client/app/src/components/account/account-card.controller.js:118
+#: client/app/src/components/account/offchain-tab.html:46
+#: client/app/src/components/addressbook/editContact.html:23
+msgid "Remove"
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:58
+#: client/app/src/components/account/account-card.controller.js:59
+msgid "Remove Account"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1520
+msgid "Remove Network"
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:63
+msgid "Remove account"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1523
+msgid "Remove from my computer all cached data from this network"
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:61
+msgid "Remove this account from your wallet. The account may be added again using the original passphrase of the account."
+msgstr ""
+
+#: client/app/src/components/account/offchain-tab.html:51
+msgid "Rename"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:194
+msgid "Reset Data"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:178
+msgid "Restart"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:91
+msgid "Romanian"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:92
+msgid "Russian"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:37
+msgid "SHA256 Signature"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:32
+msgid "SLIP 44"
+msgstr ""
+
+#: client/app/src/accounts/view/manageBackground.html:62
+#: client/app/src/accounts/view/manageNetwork.html:60
+#: client/app/src/accounts/view/savePassphrases.html:34
+#: client/app/src/components/addressbook/editContact.html:29
+msgid "Save"
+msgstr ""
+
+#: client/app/src/accounts/view/savePassphrases.html:5
+msgid "Save Passphrases for"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:44
+msgid "Save Tx Offline"
+msgstr ""
+
+#: client/app/src/accounts/view/createDelegate.html:35
+#: client/app/src/accounts/view/createSecondPassphrase.html:33
+#: client/app/src/accounts/view/timestampDocument.html:45
+#: client/app/src/accounts/view/vote.html:25
+#: client/app/src/components/account/account-card.controller.js:127
+#: client/app/src/components/account/templates/send-transaction-dialog.html:63
+msgid "Second Passphrase"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:38
+#: client/app/src/accounts/view/manageNetwork.html:76
+msgid "Seed Server"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:48
+#: client/app/src/components/account/templates/account-card.html:14
+#: client/app/src/components/account/templates/send-transaction-dialog.html:1
+#: client/app/src/components/account/templates/send-transaction-dialog.html:5
+msgid "Send"
+msgstr ""
+
+#: client/app/src/components/account/templates/send-transaction-dialog.html:37
+msgid "Send All"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:95
+msgid "Serbian"
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:92
+msgid "Set"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:34
+msgid "Settings"
+msgstr ""
+
+#: client/app/src/components/account/templates/account-card.html:61
+msgid "Show"
+msgstr ""
+
+#: client/app/src/accounts/view/signMessage.html:30
+#: client/app/src/components/account/signing-tab.html:28
+msgid "Sign"
+msgstr ""
+
+#: client/app/src/components/account/signing-tab.html:3
+msgid "Sign / Verify Message"
+msgstr ""
+
+#: client/app/src/accounts/view/signMessage.html:5
+msgid "Sign Message"
+msgstr ""
+
+#: client/app/src/accounts/view/createDelegate.html:46
+#: client/app/src/accounts/view/signMessage.html:31
+#: client/app/src/accounts/view/timestampDocument.html:55
+#: client/app/src/accounts/view/vote.html:36
+#: client/app/src/components/account/templates/send-transaction-dialog.html:85
+msgid "Sign with Ledger"
+msgstr ""
+
+#: client/app/src/accounts/view/verifyMessage.html:29
+#: client/app/src/components/account/signing-tab.html:40
+msgid "Signature"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:93
+msgid "Slovak"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:94
+msgid "Slovenian"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:31
+#: client/app/src/components/account/templates/send-transaction-dialog.html:42
+#: client/app/src/components/account/transaction-tab.html:19
+msgid "Smartbridge"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:18
+msgid "So the block timestamp that will include this transaction will be a proof of existence of the file you have timestamped."
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:79
+msgid "Spanish"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:96
+msgid "Swedish"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:17
+msgid "Switch Network"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:20
+msgid "Symbol"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:457
+msgid "The destination address"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1928
+#: client/app/src/accounts/account.service.js:422
+msgid "The message is NOT verified"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1926
+#: client/app/src/accounts/account.service.js:420
+msgid "The message is verified successfully"
+msgstr ""
+
+#: client/app/src/accounts/view/createSecondPassphrase.html:38
+msgid "The second passphrase does not match the one you just got."
+msgstr ""
+
+#: client/app/src/accounts/view/createAccount.html:45
+msgid "The words does not match the original passphrase."
+msgstr ""
+
+#: client/app/src/accounts/view/manageBackground.html:33
+msgid "Theme"
+msgstr ""
+
+#: client/app/src/accounts/view/manageBackground.html:36
+msgid "Themes"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1786
+msgid "This account already has a second passphrase:"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:17
+msgid "This signature can't be forged."
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:16
+msgid "This will save the SHA256 signature in a transaction of this account."
+msgstr ""
+
+#: client/app/src/components/account/account-card.controller.js:115
+msgid "Timestamp Document"
+msgstr ""
+
+#: client/app/src/accounts/view/timestampDocument.html:5
+msgid "Timestamp Document On"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:25
+#: client/app/src/components/account/transaction-tab.html:18
+msgid "To"
+msgstr ""
+
+#: client/app/src/components/layout/main-navbar.html:190
+msgid "Toggle Full Screen"
+msgstr ""
+
+#: client/app/src/accounts/view/manageNetwork.html:16
+msgid "Token name"
+msgstr ""
+
+#: client/app/src/components/account/transaction-tab.html:16
+msgid "Total"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1999
+#: client/app/src/accounts/account.controller.js:551
+#: client/app/src/accounts/view/validateTransactionDialog.html:5
+msgid "Transaction"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1980
+msgid "Transaction file successfully saved in"
+msgstr ""
+
+#: client/app/src/components/account/main-sidenav.html:41
+#: client/app/src/components/account/main-sidenav.html:43
+#: client/app/src/components/account/transaction-tab.html:1
+msgid "Transactions"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:19
+msgid "Type"
+msgstr ""
+
+#: client/app/src/components/account/templates/send-transaction-dialog.html:19
+msgid "Type an address or a name"
+msgstr ""
+
+#: client/app/src/accounts/view/vote.html:5
+msgid "Update vote from"
+msgstr ""
+
+#: client/app/src/accounts/view/manageBackground.html:58
+msgid "Upload"
+msgstr ""
+
+#: client/app/src/accounts/view/createDelegate.html:24
+#: client/app/src/accounts/view/validateTransactionDialog.html:28
+#: client/app/src/components/account/votes-tab.html:33
+#: client/app/src/components/account/votes-tab.html:75
+msgid "Username"
+msgstr ""
+
+#: client/app/src/accounts/view/verifyMessage.html:14
+#: client/app/src/accounts/view/verifyMessage.html:36
+#: client/app/src/accounts/view/verifyMessage.html:65
+#: client/app/src/components/account/signing-tab.html:31
+#: client/app/src/components/account/signing-tab.html:54
+msgid "Verify"
+msgstr ""
+
+#: client/app/src/accounts/view/verifyMessage.html:4
+msgid "Verify Message"
+msgstr ""
+
+#: client/app/src/accounts/view/verifyMessage.html:47
+msgid "Verify Text"
+msgstr ""
+
+#: client/app/src/components/account/votes-tab.html:60
+msgid "Vote"
+msgstr ""
+
+#: client/app/src/components/account/votes-tab.html:3
+msgid "Votes"
+msgstr ""
+
+#: client/app/src/components/account/votes-tab.html:100
+msgid ""
+"Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 51 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks. This page can be used to cast your vote for\n"
+"      a delegate that you support."
+msgstr ""
+
+#: client/app/src/components/account/transaction-tab.html:27
+msgid "Well Confirmed"
+msgstr ""
+
+#: client/app/src/accounts/view/createAccount.html:33
+#: client/app/src/accounts/view/createAccount.html:37
+#: client/app/src/accounts/view/createAccount.html:41
+msgid "Word"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:162
+msgid "Yes"
+msgstr ""
+
+#: client/app/src/accounts/view/addDelegate.html:33
+msgid "approval"
+msgstr ""
+
+#: client/app/src/components/account/templates/send-transaction-dialog.html:5
+msgid "from"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:457
+msgid "is erroneous"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:950
+msgid "is not recognised"
+msgstr ""
+
+#: client/app/src/components/account/delegate-tab.html:20
+msgid "missed blocks"
+msgstr ""
+
+#: client/app/src/accounts/view/validateTransactionDialog.html:48
+msgid "now!"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:698
+msgid "passphrase"
+msgstr ""
+
+#: client/app/src/components/account/delegate-tab.html:19
+msgid "produced blocks"
+msgstr ""
+
+#: client/app/src/accounts/view/addDelegate.html:33
+msgid "productivity"
+msgstr ""
+
+#: client/app/src/accounts/account.controller.js:1999
+#: client/app/src/accounts/account.controller.js:551
+msgid "sent with success!"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:570
+msgid "you need at least 1 STH to vote"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:534
+msgid "you need at least 55 STH to register delegate"
+msgstr ""
+
+#: client/app/src/accounts/account.service.js:499
+msgid "you need at least 5 STH to create a second passphrase"
+msgstr ""
