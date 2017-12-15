@@ -1,0 +1,418 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2017-10-09 21:49+0000\n"
+"PO-Revision-Date: 2017-10-09 21:49+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Account added!"
+msgstr "帐户已添加！"
+
+msgid "Account deleted!"
+msgstr "帐户已删除！"
+
+msgid "Account successfully created:"
+msgstr "成功建立帐户："
+
+msgid "Account successfully imported:"
+msgstr "账户成功导入:"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Add Account"
+msgstr "添加账户"
+
+msgid "Add Address"
+msgstr "添加地址"
+
+msgid "Add Delegate"
+msgstr "添加受托人"
+
+msgid "Add Watch-Only Address"
+msgstr "添加只读地址"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Amount"
+msgstr "合计"
+
+msgid "Amount (Ѧ)"
+msgstr "合计 (Ѧ)"
+
+msgid "Approval"
+msgstr "得票率"
+
+msgid "Are you sure?"
+msgstr "你确定？"
+
+msgid "SmartHoldem Client"
+msgstr "SmartHoldem客户端"
+
+msgid "Balance"
+msgstr "余额"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cannot find delegate:"
+msgstr "找不到受托人："
+
+msgid "Cannot find delegates from this term:"
+msgstr "在此项目上找不到受托人："
+
+msgid "Cannot find delegates on this peer:"
+msgstr "在此对等设备上找不到受托人："
+
+msgid "Cannot get sponsors"
+msgstr "无法得到赞助"
+
+msgid "Cannot get transactions"
+msgstr "无法获取交易"
+
+msgid "Cannot get voted delegates"
+msgstr "无法获得已投票受托人"
+
+msgid "Cannot state if account is a delegate"
+msgstr "Cannot state if account is a delegate"
+
+msgid "Change 1h/7h/7d"
+msgstr "涨幅 1h/7h/7d"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Create Account"
+msgstr "创建账户"
+
+msgid "Create Virtual Folder"
+msgstr "创建虚拟文件夹"
+
+msgid "Create a new virtual folder"
+msgstr "创建一个虚拟文件夹"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Delay"
+msgstr "延迟"
+
+msgid "Delegate"
+msgstr "委托人"
+
+msgid "Delegate name"
+msgstr "委托人名称"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Delete Account"
+msgstr "删除账户"
+
+msgid "Delete permanently this account"
+msgstr "永久删除此帐户"
+
+msgid "Destination Address"
+msgstr "目标地址"
+
+msgid "Enable Virtual Folders"
+msgstr "启用虚拟文件夹"
+
+msgid "Enable Votes"
+msgstr "启用投票"
+
+msgid "Error when trying to login:"
+msgstr "尝试登录时出错："
+
+msgid "Error:"
+msgstr "错误"
+
+msgid "Exchange"
+msgstr "交换"
+
+msgid "Fee (Ѧ)"
+msgstr "费用(Ѧ)"
+
+msgid "Folder Name"
+msgstr "文件夹名称"
+
+msgid "From"
+msgstr "从"
+
+msgid "Full Screen"
+msgstr "全屏"
+
+msgid "Hand crafted with ❤ by"
+msgstr "手工制作❤由"
+
+msgid "Height"
+msgstr "高度"
+
+msgid "If you own this account, you can enable Voting"
+msgstr "如果您拥有此帐户，则可以启用投票"
+
+msgid "If you own this account, you can enable virtual folders. Virtual Folders are simple subaccounts to better organise your money, without needing to send a real transaction and pay a fee. <br>\n                          Moreover, this account will move under the \"My Accounts\" list."
+msgstr "如果您拥有此帐户，则可以启用虚拟文件夹。 虚拟文件夹是简单的子帐户，以更好地组织您的资产，而不需要发送真实交易和支付费用。 <br>\n此外，此帐户将移动到“我的帐户”列表下。"
+
+msgid "Label"
+msgstr "标签"
+
+msgid "Label set"
+msgstr "设置标签"
+
+msgid "Language"
+msgstr "语言"
+
+msgid "Last checked"
+msgstr "上次检查"
+
+msgid "List full or delegate already voted."
+msgstr "列出已投票的所有受托人。"
+
+msgid "Login"
+msgstr "登录"
+
+msgid "Manage Networks"
+msgstr "管理网络"
+
+msgid "Market Cap."
+msgstr "市值"
+
+msgid "Maximize"
+msgstr "最大化"
+
+msgid "Minify"
+msgstr "缩小"
+
+msgid "My Accounts"
+msgstr "我的帐户"
+
+msgid "Network"
+msgstr "网络"
+
+msgid "Network connected and healthy!"
+msgstr "网络健康连接！"
+
+msgid "Network disconected!"
+msgstr "网络断开连接！"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "No difference from original delegate list"
+msgstr "与原受托人列表无差别"
+
+msgid "No publicKey"
+msgstr "没有公钥"
+
+msgid "No search term"
+msgstr "没有搜索字词"
+
+msgid "Not enough STH on your account"
+msgstr "您的账户没有足够的STH"
+
+msgid "OffChain"
+msgstr "离链"
+
+msgid "Open Delegate Monitor"
+msgstr "打开受托人监视器"
+
+msgid "Optional"
+msgstr "可选的"
+
+msgid "Other Accounts"
+msgstr "其他账户"
+
+msgid "Passphrase"
+msgstr "主密码"
+
+msgid "Passphrase does not match your address"
+msgstr "主密码与您的地址不符"
+
+msgid "Passphrase is not corresponding to account"
+msgstr "主密码与账户不对应"
+
+msgid "Passphrases are not secured with high standard. <br>\n              Use this feature only on safe computers and for accounts you can afford to lose balance."
+msgstr "主密码不具有最高安全标准。 <br>\n仅在安全的计算机和您可以承受损失帐户余额情况下使用此功能。"
+
+msgid "Passphrases deleted"
+msgstr "主密码已删除"
+
+msgid "Passphrases saved"
+msgstr "主密码已保存"
+
+msgid "Peer"
+msgstr "Peer"
+
+msgid "Please backup securely the passphrase, this client does NOT store it and thus cannot recover your passphrase"
+msgstr "请安全备份主密码，此客户端不存储它，因此无法恢复您的主密码"
+
+msgid "Please enter a folder name."
+msgstr "请输入文件夹名称。"
+
+msgid "Please enter a new address."
+msgstr "请输入新地址。"
+
+msgid "Please enter a short label."
+msgstr "请输入短标签。"
+
+msgid "Please enter this account passphrase to login."
+msgstr "请输入此帐户主密码以登录。"
+
+msgid "Price"
+msgstr "行情"
+
+msgid "Productivity"
+msgstr "生产率"
+
+msgid "Public Key"
+msgstr "公钥"
+
+msgid "Quit"
+msgstr "退出"
+
+msgid "Quit SmartHoldem Client?"
+msgstr "退出SmartHoldem客户端？"
+
+msgid "Rank"
+msgstr "排名"
+
+msgid "Receive STH"
+msgstr "接收STH"
+
+msgid "Register Delegate"
+msgstr "注册受托人"
+
+msgid "Register delegate for"
+msgstr "注册受托人为"
+
+msgid "Remove"
+msgstr "撤除"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Restart"
+msgstr "重启"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save Passphrases for"
+msgstr "保存主密码"
+
+msgid "Second Passphrase"
+msgstr "二级密码"
+
+msgid "Send"
+msgstr "发送"
+
+msgid "Send STH"
+msgstr "发送STH"
+
+msgid "Send STH from"
+msgstr "发送STH从"
+
+msgid "Set"
+msgstr "设置"
+
+msgid "Smartbridge"
+msgstr "智能桥"
+
+msgid "Succesfully Logged In!"
+msgstr "成功登录！"
+
+msgid "The destination address"
+msgstr "目标地址"
+
+msgid "This account already has a second passphrase:"
+msgstr "这个帐户已经有了二级密码:"
+
+msgid "This account has never interacted with the network. This is a cold wallet."
+msgstr "此帐户从未与网络进行过互动。 这是一个冷钱包。"
+
+msgid "To"
+msgstr "To"
+
+msgid "Total {{ul.network.symbol}}"
+msgstr "总计{{ul.network.symbol}}"
+
+msgid "Transaction"
+msgstr "交易"
+
+msgid "Transactions"
+msgstr "交易"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Update vote from"
+msgstr "更新投票从"
+
+msgid "Username"
+msgstr "用户名"
+
+msgid "Vendor Field"
+msgstr "Vendor Field"
+
+msgid "Virtual folder added!"
+msgstr "虚拟文件夹已添加！"
+
+msgid "Vote"
+msgstr "投票"
+
+msgid "Votes"
+msgstr "投票"
+
+msgid "address"
+msgstr "地址"
+
+msgid "folder name"
+msgstr "文件夾名稱"
+
+msgid "is erroneous"
+msgstr "是错误的"
+
+msgid "is not recognised"
+msgstr "无法识别"
+
+msgid "label"
+msgstr "标签"
+
+msgid "missed blocks"
+msgstr "错过块"
+
+msgid "now!"
+msgstr "现在！"
+
+msgid "passphrase"
+msgstr "主密码"
+
+msgid "produced blocks"
+msgstr "生产块"
+
+msgid "sent with success!"
+msgstr "发送成功！"
+
+msgid "you need at least 1 STH to vote"
+msgstr "您需要至少1 STH投票"
+
+msgid "you need at least 55 STH to register delegate"
+msgstr "你需要至少%5个STH来注册受托人"
+
+msgid "you need at least 5 STH to create a second passphrase"
+msgstr "你需要至少5 STH创建二级密码"
+
