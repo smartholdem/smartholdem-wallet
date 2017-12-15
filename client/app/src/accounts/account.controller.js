@@ -75,6 +75,7 @@
     var languages = {
       en: gettextCatalog.getString('English'),
       ru: gettextCatalog.getString('Russian'),
+	  es_419: gettextCatalog.getString('Spanish'),
     }
 
     pluginLoader.triggerEvent('onStart')
