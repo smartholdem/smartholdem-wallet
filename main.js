@@ -5,12 +5,11 @@ const elemon = require('elemon')
 // Module to control application life.
 const app = electron.app
 
-
-//handle setupevents as quickly as possible
+// handle setupevents as quickly as possible
 const setupEvents = require('./installers/setupEvents')
 if (setupEvents.handleSquirrelEvent()) {
-    // squirrel event handled and app will exit in 1000ms, so don't do anything else
-    return;
+    // squirrel event handled and app will exit in 1000ms, so don't do anything els
+  return
 }
 
 // Module to create native browser window.
@@ -301,7 +300,7 @@ function openExplorer () {
   })
 
 // Load a remote URL
-  win.loadURL('http://texplorer.smartholdem.io')
+  win.loadURL('http://explorer.smartholdem.io')
   win.once('ready-to-show', () => {
     win.show()
   })
