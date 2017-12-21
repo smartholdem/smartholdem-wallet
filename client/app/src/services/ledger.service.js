@@ -10,7 +10,7 @@
    */
   function LedgerService ($q, $http, $timeout, storageService, networkService) {
     var ipcRenderer = require('electron').ipcRenderer
-    var smartholdemjs = require('../node_modules/smartholdemjs')
+    var sthjs = require('../node_modules/sthjs')
     var bip39 = require('../node_modules/bip39')
     var async = require('async')
 
@@ -41,7 +41,7 @@
             path: localpath
           })
           if (result.address) {
-            result.address = smartholdemjs.crypto.getAddress(result.publicKey)
+            result.address = sthjs.crypto.getAddress(result.publicKey)
             accountIndex = accountIndex + 1
             var account = storageService.get(result.address) || result
             account.ledger = localpath
@@ -89,7 +89,7 @@
     }
 
     function recoverBip44Accounts (backupLedgerPassphrase, slip44) {
-      var hdnode = smartholdemjs.HDNode.fromSeedHex(bip39.mnemonicToSeedHex(backupLedgerPassphrase))
+      var hdnode = sthjs.HDNode.fromSeedHex(bip39.mnemonicToSeedHex(backupLedgerPassphrase))
 
       var accounts = []
       var accountIndex = 0
@@ -133,7 +133,7 @@
       })
       ipcRenderer.send('ledger', {
         action: 'signTransaction',
-        data: smartholdemjs.crypto.getBytes(transaction, true, true).toString('hex'),
+        data: sthjs.crypto.getBytes(transaction, true, true).toString('hex'),
         path: path
       })
       return deferred.promise

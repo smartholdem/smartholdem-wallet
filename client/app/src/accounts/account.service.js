@@ -14,7 +14,7 @@
    */
   function AccountService ($q, $http, networkService, storageService, ledgerService, gettextCatalog, SATOSHI_UNIT) {
     var self = this
-    var smrt = require('../node_modules/smartholdemjs')
+    var smrt = require('../node_modules/sthjs')
 
     self.defaultFees = {
       'send': 10000000,

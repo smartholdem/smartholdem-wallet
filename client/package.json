@@ -25,7 +25,7 @@
     "angular-material-data-table": "git://github.com/daniel-nagy/md-data-table.git#master",
     "angular-messages": "^1.5.5",
     "angular-qrcode": "^7.2.0",
-    "smartholdemjs": "git://github.com/smartholdem/smartholdem-js.git",
+    "sthjs": "git://github.com/smartholdem/sth-js.git",
     "bip39": "^2.2.0",
     "jsqr": "^0.2.2",
     "ng-infinite-scroll": "^1.3.0",
@@ -39,6 +39,6 @@
   },
   "scripts": {
     "prestart": "npm update",
-    "bundle": "browserify -r angular -r bip39 -r angular-animate -r angular-aria -r angular-gettext -r angular-material -r ng-infinite-scroll -r angular-material-data-table -r angular-messages -r rss-parser -r qrcode-generator -r angular-qrcode -r @uirouter/angularjs -r smartholdemjs -r jsqr -r node-vibrant app/index.js | uglifyjs -c > app/dependencies.min.js"
+    "bundle": "browserify -r angular -r bip39 -r angular-animate -r angular-aria -r angular-gettext -r angular-material -r ng-infinite-scroll -r angular-material-data-table -r angular-messages -r rss-parser -r qrcode-generator -r angular-qrcode -r @uirouter/angularjs -r sthjs -r jsqr -r node-vibrant app/index.js | uglifyjs -c > app/dependencies.min.js"
   }
 }

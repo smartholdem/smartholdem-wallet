@@ -29,7 +29,7 @@
     }
 
     self.isAddress = function (address) {
-      return require('../node_modules/smartholdemjs').crypto.validateAddress(address)
+      return require('../node_modules/sthjs').crypto.validateAddress(address)
     }
 
     function existsIn (haystack, needle) {
