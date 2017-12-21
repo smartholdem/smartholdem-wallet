@@ -19,7 +19,7 @@ function getInstallerConfig () {
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
     exe: 'SmartHoldemClient.exe',
-    setupExe: 'SmartHoldemWallet-Win32-0.1.5.exe',
+    setupExe: 'SmartHoldemWallet-Win32-0.1.6.exe',
     setupIcon: path.join(rootPath, 'build', 'icons', 'win', 'icon.ico')
   })
 }
