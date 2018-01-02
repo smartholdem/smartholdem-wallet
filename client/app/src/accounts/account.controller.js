@@ -885,7 +885,7 @@
 
               var playSound = storageService.get('playFundsReceivedSound')
               if (playSound === true && transactions.length > previousTx.length && transactions[0].type === 0 && transactions[0].recipientId === self.selected.address) {
-                var wavFile = require('path').resolve(__dirname, 'assets/audio/power-up.wav')
+                var wavFile = require('path').resolve(__dirname, 'assets/audio/newtransaction.wav')
                 var audio = new Audio(wavFile)
                 audio.play()
               }
