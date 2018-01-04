@@ -762,11 +762,9 @@
       if (sanitizedName.length > 20) {
         throw new Error('Delegate name is too long, 20 characters maximum')
       }
-	  
 	  if (sanitizedName.length < 3) {
         throw new Error('Delegate name is too short, 3 characters minimum')
       }
-	  
       if (!allowedDelegateNameChars.test(sanitizedName)) {
         throw new Error('Delegate name can only contain alphanumeric characters with the exception of !@$&_.')
       }
