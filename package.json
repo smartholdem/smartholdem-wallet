@@ -47,9 +47,9 @@
   },
   "contributors": [
     {
-      "name": "TechnoL0g",
+      "name": "smartholdem",
       "email": "support@smartholdem.io",
-      "url": "https://github.com/technologiespro"
+      "url": "https://github.com/smartholdem"
     }
   ],
   "license": "MIT",
@@ -75,7 +75,7 @@
     "chai-as-promised": "^7.1.1",
     "cross-env": "^5.0.5",
     "devtron": "^1.4.0",
-    "electron": "^1.7.9",
+    "electron": "^1.7.10",
     "electron-builder": "^19.35.1",
     "electron-installer-dmg": "^0.2.1",
     "electron-installer-squirrel-windows": "^1.3.0",
