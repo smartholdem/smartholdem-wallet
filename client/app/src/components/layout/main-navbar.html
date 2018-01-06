@@ -75,7 +75,7 @@
                 <md-button aria-label="Show Settings" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
                     <md-icon md-font-library="material-icons">settings</md-icon>
                 </md-button>
-                <md-menu-content flex layout-padding width="6" style="min-height: 600px; overflow:hidden;">
+                <md-menu-content flex width="6" ng-style="$ctrl.ul.showExchangeRate() && {'min-height': '400px'} || {'min-height': '320px'}"; style="overflow:hidden;">
                     <md-list class="left-list">
                         <md-list-item ng-show="$ctrl.ul.showExchangeRate()">
                             <md-icon>attach_money</md-icon>
@@ -125,13 +125,14 @@
                             <md-icon>account_box</md-icon>
                             <p translate>Create Account</p>
                         </md-list-item>
+                        <!--
                         <hr>
                         <md-list-item aria-label="Advanced Mode">
                             <md-icon>developer_mode</md-icon>
                             <p translate>Advanced Mode</p>
                             <md-switch ng-model="ul.advancedMode" class="md-primary" md-no-ink arial-label="Advanced Mode" ng-change="ul.toggleAdvancedMode()" ng-init="ul.toggleAdvancedMode()"></md-switch>
                         </md-list-item>
-                        <!--
+
                         <md-list-item aria-label="Manage Networks" ng-click="$ctrl.ul.manageNetworks()">
                             <md-icon>network_check</md-icon>
                             <p translate>Manage Networks</p>

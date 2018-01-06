@@ -95,7 +95,7 @@
             nethash: 'fc46bfaf9379121dd6b09f5014595c7b7bd52a0a6d57c5aff790b42a73c76da7',
             peerseed: 'http://195.133.1.3:6100',
             forcepeer: false,
-            token: 'STH',
+            token: 'SmartHoldem',
             symbol: 'STH',
             version: 63,
             slip44: 255, // 0x800000ff
