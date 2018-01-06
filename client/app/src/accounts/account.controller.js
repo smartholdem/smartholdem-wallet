@@ -8,7 +8,6 @@
       'networkService',
       'pluginLoader',
       'storageService',
-//      'changerService',
       'ledgerService',
       'timeService',
       'toastService',
