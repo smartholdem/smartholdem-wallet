@@ -58,8 +58,8 @@
   },
   "homepage": "https://github.com/smartholdem/smartholdem-wallet#readme",
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.0.1",
     "about-window": "~1.8.0",
+    "asar": "^0.14.0",
     "async": "^2.5.0",
     "electron-window-state": "^4.1.1",
     "elemon": "^5.0.3",
