@@ -108,13 +108,12 @@
           testnet: {
             nethash: 'e1882350a56f22a79d62b903dc2d0fc03c6aae88c6f09908ee3e2d6f1da7e2b3',
             peerseed: 'http://194.87.232.27:4100',
-            //forcepeer: false,
+            // forcepeer: false,
             token: 'TSTH',
             symbol: 'TS',
             version: 66,
             slip44: 1, // all coin testnet
             explorer: 'http://texplorer.smartholdem.io',
-            background: 'url(assets/images/textures/Fabric.png)',
             backgroundColor: '#353636',
             theme: 'default',
             themeDark: true
