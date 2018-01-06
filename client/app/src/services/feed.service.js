@@ -23,7 +23,7 @@
        * RSS of SmartHoldem.io
        */
       fetchBlogEntries () {
-        const rssUrl = 'https://community.smartholdem.io/category/1.rss?uid=1&token=21930113-18b9-499d-9c68-60625e1827ce'
+        const rssUrl = 'https://community.smartholdem.io/category/1.rss'
         return this.fetchAndParse(rssUrl).then(parsed => parsed.feed.entries)
       }
     }
