@@ -601,15 +601,15 @@
     }
 
     self.toggleAdvancedMode = function () {
-    if (self.advancedMode == undefined) self.advancedMode = false
-    storageService.set('advancedMode', self.advancedMode)
-        if (storageService.get('advancedMode')) {
-        $mdToast.show(
-        $mdToast.simple().textContent(gettextCatalog.getString('Advanced Mode enabled.')).hideDelay(5000)
+      if (self.advancedMode === undefined) self.advancedMode = false
+      storageService.set('advancedMode', self.advancedMode)
+      if (storageService.get('advancedMode')) {
+        toastService.show(
+                toastService.simple().textContent(gettextCatalog.getString('Advanced Mode enabled.')).hideDelay(5000)
               )
       } else {
-        $mdToast.show(
-                  $mdToast.simple()
+        toastService.show(
+        toastService.simple()
                       .textContent(gettextCatalog.getString('Advanced Mode disabled.'))
                       .hideDelay(5000)
               )
