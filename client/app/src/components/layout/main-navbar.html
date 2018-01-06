@@ -13,34 +13,60 @@
         <!-- fill up the space between left and right area -->
         <span flex></span>
 
-<!--
-        <any style="pointer-events: auto">
-            <md-tooltip>
-                <translate>Games</translate>
-            </md-tooltip>
-            <md-menu>
-                <md-button aria-label="Games" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
-                    <md-icon md-font-library="material-icons">videogame_asset</md-icon>
-                </md-button>
 
-            </md-menu>
-        </any>
--->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <any style="pointer-events: auto">
             <md-tooltip>
                 <translate>Switch Network</translate>
             </md-tooltip>
-            <md-menu>
+            <md-menu ng-if="ul.advancedMode">
                 <md-button aria-label="Switch Network" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
                     <md-icon md-font-library="material-icons">wifi</md-icon>
                 </md-button>
                 <md-menu-content flex width="3">
-                    <md-list-item ng-repeat="(name, prop) in $ctrl.ul.listNetworks"
-                                  ng-click="$ctrl.ul.switchNetwork(name, true)">
-                        <span md-colors="(($ctrl.ul.context == name) && {color:'{{$ctrl.ul.currentTheme}}-primary'})">{{ name | uppercase }} ({{ prop.token }})</span>
-                    </md-list-item>
+                    <md-menu-item ng-repeat="(name, prop) in ul.listNetworks">
+                        <md-button ng-click="ul.switchNetwork(name, true)" md-colors="((ul.context == name) && {color:'primary'} || {color:'background-900'})">{{ name | uppercase }} ({{ prop.token }})</md-button>
+                    </md-menu-item>
                 </md-menu-content>
             </md-menu>
         </any>
@@ -83,6 +109,7 @@
             </md-menu>
         </any>
 
+        <!-- settings -->
         <any style="pointer-events: auto">
             <md-tooltip>
                 <translate>Settings</translate>
@@ -91,9 +118,7 @@
                 <md-button aria-label="Show Settings" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
                     <md-icon md-font-library="material-icons">settings</md-icon>
                 </md-button>
-                <md-menu-content flex width="6"
-                                 ng-style="$ctrl.ul.showExchangeRate() && {'min-height': '540px'} || {'min-height': '320px'}";
-                                 style="overflow:hidden;">
+                <md-menu-content flex layout-padding width="6" style="min-height: 600px; overflow:hidden;">
                     <md-list class="left-list">
                         <md-list-item ng-show="$ctrl.ul.showExchangeRate()">
                             <md-icon>attach_money</md-icon>
@@ -143,10 +168,19 @@
                             <md-icon>account_box</md-icon>
                             <p translate>Create Account</p>
                         </md-list-item>
+                        <hr>
+                        <md-list-item aria-label="Advanced Mode">
+                            <md-icon>developer_mode</md-icon>
+                            <p translate>Advanced Mode</p>
+                            <md-switch ng-model="ul.advancedMode" class="md-primary" md-no-ink arial-label="Advanced Mode" ng-change="ul.toggleAdvancedMode()" ng-init="ul.toggleAdvancedMode()"></md-switch>
+                        </md-list-item>
+                        <!--
                         <md-list-item aria-label="Manage Networks" ng-click="$ctrl.ul.manageNetworks()">
                             <md-icon>network_check</md-icon>
                             <p translate>Manage Networks</p>
                         </md-list-item>
+                        -->
+
                     </md-list>
                 </md-menu-content>
             </md-menu>

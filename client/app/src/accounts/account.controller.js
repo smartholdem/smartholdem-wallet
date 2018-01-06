@@ -47,6 +47,7 @@
    * @constructor
    */
   function AccountController (
+
     accountService,
     networkService,
     pluginLoader,
@@ -75,8 +76,8 @@
     var languages = {
       en: gettextCatalog.getString('English'),
       ru: gettextCatalog.getString('Russian'),
-	  es_419: gettextCatalog.getString('Spanish'),
-      zh_CN: gettextCatalog.getString('Chinese'),
+      es_419: gettextCatalog.getString('Spanish'),
+      zh_CN: gettextCatalog.getString('Chinese')
     }
 
     pluginLoader.triggerEvent('onStart')
@@ -120,35 +121,34 @@
       return null
     }
 
-      self.explorer = function () {
+    self.explorer = function () {
+      const {BrowserWindow} = require('electron')
 
-          const {BrowserWindow} = require('electron')
+      let win = new BrowserWindow({
+        frame: true,
+        toolbar: false,
+        modal: true,
+        darkTheme: true,
+        useContentSize: true,
+        icon: __dirname + '/client/smartholdem.png',
+        skipTaskbar: true,
+        autoHideMenuBar: true,
+        backgroundColor: '#80FFFFFF',
+        enableLargerThanScreen: true,
+        simpleFullscreen: true
+      })
 
-          let win = new BrowserWindow({
-              frame: true,
-              toolbar: false,
-              modal: true,
-              darkTheme: true,
-              useContentSize: true,
-              icon: __dirname + '/client/smartholdem.png',
-              skipTaskbar: true,
-              autoHideMenuBar: true,
-              backgroundColor: '#80FFFFFF',
-              enableLargerThanScreen: true,
-              simpleFullscreen: true,
-          })
-
-          win.on('closed', () => {
-              win = null
-          })
+      win.on('closed', () => {
+        win = null
+      })
 
 // Load a remote URL
-          win.loadURL('http://explorer.smartholdem.io')
-          win.once('ready-to-show', () => {
-              win.show()
-          })
-          return win
-      }
+      win.loadURL('http://explorer.smartholdem.io')
+      win.once('ready-to-show', () => {
+        win.show()
+      })
+      return win
+    }
 
     self.clearData = function () {
       var confirm = $mdDialog.confirm()
@@ -207,7 +207,7 @@
     self.network = networkService.getNetwork()
     self.listNetworks = networkService.getNetworks()
     self.context = storageService.getContext()
-    //self.exchangeHistory = changerService.getHistory()
+    // self.exchangeHistory = changerService.getHistory()
     self.selectedCoin = storageService.get('selectedCoin') || 'bitcoin_BTC'
     self.exchangeEmail = storageService.get('email') || ''
 
@@ -217,7 +217,7 @@
     if (!self.network.themeDark) self.network.themeDark = false
 
     // will be used in view
-    self.currentTheme = 'default';//self.network.theme
+    self.currentTheme = 'default'// self.network.theme
 
     // set 'dynamic' as the default theme
     generateDynamicPalette(function (name) {
@@ -598,8 +598,23 @@
     }
 
     self.openMenu = function ($mdMenuOpen, ev) {
-      // originatorEv = ev // unused
       $mdMenuOpen(ev)
+    }
+
+    self.toggleAdvancedMode = function () {
+    if (self.advancedMode == undefined) self.advancedMode = false
+    storageService.set('advancedMode', self.advancedMode)
+        if (storageService.get('advancedMode')) {
+        $mdToast.show(
+        $mdToast.simple().textContent(gettextCatalog.getString('Advanced Mode enabled.')).hideDelay(5000)
+              )
+      } else {
+        $mdToast.show(
+                  $mdToast.simple()
+                      .textContent(gettextCatalog.getString('Advanced Mode disabled.'))
+                      .hideDelay(5000)
+              )
+      }
     }
 
     self.selectNextCurrency = function () {
@@ -819,7 +834,7 @@
     self.refreshAccountBalances = () => {
       networkService.getPrice()
 
-      self.getAllAccounts().forEach( account => {
+      self.getAllAccounts().forEach(account => {
         accountService
           .refreshAccount(account)
           .then(updated => account.balance = updated.balance)
@@ -1220,7 +1235,7 @@
         .dark()
       $mdThemingProvider.$get().generateTheme('dark')
       // set dark mode
-      if (self.network.themeDark) {self.currentTheme = 'dark'}
+      if (self.network.themeDark) { self.currentTheme = 'dark' }
     }
 
     // Compare vibrant colors from image with default material palette
@@ -1475,7 +1490,7 @@
     }
 
     function showExchangeRate () {
-      return self.network.cmcTicker || self.network.token === 'ARK'
+      return self.network.cmcTicker || self.network.token === 'STH'
     }
 
     function manageNetworks () {
