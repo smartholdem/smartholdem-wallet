@@ -14,7 +14,7 @@
    */
   function AccountService ($q, $http, networkService, storageService, ledgerService, gettextCatalog, SATOSHI_UNIT) {
     var self = this
-    var smrt = require('../node_modules/sthjs')
+    var smartholdemj = require('../node_modules/sthjs')
 
     self.defaultFees = {
       'send': 10000000,
@@ -156,8 +156,8 @@
 
     function createAccount (passphrase) {
       return new Promise((resolve, reject) => {
-        const publicKey = smrt.crypto.getKeys(passphrase).publicKey
-        const address = smrt.crypto.getAddress(publicKey, networkService.getNetwork().version)
+        const publicKey = smartholdemj.crypto.getKeys(passphrase).publicKey
+        const address = smartholdemj.crypto.getAddress(publicKey, networkService.getNetwork().version)
 
         fetchAccount(address).then(account => {
           if (account) {
@@ -173,7 +173,7 @@
 
     function savePassphrases (address, passphrase, secondpassphrase) {
       var deferred = $q.defer()
-      var tempaddress = smrt.crypto.getAddress(smrt.crypto.getKeys(passphrase).publicKey)
+      var tempaddress = smartholdemj.crypto.getAddress(smartholdemj.crypto.getKeys(passphrase).publicKey)
       if (passphrase) {
         var account = getAccount(tempaddress)
         if (account && account.address === address) {
@@ -410,8 +410,8 @@
       var crypto = require('crypto')
       var hash = crypto.createHash('sha256')
       hash = hash.update(Buffer.from(message, 'utf-8')).digest()
-      var ecpair = smrt.ECPair.fromPublicKeyBuffer(Buffer.from(publicKey, 'hex'))
-      var ecsignature = smrt.ECSignature.fromDER(Buffer.from(signature, 'hex'))
+      var ecpair = smartholdemj.ECPair.fromPublicKeyBuffer(Buffer.from(publicKey, 'hex'))
+      var ecsignature = smartholdemj.ECSignature.fromDER(Buffer.from(signature, 'hex'))
       var success = ecpair.verify(hash, ecsignature)
 
       message = gettextCatalog.getString('Error in signature processing')
@@ -428,7 +428,7 @@
       var crypto = require('crypto')
       var hash = crypto.createHash('sha256')
       hash = hash.update(Buffer.from(message, 'utf-8')).digest()
-      var ecpair = smrt.crypto.getKeys(passphrase)
+      var ecpair = smartholdemj.crypto.getKeys(passphrase)
       deferred.resolve({signature: ecpair.sign(hash).toDER().toString('hex')})
       return deferred.promise
     }
@@ -452,7 +452,7 @@
         var account
         var transaction
         if (type === 0) { // send sth
-          if (!smrt.crypto.validateAddress(config.toAddress, networkService.getNetwork().version)) {
+          if (!smartholdemj.crypto.validateAddress(config.toAddress, networkService.getNetwork().version)) {
             deferred.reject(gettextCatalog.getString('The destination address ') + config.toAddress + gettextCatalog.getString(' is erroneous'))
             return deferred.promise
           }
@@ -464,7 +464,7 @@
           }
 
           try {
-            transaction = smrt.transaction.createTransaction(config.toAddress, config.amount, config.smartevents, config.masterpassphrase, config.secondpassphrase)
+            transaction = smartholdemj.transaction.createTransaction(config.toAddress, config.amount, config.smartevents, config.masterpassphrase, config.secondpassphrase)
           } catch (e) {
             deferred.reject(e)
             return deferred.promise
@@ -479,7 +479,7 @@
               function (result) {
                 console.log(result)
                 transaction.signature = result.signature
-                transaction.id = smrt.crypto.getId(transaction)
+                transaction.id = smartholdemj.crypto.getId(transaction)
                 deferred.resolve(transaction)
               },
               function (error) {
@@ -487,7 +487,7 @@
               }
             )
             return deferred.promise
-          } else if (smrt.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) != config.fromAddress) {
+          } else if (smartholdemj.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) != config.fromAddress) {
             deferred.reject(gettextCatalog.getString('Passphrase is not corresponding to account ') + config.fromAddress)
           } else {
             deferred.resolve(transaction)
@@ -499,7 +499,7 @@
             return deferred.promise
           }
           try {
-            transaction = smrt.signature.createSignature(config.masterpassphrase, config.secondpassphrase)
+            transaction = smartholdemj.signature.createSignature(config.masterpassphrase, config.secondpassphrase)
           } catch (e) {
             deferred.reject(e)
             return deferred.promise
@@ -514,7 +514,7 @@
               function (result) {
                 console.log(result)
                 transaction.signature = result.signature
-                transaction.id = smrt.crypto.getId(transaction)
+                transaction.id = smartholdemj.crypto.getId(transaction)
                 deferred.resolve(transaction)
               },
               function (error) {
@@ -522,7 +522,7 @@
               }
             )
             return deferred.promise
-          } else if (smrt.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) != config.fromAddress) {
+          } else if (smartholdemj.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) != config.fromAddress) {
             deferred.reject(gettextCatalog.getString('Passphrase is not corresponding to account ') + config.fromAddress)
             return deferred.promise
           }
@@ -535,7 +535,7 @@
           }
           console.log(config)
           try {
-            transaction = smrt.delegate.createDelegate(config.masterpassphrase, config.username, config.secondpassphrase)
+            transaction = smartholdemj.delegate.createDelegate(config.masterpassphrase, config.username, config.secondpassphrase)
           } catch (e) {
             deferred.reject(e)
             return deferred.promise
@@ -550,7 +550,7 @@
               function (result) {
                 console.log(result)
                 transaction.signature = result.signature
-                transaction.id = smrt.crypto.getId(transaction)
+                transaction.id = smartholdemj.crypto.getId(transaction)
                 deferred.resolve(transaction)
               },
               function (error) {
@@ -558,7 +558,7 @@
               }
             )
             return deferred.promise
-          } else if (smrt.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) != config.fromAddress) {
+          } else if (smartholdemj.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) != config.fromAddress) {
             deferred.reject(gettextCatalog.getString('Passphrase is not corresponding to account ') + config.fromAddress)
             return deferred.promise
           }
@@ -570,7 +570,7 @@
             return deferred.promise
           }
           try {
-            transaction = smrt.vote.createVote(config.masterpassphrase, config.publicKeys.split(','), config.secondpassphrase)
+            transaction = smartholdemj.vote.createVote(config.masterpassphrase, config.publicKeys.split(','), config.secondpassphrase)
           } catch (e) {
             deferred.reject(e)
             return deferred.promise
@@ -586,7 +586,7 @@
               function (result) {
                 console.log(result)
                 transaction.signature = result.signature
-                transaction.id = smrt.crypto.getId(transaction)
+                transaction.id = smartholdemj.crypto.getId(transaction)
                 deferred.resolve(transaction)
               },
               function (error) {
@@ -594,7 +594,7 @@
               }
             )
             return deferred.promise
-          } else if (smrt.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) !== config.fromAddress) {
+          } else if (smartholdemj.crypto.getAddress(transaction.senderPublicKey, networkService.getNetwork().version) !== config.fromAddress) {
             deferred.reject(gettextCatalog.getString('Passphrase is not corresponding to account ') + config.fromAddress)
             return deferred.promise
           }
@@ -674,7 +674,7 @@
 
     function createVirtual (passphrase) {
       var deferred = $q.defer()
-      var address = smrt.crypto.getAddress(smrt.crypto.getKeys(passphrase).publicKey, networkService.getNetwork().version)
+      var address = smartholdemj.crypto.getAddress(smartholdemj.crypto.getKeys(passphrase).publicKey, networkService.getNetwork().version)
       var account = getAccount(address)
       if (account) {
         account.virtual = account.virtual || {}

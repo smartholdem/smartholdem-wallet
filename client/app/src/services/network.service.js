@@ -14,8 +14,8 @@
     if (!network) {
       network = switchNetwork()
     }
-    var smrt = require('../node_modules/sthjs')
-    smrt.crypto.setNetworkVersion(network.version || 63)
+    var smartholdemj = require('../node_modules/sthjs')
+    smartholdemj.crypto.setNetworkVersion(network.version || 63)
 
     var clientVersion = require('../../package.json').version
 

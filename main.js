@@ -87,22 +87,22 @@ function createWindow () {
         event.returnValue = 'connection not initialised'
       } else {
         try {
-          let smrt = new LedgerSmartHoldem(ledgercomm)
+          let smartholdemledger = new LedgerSmartHoldem(ledgercomm)
           if (arg.action === 'signMessage') {
-            smrt.signPersonalMessage_async(arg.path, Buffer.from(arg.data)
+            smartholdemledger.signPersonalMessage_async(arg.path, Buffer.from(arg.data)
               .toString('hex'))
               .then((result) => event.sender.send('messageSigned', result))
               .fail((error) => event.sender.send('messageSigned', {error: error}))
           } else if (arg.action === 'signTransaction') {
-            smrt.signTransaction_async(arg.path, arg.data)
+            smartholdemledger.signTransaction_async(arg.path, arg.data)
               .then((result) => event.sender.send('transactionSigned', result))
               .fail((error) => event.sender.send('transactionSigned', {error: error}))
           } else if (arg.action === 'getAddress') {
-            smrt.getAddress_async(arg.path)
+            smartholdemledger.getAddress_async(arg.path)
               .then((result) => { event.returnValue = result })
               .fail((error) => { event.returnValue = error })
           } else if (arg.action === 'getConfiguration') {
-            smrt.getAppConfiguration_async()
+            smartholdemledger.getAppConfiguration_async()
               .then((result) => {
                 result.connected = true
                 event.returnValue = result
