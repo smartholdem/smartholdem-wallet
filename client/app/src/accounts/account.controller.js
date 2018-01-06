@@ -621,7 +621,7 @@
         return x.name
       })
       var currencyIndex = currenciesNames.indexOf(self.currency.name)
-      var newIndex = currencyIndex == currenciesNames.length - 1 ? 0 : currencyIndex + 1
+      var newIndex = currencyIndex === currenciesNames.length - 1 ? 0 : currencyIndex + 1
 
       self.currency = self.currencies[newIndex]
       self.changeCurrency()
