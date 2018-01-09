@@ -204,6 +204,7 @@
     self.switchNetwork = networkService.switchNetwork
     self.marketinfo = {}
     self.network = networkService.getNetwork()
+    self.testnet = false
     self.listNetworks = networkService.getNetworks()
     self.context = storageService.getContext()
     // self.exchangeHistory = changerService.getHistory()
@@ -214,6 +215,7 @@
 
     if (!self.network.theme) self.network.theme = 'default'
     if (!self.network.themeDark) self.network.themeDark = false
+    if (self.network.symbol === 'TS') {self.testnet = true}
 
     // will be used in view
     self.currentTheme = 'default'// self.network.theme
@@ -226,6 +228,9 @@
       // generate dark theme after load the dynamic
       generateDarkTheme()
     })
+
+
+
 
     // set dark mode
     // if (self.network.themeDark) {self.currentTheme = 'dark'}

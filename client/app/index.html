@@ -78,13 +78,13 @@
                     </div>
                     <votes-tab account-ctrl="ul"></votes-tab>
                     <delegate-tab account-ctrl="ul" ng-if="ul.selected.delegate"></delegate-tab>
-                    <games-tab account-ctrl="ul"></games-tab>
+                    <games-tab account-ctrl="ul" ng-if="ul.testnet"></games-tab>
                     <!--<exchange-tab account-ctrl="ul"></exchange-tab>-->
                     <!--<offchain-tab account-ctrl="ul"></offchain-tab>-->
-                    <messages-tab account-ctrl="ul"></messages-tab>
-                    <assets-tab account-ctrl="ul"></assets-tab>
-                    <names-tab account-ctrl="ul"></names-tab>
-                    <signing-tab account-ctrl="ul" ng-if="!ul.selected.ledger"></signing-tab>
+                    <messages-tab account-ctrl="ul" ng-if="ul.testnet"></messages-tab>
+                    <assets-tab account-ctrl="ul" ng-if="ul.testnet"></assets-tab>
+                    <names-tab account-ctrl="ul" ng-if="ul.testnet"></names-tab>
+                    <signing-tab account-ctrl="ul" ng-if="!ul.selected.ledger && ul.testnet"></signing-tab>
                 </md-tabs>
             </md-content>
     </div>

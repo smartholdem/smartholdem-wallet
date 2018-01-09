@@ -22,8 +22,8 @@ module.exports = {
       warn: 'green'
     },
     'solarized': {
-      primary: 'orange',
-      accent: 'yellow',
+      primary: 'red',
+      accent: 'orange',
       warn: 'brown'
     },
     'brazil': {

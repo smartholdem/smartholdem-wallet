@@ -114,8 +114,8 @@
             version: 66,
             slip44: 1, // all coin testnet
             explorer: 'http://texplorer.smartholdem.io',
-            backgroundColor: '#353636',
-            theme: 'default',
+            background: 'grey',
+            theme: 'solarized',
             themeDark: true
           }
         }
