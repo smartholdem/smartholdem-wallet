@@ -179,13 +179,13 @@ function createWindow () {
         {label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:'},
         {label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:'},
         {type: 'separator'},
-
+/*
         {
            label: 'Open Dev Tools',
            accelerator: 'CmdOrCtrl+D',
            click: function () { mainWindow.webContents.openDevTools() }
          },
-
+*/
         {label: 'Reload App', accelerator: 'CmdOrCtrl+R', click: function () { mainWindow.webContents.reload() }},
         {
           label: 'Print Page',
@@ -300,7 +300,7 @@ function openExplorer () {
   })
 
 // Load a remote URL
-  win.loadURL('http://explorer.smartholdem.io')
+  win.loadURL('http://blockexplorer.smartholdem.io')
   win.once('ready-to-show', () => {
     win.show()
   })

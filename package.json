@@ -1,6 +1,6 @@
 {
   "name": "SmartHoldemClient",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "productName": "SmartHoldemClient",
   "description": "SmartHoldem Desktop Wallet",
   "main": "main.js",
