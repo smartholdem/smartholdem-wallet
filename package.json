@@ -28,7 +28,7 @@
     "package-all": "electron-packager . --all --overwrite --asar --icon=build/icon.ico --prune=true --out=release-builds --version-string.CompanyName=SmartHoldem --version-string.FileDescription=0.1.8 --version-string.ProductName=\"SmartHoldemClient\"",
     "create-installer-win": "node installers/windows/createinstaller.js",
     "create-installer-win32": "node installers/windows/createinstaller32.js",
-    "create-installer-mac": "electron-installer-dmg ./release-builds/SmartHoldemClient-darwin-x64/SmartHoldemClient.app SmartHoldemWallet-MacOS --out=release-builds --overwrite --icon=build/icons/mac/icon.icns --background=build/bg.png --debug",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/SmartHoldemClient-darwin-x64/SmartHoldemClient.app SmartHoldemWallet --out=release-builds --overwrite --icon=build/icons/mac/icon.icns --background=build/bg.png --debug",
     "create-debian-installer": "electron-installer-debian --src release-builds/SmartHoldemClient-linux-x64/ --arch amd64 --config debian.json"
   },
   "repository": {
