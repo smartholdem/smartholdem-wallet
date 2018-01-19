@@ -300,7 +300,7 @@ function openExplorer () {
   })
 
 // Load a remote URL
-  win.loadURL('http://blockexplorer.smartholdem.io')
+  win.loadURL('https://blockexplorer.smartholdem.io')
   win.once('ready-to-show', () => {
     win.show()
   })
