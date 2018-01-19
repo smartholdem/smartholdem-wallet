@@ -15,11 +15,11 @@ function getInstallerConfig () {
 
   return Promise.resolve({
     appDirectory: path.join(outPath, 'SmartHoldemClient-win32-ia32/'),
-    authors: 'TechnoL0g',
+    authors: 'SmartHoldem',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
     exe: 'SmartHoldemClient.exe',
-    setupExe: 'SmartHoldemWallet-Win32-0.1.7.exe',
+    setupExe: 'SmartHoldemWallet-Win32-0.1.8.exe',
     setupIcon: path.join(rootPath, 'build', 'icons', 'win', 'icon.ico')
   })
 }

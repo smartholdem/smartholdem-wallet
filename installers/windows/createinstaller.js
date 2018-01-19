@@ -15,7 +15,7 @@ function getInstallerConfig () {
 
   return Promise.resolve({
     appDirectory: path.join(outPath, 'SmartHoldemClient-win32-x64/'),
-    authors: 'TechnoL0g',
+    authors: 'SmartHoldem',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
     exe: 'SmartHoldemClient.exe',
