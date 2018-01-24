@@ -24,15 +24,17 @@
             </md-item-template>
           </md-autocomplete>
         </div>
-        <div layout-gt-sm="row">
-          <md-input-container md-no-float class="md-block" flex-gt-sm="85">
+
+
+        <div layout="row" layout-align="space-between start">
+          <md-input-container class="md-block" style="width: 100%">
             <label>{{'Amount'|translate}} ({{ac.network.token}})</label>
-            <input ng-model="send.data.amount" type="number" step="0.00000001" min="0.00000001" max="100000000000000" valid-amount autocomplete="off" ng-required="true" tabIndex="2">
+            <input style="width: 100%" ng-model="send.data.amount" type="number" step="0.00000001" min="0.00000001" max="100000000000000" valid-amount autocomplete="off" ng-required="true" tabIndex="2">
             <div class="hint">
               <!--kurs here-->
             </div>
           </md-input-container>
-          <md-input-container class="md-block" flex-gt-sm="15">
+          <md-input-container class="md-block">
             <md-button ng-click="send.fillSendableBalance()" class="md-primary">
               <translate>Send All</translate>
             </md-button>
