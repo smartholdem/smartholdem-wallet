@@ -390,6 +390,11 @@ md-toast.debug .md-toast-content {
     object-fit: cover;
 }
 
+.md-dark-theme qrcode canvas.qrcode {
+    border: 8px solid white;
+    margin-left: -8px;
+}
+
 md-bottom-sheet button md-icon.material-icons {
     font-size: 36px;
     padding: 15px;
