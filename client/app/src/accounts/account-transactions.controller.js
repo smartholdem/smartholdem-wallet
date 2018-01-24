@@ -30,7 +30,7 @@
 
     $scope.$on('account:onRefreshTransactions', function (evt, transactions) {
       reset()
-      angular.element(document.querySelector('.tx-list-container'))[0].scrollTop = 0
+      /* angular.element(document.querySelector('.tx-list-container'))[0].scrollTop = 0 */
       updateTransactions(transactions)
     })
 
