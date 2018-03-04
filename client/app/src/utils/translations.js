@@ -77,7 +77,7 @@ angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
 		"Remove this account from your wallet. The account may be added again using the original passphrase of the account.":"Удаление этого адреса из вашего кошелька. Учётная запись может быть добавлена снова, используя исходную кодовую фразу записи.",
 		"Remove Account":"Удалить Аккаунт",
 		"Remove account":"Удалить аккаунт",
-		"Send All":"Отправить Всё"
+		"Send All":"Отправить Всё",
 		"Error in your Input.":"Ошибка в вашей строке.",
 		"Rank":"Ранг",
 		"Import":"Импорт",
