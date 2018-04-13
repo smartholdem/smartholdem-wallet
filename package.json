@@ -119,7 +119,7 @@
       "desktop": {
         "MimeType": "x-scheme-handler/smartholdem;"
       },
-      "category": "Network"
+      "category": "Internet"
     },
     "deb": {
       "synopsis": "SmartHoldem Desktop Client"
