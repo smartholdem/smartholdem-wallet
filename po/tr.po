@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VERSION\n"
+"POT-Creation-Date: 2018-01-19 21:49+0000\n"
+"PO-Revision-Date: 2018-01-19 21:49+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE TEAM <EMAIL@ADDRESS>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Cannot get registered delegates"
+msgstr "Kayıtlı delege bilgilerine ulaşılamıyor."
+
+msgid "Client"
+msgstr "İstemci"
+
+msgid "Confirm"
+msgstr "Teyid"
+
+msgid "Contacts"
+msgstr "İrtibat bilgileri"
+
+msgid "Copy"
+msgstr "Kopya"
+
+msgid "Error in signature processing"
+msgstr "İmzalama sürecinde oluşan hata"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Force"
+msgstr "Zorlama"
+
+msgid "If you own this account, you can enable Message Signing"
+msgstr "Eğer bu hesabın sahibi iseniz, Mesaj İmzalama özelliğini aktif hale getirebilirsiniz."
+
+msgid "If you own this account, you can enable Voting"
+msgstr "Eğer bu hesabın sahibi iseniz, Oylama özelliğini aktif hale getirebilirsiniz."
+
+msgid "Market"
+msgstr "Pazar"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Name"
+msgstr "İsim"
+
+msgid "New version available!"
+msgstr "Yeni sürüm var!"
+
+msgid "Ok"
+msgstr "Tamam"
+
+msgid "Open File"
+msgstr "Dosya Aç"
+
+msgid "This account already has a second passphrase:"
+msgstr "Bu hesap için önceden tanımlanmış ikinci bir parola zaten mevcut."
+
+msgid "Voting is an optional, but important mechanism that keeps the SmartHoldem network secure.\n                The 64 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks.\n                This page can be used to cast your vote for a delegate that you support."
+msgstr "Oylama isteğe bağlı olmakla birlikte SmartHoldem Network işlemlerinin güvenli yapılması açısından önemli bir mekanizmadır. \nEn fazla oy almış 64 delege işlemleri onaylamak ve bunları yeni bloklar içerisine kaydetmekle sorumludurlar.\nBu sayfayı desteklediğiniz bir delegeye oy vermek için kullanabilirsiniz."
+
+msgid "you need at least 5 STH to create a second passphrase"
+msgstr "İkinci bir parola oluşturabilmek için en az 5 STH sahibi olmanız gerekiyor."
+
