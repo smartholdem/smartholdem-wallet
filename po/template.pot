@@ -736,7 +736,7 @@ msgid "Quit"
 msgstr ""
 
 #: client/app/src/accounts/account.controller.js:140
-msgid "Quit SmartHoldem Wallet?"
+msgid "Quit SmartHoldem Client?"
 msgstr ""
 
 #: client/app/src/components/account/delegate-tab.html:12
@@ -1073,7 +1073,7 @@ msgstr ""
 
 #: client/app/src/components/account/votes-tab.html:100
 msgid ""
-"Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 51 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks. This page can be used to cast your vote for\n"
+"Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 64 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks. This page can be used to cast your vote for\n"
 "      a delegate that you support."
 msgstr ""
 

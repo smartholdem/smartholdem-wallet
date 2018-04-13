@@ -1,146 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title translate>SmartHoldem Client</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <style type="text/css">
-        html,
-        body {
-            background-color: #000;
-        }
+  <title translate>SmartHoldem Wallet</title>
 
-        html {
-            border-radius: 10px;
-        }
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-        .splash {
-            display: none;
-            overflow-x: hidden;
-        }
+  <style type="text/css">
+    html,
+    body {
+      background-color: #000;
+    }
 
-        [ng-cloak].splash {
-            background-color: #353636;
-            background-image: url("splashscreen.png");
-            background-position: inherit;
-            background-repeat: no-repeat;
-            background-size: cover;
-            width: 96vw;
-            height: 93vh;
-            margin: 0 auto;
-            text-align: center;
-            display: block !important;
-            padding: 2em;
-            -webkit-animation: fadein 2s;
-            animation: fadein 2s;
-        }
+    html {
+      border-radius: 10px;
+    }
 
-        .splash__title {
-            color: #FFF;
-            display: block;
-            font-size: 1.2em;
-            font-weight: bold;
-            line-height: 1.4em;
-        }
-    </style>
+    .splash {
+      display: none;
+      overflow-x: hidden;
+    }
+
+    [ng-cloak].splash {
+      background-color: #343a40;
+      background-image: url("splashscreen.png");
+      background-position: inherit;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 96vw;
+      height: 93vh;
+      margin: 0 auto;
+      text-align: center;
+      display: block !important;
+      padding: 2em;
+      -webkit-animation: fadein 2s;
+      animation: fadein 2s;
+    }
+
+    .splash__title {
+      color: #FFF;
+      display: block;
+      font-size: 1.2em;
+      font-weight: bold;
+      line-height: 1.4em;
+    }
+  </style>
+
 </head>
 
-<body id="app" ng-app="sthclient" layout="column" ng-controller="AccountController as ul" md-theme="ul.currentTheme"
-      background-style="ul.network.background" class="too-pale-background">
-<div class="splash" ng-cloak="">
+<body id="app" ng-app="sthclient" layout="column" ng-controller="AccountController as ul" md-theme="ul.currentTheme" background-style="ul.network.background" class="too-pale-background">
+  <div class="splash" ng-cloak="">
     <div class="splash__title">
-        <p translate>Loading...</p>
+      <p translate>Loading...</p>
     </div>
-</div>
+  </div>
 
-<div ng-cloak="" style="height: 100%" layout="column">
+  <smartholdem-qrcode style="display: none"></smartholdem-qrcode>
+
+  <div ng-cloak="" style="height: 100%" layout="column" ng-controller="AddressbookController as ab" >
 
     <main-navbar account-ctrl="ul"></main-navbar>
 
-    <dashboard account-ctrl="ul" id="dashboard" layout="column" layout-align="space-around center" ng-if="! ul.selected" flex>
-    </dashboard>
+    <dashboard account-ctrl="ul" addressbook-ctrl="ab" id="dashboard" layout="column" layout-align="space-around center" ng-if="!ul.selected" flex></dashboard>
 
-    <div class="account-view" ng-if="ul.selected" ng-controller="AddressbookController as ab" layout="column" flex>
-        <md-content flex layout="row">
+    <div class="account-view" ng-if="ul.selected" layout="column" flex>
+      <md-content flex layout="row">
 
-            <md-sidenav ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-md')" md-component-id="left"
-                        class="md-whiteframe-z2">
-                <main-sidenav account-ctrl="ul" address-book-ctrl="ab"></main-sidenav>
-            </md-sidenav>
+        <md-sidenav ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-md')" md-component-id="left" class="md-whiteframe-z2">
+          <main-sidenav account-ctrl="ul" address-book-ctrl="ab"></main-sidenav>
+        </md-sidenav>
 
-            <md-content flex layout="column" id="content">
-                <account-card account-ctrl="ul" address-book-ctrl="ab"></account-card>
-                <md-tabs flex="100">
-                    <div ng-controller="AccountTransactionsController as transactionsCtrl">
-                        <transaction-tab account-ctrl="ul" transactions-ctrl="transactionsCtrl"></transaction-tab>
-                    </div>
-                    <votes-tab account-ctrl="ul"></votes-tab>
-                    <delegate-tab account-ctrl="ul" ng-if="ul.selected.delegate"></delegate-tab>
-                    <games-tab account-ctrl="ul" ng-if="ul.testnet"></games-tab>
-                    <!--<exchange-tab account-ctrl="ul"></exchange-tab>-->
-                    <!--<offchain-tab account-ctrl="ul"></offchain-tab>-->
-                    <messages-tab account-ctrl="ul" ng-if="ul.testnet"></messages-tab>
-                    <assets-tab account-ctrl="ul" ng-if="ul.testnet"></assets-tab>
-                    <names-tab account-ctrl="ul" ng-if="ul.testnet"></names-tab>
-                    <signing-tab account-ctrl="ul" ng-if="!ul.selected.ledger && ul.testnet"></signing-tab>
-                </md-tabs>
-            </md-content>
+        <md-content flex layout="column" id="content">
+          <account-card account-ctrl="ul" address-book-ctrl="ab"></account-card>
+
+          <md-tabs flex="100">
+            <div ng-controller="AccountTransactionsController as transactionsCtrl">
+              <transaction-tab account-ctrl="ul" transactions-ctrl="transactionsCtrl"></transaction-tab>
+            </div>
+            <votes-tab account="ul.selected" account-ctrl="ul" theme="ul.currentTheme"></votes-tab>
+            <!--
+            <signing-tab account-ctrl="ul" ng-if="!ul.selected.ledger"></signing-tab>
+            <!--
+            <exchange-tab account-ctrl="ul"></exchange-tab>
+            <offchain-tab account-ctrl="ul"></offchain-tab>
+            -->
+            <delegate-tab account-ctrl="ul" ng-if="ul.selected.delegate"></delegate-tab>
+          </md-tabs>
+
+        </md-content>
+      </div>
     </div>
-</div>
+  </div>
 
+  <link rel="stylesheet" href="assets/css/roboto.css" />
+  <link rel="stylesheet" href="assets/css/material-icons.css" />
+  <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css" />
+  <link href="../node_modules/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="assets/app.css" />
 
-<link rel="stylesheet" href="assets/css/roboto.css"/>
-<link rel="stylesheet" href="assets/css/material-icons.css"/>
-<link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css"/>
-<link href="../node_modules/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="assets/app.css"/>
-<script src="dependencies.min.js"></script>
-<script src="src/utils/translations.js"></script>
-<script src="src/init.js"></script>
-<script src="src/filters/filters.js"></script>
-<script src="src/constants/constants.js"></script>
-<script src="src/addons/pluginLoader.addon.js"></script>
-<script src="src/services/config.service.js"></script>
-<script src="src/services/storage.service.js"></script>
-<script src="src/services/network.service.js"></script>
-<script src="src/services/changer.service.js"></script>
+  <!--<script src='../node_modules/smartholdem-qr/dist/sthqrcode.js'></script>-->
+  <script src="dependencies.min.js"></script>
+  <script src="src/utils/translations.js"></script>
 
-<script src="src/services/feed.service.js"></script>
+  <script src="src/init.js"></script>
+  <script src="src/filters/filters.js"></script>
+  <script src="src/constants/constants.js"></script>
 
-<script src="src/services/ledger.service.js"></script>
-<script src="src/services/time.service.js"></script>
-<script src="src/services/toast.service.js"></script>
-<script src="src/accounts/account.service.js"></script>
-<script src="src/accounts/account-transactions.controller.js"></script>
-<script src="src/accounts/account.controller.js"></script>
-<script src="src/directives/validAmount.directive.js"></script>
-<script src="src/directives/copyToClipboard.directive.js"></script>
-<script src="src/directives/backgroundStyle.directive.js"></script>
-<script src="src/directives/open-external.directive.js"></script>
+  <script src="src/addons/plugin-loader.addon.js"></script>
 
-<script src="src/components/layout/main-navbar.controller.js"></script>
-<script src="src/components/dashboard/dashboard.controller.js"></script>
-<script src="src/components/dashboard/announcement.controller.js"></script>
-<script src="src/components/dashboard/account-box.controller.js"></script>
-<script src="src/components/dashboard/market-box.controller.js"></script>
-<script src="src/components/dashboard/network-box.controller.js"></script>
-<script src="src/components/account/main-sidenav.controller.js"></script>
-<script src="src/components/account/account-card.controller.js"></script>
-<script src="src/components/account/transaction-tab.controller.js"></script>
-<script src="src/components/account/votes-tab.controller.js"></script>
-<script src="src/components/account/signing-tab.controller.js"></script>
-<script src="src/components/account/exchange-tab.controller.js"></script>
-<!--<script src="src/components/account/offchain-tab.controller.js"></script>-->
-<script src="src/components/account/delegate-tab.controller.js"></script>
-<script src="src/components/account/messages-tab.controller.js"></script>
-<script src="src/components/account/assets-tab.controller.js"></script>
-<script src="src/components/account/games-tab.controller.js"></script>
-<script src="src/components/account/names-tab.controller.js"></script>
-<script src="src/components/qrScanner/qrScanner.controller.js"></script>
-<script src="src/components/qrScanner/qrScanner.directive.js"></script>
-<script src="src/components/addressbook/addressbook.controller.js"></script>
-<script src="app.js"></script>
+  <script src="src/services/config.service.js"></script>
+  <script src="src/services/dialog.service.js"></script>
+  <script src="src/services/storage.service.js"></script>
+  <script src="src/services/network.service.js"></script>
+  <script src="src/services/feed.service.js"></script>
+  <script src="src/services/ledger.service.js"></script>
+  <script src="src/services/time.service.js"></script>
+  <script src="src/services/toast.service.js"></script>
+  <script src="src/services/transaction-sender.service.js"></script>
+  <script src="src/services/transaction-validator.service.js"></script>
+  <script src="src/services/utility.service.js"></script>
+  <script src="src/services/neo-api.service.js"></script>
+
+  <script src="src/accounts/account.service.js"></script>
+  <script src="src/accounts/transaction-builder.service.js"></script>
+  <script src="src/accounts/account-transactions.controller.js"></script>
+  <script src="src/accounts/account.controller.js"></script>
+  <script src="src/accounts/export-account.controller.js"></script>
+
+  <script src="src/directives/valid-amount.directive.js"></script>
+  <script src="src/directives/copy-to-clipboard.directive.js"></script>
+  <script src="src/directives/background-style.directive.js"></script>
+  <script src="src/directives/open-external.directive.js"></script>
+
+  <script src="src/components/layout/main-navbar.controller.js"></script>
+  <script src="src/components/dashboard/dashboard.controller.js"></script>
+  <script src="src/components/dashboard/announcement.controller.js"></script>
+  <script src="src/components/dashboard/account-box.controller.js"></script>
+  <script src="src/components/dashboard/market-box.controller.js"></script>
+  <script src="src/components/dashboard/network-box.controller.js"></script>
+  <script src="src/components/account/main-sidenav.controller.js"></script>
+  <script src="src/components/account/account-card.controller.js"></script>
+  <script src="src/components/account/transaction-tab.controller.js"></script>
+  <script src="src/components/account/votes-tab/vote.dialog.controller.js"></script>
+  <script src="src/components/account/votes-tab/votes-tab.controller.js"></script>
+  <script src="src/components/account/signing-tab.controller.js"></script>
+  <script src="src/components/account/exchange-tab.controller.js"></script>
+  <!--<script src="src/components/account/offchain-tab.controller.js"></script>-->
+  <script src="src/components/account/delegate-tab.controller.js"></script>
+  <script src="src/components/qr-scanner/qr-scanner.controller.js"></script>
+  <script src="src/components/qr-scanner/qr-scanner.directive.js"></script>
+  <script src="src/components/addressbook/addressbook.controller.js"></script>
+  <script src="src/components/emptystate/empty-state.controller.js"></script>
+  <script src="src/components/passphrase-field/passphrase-field.controller.js"></script>
+
+  <script src="app.js"></script>
+
 </body>
+
 </html>

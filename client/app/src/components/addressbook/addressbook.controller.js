@@ -3,10 +3,10 @@
 
   angular
     .module('sthclient.components')
-    .controller('AddressbookController', ['$scope', '$mdDialog', 'toastService', 'storageService', 'gettextCatalog', 'accountService', 'SATOSHI_UNIT', AddressbookController])
+    .controller('AddressbookController', ['$scope', '$mdDialog', 'toastService', 'storageService', 'gettextCatalog', 'gettext', 'accountService', 'utilityService', AddressbookController])
 
-  function AddressbookController ($scope, $mdDialog, toastService, storageService, gettextCatalog, accountService, SATOSHI_UNIT) {
-    var self = this
+  function AddressbookController ($scope, $mdDialog, toastService, storageService, gettextCatalog, gettext, accountService, utilityService) {
+    const self = this
     // var contacts
     self.trim = function (str) {
       return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '')
@@ -15,12 +15,13 @@
     self.getContacts = function () {
       self.contacts = storageService.get('contacts')
       if (self.contacts == null || self.contacts === undefined) self.contacts = []
+      return self.contacts
     }
 
     self.getContacts()
 
     self.getContactFromAddress = function (address) {
-      return self.contacts.find(function (c) { return c.address === address })
+      return self.contacts.find((c) => { return c.address === address })
     }
 
     self.save = function () {
@@ -29,7 +30,7 @@
     }
 
     self.isAddress = function (address) {
-      return require('../node_modules/sthjs').crypto.validateAddress(address)
+      return require(require('path').resolve(__dirname, '../node_modules/sthjs')).crypto.validateAddress(address)
     }
 
     function existsIn (haystack, needle) {
@@ -44,23 +45,23 @@
       return existsIn(self.contacts.map(c => c.name), name)
     }
 
-    self.showToast = function (message, variable, error) {
+    self.showToast = function (message, variable, error, stringParams) {
       if (error) {
         toastService.error(
-          gettextCatalog.getString(message) + (variable ? ' - ' + variable : ''),
+          gettextCatalog.getString(message, stringParams) + (variable ? ' - ' + variable : ''),
           null,
           true
         )
       } else {
         toastService.success(
-          gettextCatalog.getString(message) + (variable ? ' - ' + variable : ''),
+          gettextCatalog.getString(message, stringParams) + (variable ? ' - ' + variable : ''),
           null,
           true
         )
       }
     }
 
-    self.addAddressbookContact = function () {
+    self.addAddressbookContact = function (successCallback) {
       $scope.addAddressbookContact = {
         add: add,
         cancel: cancel
@@ -73,25 +74,25 @@
       function add (name, address) {
         self.getContacts()
         if (self.trim(name) === '') {
-          self.showToast('This Contact Name is not valid', name, true)
+          self.showToast(gettext('This contact name is not valid'), name, true)
           return
         }
         if (self.trim(address) === '' || !self.isAddress(address)) {
-          self.showToast('This Contact Address is not valid', address, true)
+          self.showToast(gettext('The address of this contact is not valid'), address, true)
           return
         }
 
-        var newContact = { name: name, address: address }
+        const newContact = { name: name, address: address }
         if (self.addressExists(address)) {
-          self.showToast('A Contact with this Address already exists', address, true)
+          self.showToast(gettext('A contact with this address already exists'), address, true)
           return
         }
         if (self.contactExists(name)) {
-          self.showToast('A Contact with this Name already exists', name, true)
+          self.showToast(gettext('A contact with this name already exists'), name, true)
           return
         }
 
-        var knownAccounts = accountService.loadAllAccounts().reduce((all, account) => {
+        const knownAccounts = accountService.loadAllAccounts().reduce((all, account) => {
           if (account.virtual) {
             all.push(account)
           }
@@ -99,17 +100,20 @@
         }, [])
 
         if (existsIn(knownAccounts.map(a => a.address), address)) {
-          self.showToast('This Address is already taken, please add a different one', address, true)
+          self.showToast(gettext('This address is already used by another contact or account'), address, true)
           return
         }
         if (existsIn(knownAccounts.map(a => a.username), name)) {
-          self.showToast('This Name is already taken, please use a different one', name, true)
+          self.showToast(gettext('This name is already used by another contact or account'), name, true)
           return
         }
 
         self.contacts.push(newContact)
         self.save()
-        self.showToast(`Contact '${name}' with address '${address}' added successfully`)
+        self.showToast(gettext('Contact \'{{ name }}\' with address \'{{ address }}\' added successfully'), null, false, {name: name, address: address})
+        if (successCallback) {
+          successCallback()
+        }
         cancel()
       }
 
@@ -124,12 +128,12 @@
     }
 
     self.editAddressbookContact = function (address) {
-      var contact = self.getContactFromAddress(address)
+      const contact = self.getContactFromAddress(address)
       if (!contact) {
-        self.showToast('This address is not a contact', address, true)
+        self.showToast(gettext('This address is not a contact'), address, true)
         return
       }
-      var name = contact.name
+      const name = contact.name
 
       $scope.editAddressbookContact = {
         cancel: cancel,
@@ -145,46 +149,46 @@
 
       function save (name, address) {
         if (self.trim(name) === '') {
-          self.showToast('this Contact Name is not valid', name, true)
+          self.showToast(gettext('This contact name is not valid'), name, true)
           return
         }
         if (self.trim(address) === '') {
-          self.showToast('this Contact Address is not valid', address, true)
+          self.showToast(gettext('The address of this contact is not valid'), address, true)
           return
         }
         self.getContacts()
         if (!self.contactExists(name)) {
-          self.showToast('this Contact Name doesnt exist', name, true)
+          self.showToast(gettext('A contact with this name doesn\'t exist'), name, true)
           return
         }
         if (!self.isAddress(address)) {
-          self.showToast('this seems to be not a valid Address', address, true)
+          self.showToast(gettext('The address of this contact is not valid'), address, true)
           return
         }
-        for (var i = 0; i < self.contacts.length; i++) {
+        for (let i = 0; i < self.contacts.length; i++) {
           if (self.contacts[i].name === name) {
             self.contacts[i].address = address
           }
         }
         self.save()
-        self.showToast(`Contact '${name}' with address '${address}' saved successfully`)
+        self.showToast(gettext('Contact \'{{ name }}\' with address \'{{ address }}\' saved successfully'), null, false, {name: name, address: address})
         cancel()
       }
 
       function remove (name) {
         self.getContacts()
         if (!self.contactExists(name)) {
-          self.showToast('this Contact-Name doesnt exist: ', name, true)
+          self.showToast(gettext('A contact with this name doesn\'t exist'), name, true)
           return
         }
-        for (var i = 0; i < self.contacts.length; i++) {
+        for (let i = 0; i < self.contacts.length; i++) {
           if (self.contacts[i].name === name) {
             delete self.contacts[i]
             self.contacts.splice(i, 1)
           }
         }
         self.save()
-        self.showToast('Contact successfully removed', name, false)
+        self.showToast(gettext('Contact successfully removed'), name, false)
         cancel()
       }
 
@@ -214,14 +218,14 @@
         }
       }
 
-      var transactions = storageService.get('transactions-' + account)
+      const transactions = storageService.get('transactions-' + account)
 
       if (transactions) {
-        var incomeTx = transactions.filter(function (el) {
+        const incomeTx = transactions.filter((el) => {
           return el.senderId === contact
         })
 
-        var expendTx = transactions.filter(function (el) {
+        const expendTx = transactions.filter((el) => {
           return el.recipientId === contact
         })
 
@@ -229,23 +233,23 @@
         stats.expend.transactions = expendTx.length
 
         if (incomeTx.length > 0) {
-          var incomeAmount = incomeTx.map(function (tx) {
+          const incomeAmount = incomeTx.map((tx) => {
             return tx.amount
-          }).reduce(function (prev, el) {
+          }).reduce((prev, el) => {
             return prev + el
           })
 
-          stats.income.amount = accountService.numberToFixed(incomeAmount / SATOSHI_UNIT).toFixed(2)
+          stats.income.amount = utilityService.satoshiToSTH(incomeAmount, false, 2)
         }
 
         if (expendTx.length > 0) {
-          var expendAmount = expendTx.map(function (tx) {
+          const expendAmount = expendTx.map((tx) => {
             return tx.amount
-          }).reduce(function (prev, el) {
+          }).reduce((prev, el) => {
             return prev + el
           })
 
-          stats.expend.amount = accountService.numberToFixed(expendAmount / SATOSHI_UNIT).toFixed(2)
+          stats.expend.amount = utilityService.satoshiToSTH(expendAmount, false, 2)
         }
       }
 

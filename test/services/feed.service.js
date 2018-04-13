@@ -1,7 +1,6 @@
 'use strict'
 
-describe('feedService', function () {
-
+describe('feedService', () => {
   let feedService
 
   beforeEach(() => {
@@ -12,11 +11,11 @@ describe('feedService', function () {
     })
   })
 
-  describe('fetchBlogEntries', function () {
-    it('fetches and parses the SmartHoldem.io feed URL', function () {
+  describe('fetchBlogEntries', () => {
+    it('fetches and parses the SmartHoldem.io feed URL', () => {
       const stub = sinon.stub(feedService, 'fetchAndParse').resolves('OK')
       feedService.fetchBlogEntries()
-      expect(stub.firstCall.args[0]).to.eql('https://SmartHoldem.io/feed')
+      expect(stub.firstCall.args[0]).to.eql('https://community.smartholdem.io/category/1.rss')
     })
   })
 })

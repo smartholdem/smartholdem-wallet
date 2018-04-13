@@ -1,81 +1,97 @@
 'use strict'
 
-describe('AccountBoxController', function () {
+describe('AccountBoxController', () => {
   const expect = chai.expect
 
-  let ctrl
+  let ctrl, SATOSHI_UNIT, accounts, bindings, accountType, accountService
 
-  const SATOSHI_UNIT = 100000000
-  const accounts = [
-    { balance: 10 * SATOSHI_UNIT },
-    { balance: 15 * SATOSHI_UNIT },
-    { balance: 5 * SATOSHI_UNIT },
-    {}
-  ]
+  beforeEach(module('sthclient.constants'))
 
-  const bindings = {
-    accountCtrl: {
-      getAllAccounts () { return accounts },
-      currency: {
-        name: 'btc'
-      },
-      connectedPeer: {
-        market: {
-          price: {
-            btc: '1.0' // Next year price? lol
+  beforeEach(() => {
+    module('sthclient.components', $provide => {
+    })
+
+    inject((_$componentController_, _SATOSHI_UNIT_, $injector) => {
+      SATOSHI_UNIT = _SATOSHI_UNIT_
+      accounts = [
+        { balance: 10 * SATOSHI_UNIT },
+        { balance: 15 * SATOSHI_UNIT },
+        { balance: 5 * SATOSHI_UNIT },
+        {}
+      ]
+
+      bindings = {
+        accountCtrl: {
+          getAllAccounts () { return accounts },
+          currency: {
+            name: 'btc'
+          },
+          connectedPeer: {
+            market: {
+              price: {
+                btc: '0.1' // Next year price? lol
+              }
+            }
           }
         }
       }
-    }
-  }
 
-  beforeEach(() => {
-      module('sthclient.components', $provide => {
-        $provide.value('SATOSHI_UNIT', Math.pow(10,8))
-      })
-
-    inject(_$componentController_ => {
       ctrl = _$componentController_('accountBox', null, bindings)
+      const utilityService = $injector.get('utilityService')
+      accountService = $injector.get('accountService')
+
+      accountType = ctrl.createAccountType('Test Accounts Type',
+                                           bindings.accountCtrl.getAllAccounts,
+                                           bindings.accountCtrl.getAllAccounts,
+                                           utilityService.createRefreshState('Contacts refreshed', 'Could not refresh contacts'))
     })
   })
 
-  describe('myAccountsBalance()', () => {
-    it('sums the balance (in STH, formatted) of all accounts', function () {
-      expect(ctrl.myAccountsBalance()).to.equal('30.00')
+  describe('getTotalBalance()', () => {
+    it('sums the balance (in STH, formatted) of all accounts', () => {
+      expect(ctrl.getTotalBalance(accountType)).to.equal('30.00')
     })
   })
 
-  describe('myAccountsCurrencyBalance()', () => {
+  describe('currencyBalance()', () => {
     context('when it is connected to a maket', () => {
-      it('sums the balance (in the configured currency, formatted) of all accounts', function () {
-        expect(ctrl.myAccountsCurrencyBalance()).to.equal(3)
+      it('sums the balance (in the configured currency, formatted) of all accounts', () => {
+        expect(ctrl.currencyBalance(accountType)).to.equal(3)
       })
     })
 
     context("when it isn't connected to a maket", () => {
-      beforeEach(function () {
+      beforeEach(() => {
         ctrl.accountCtrl.connectedPeer = {}
       })
 
-      it('returns 0', function () {
-        expect(ctrl.myAccountsCurrencyBalance()).to.equal(0)
+      it('returns 0', () => {
+        expect(ctrl.currencyBalance(accountType)).to.equal(0)
       })
     })
   })
 
-  // TODO: Implement with accountController refreshAccountBalances method
-  xdescribe('refreshAccountBalances()', () => {
+  describe('refreshAccountBalances()', () => {
     context('when the balance of an account changes', () => {
-      it('updates the balance', function () {
-        expect(ctrl.myAccountsBalance()).to.equal('30.00')
-        sinon.stub(bindings.accountCtrl, 'getAllAccounts').returns([
-          { balance: 1 * SATOSHI_UNIT },
-          { balance: 17 * SATOSHI_UNIT },
-          { balance: 1 * SATOSHI_UNIT },
-          { balance: 1 * SATOSHI_UNIT }
-        ])
-        ctrl.accountCtrl.refreshAccountBalances()
-        expect(ctrl.myAccountsBalance()).to.equal('20.00')
+      it('updates the balance', () => {
+        expect(ctrl.getTotalBalance(accountType)).to.equal('30.00')
+        accountService.refreshAccount = (account) => {
+          if (account.balance) {
+            account.balance = account.balance / 2
+          }
+          // we need to create a bluebirdpromise, because on a normal promise there is no finally
+          const bluebirdpromise = {}
+          bluebirdpromise.then = (resolve) => {
+            resolve(account)
+            return bluebirdpromise
+          }
+          bluebirdpromise.catch = () => bluebirdpromise
+          bluebirdpromise.finally = () => bluebirdpromise
+
+          return bluebirdpromise
+        }
+        ctrl.refreshAccountBalances(false, accountType.getAccountsToRefresh(), accountType.refreshState)
+        expect(ctrl.getTotalBalance(accountType)).to.equal('15.00')
       })
     })
   })

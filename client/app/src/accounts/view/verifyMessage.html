@@ -8,7 +8,7 @@
         </md-button>
       </div>
     </md-toolbar>
-    <md-tabs>
+    <md-tabs md-dynamic-height>
       <md-tab>
         <md-tab-label>
           <translate>Verify</translate>
@@ -54,8 +54,8 @@
                   <label translate>Paste the entire signed message:</label>
                   <input ng-model="verify.message" ng-required="true" type="text">
                   <div class="hint">
-                    <translate>Format</translate>: 
-                    { "publicKey":"", "signature":"", "message":"" }
+                    <translate>Format (JSON)</translate>:
+                    { "publicKey": "…", "signature": "…", "message": "…" }
                   </div>
                 </md-input-container>
               </div>

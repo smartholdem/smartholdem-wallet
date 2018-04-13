@@ -28,14 +28,13 @@
           .clickOutsideToClose(true)
           .title(message)
           .ariaLabel(message)
-          .theme(self.currentTheme)
+          .theme(self.currentTheme) // eslint-disable-line no-undef
           .ok(gettextCatalog.getString('Ok'))
       )
     }
 
     this.signMessage = selectedAccount => {
       function sign () {
-        const address = $scope.sign.selectedAccount.address
         const passphrase = $scope.sign.passphrase
         const message = $scope.sign.message
 
@@ -51,7 +50,7 @@
         }
 
         promisedSignature.then(
-          function (result) {
+          (result) => {
             selectedAccount.signedMessages.push({
               publickey: selectedAccount.publicKey,
               signature: result.signature,
@@ -60,8 +59,8 @@
             storageService.set('signed-' + selectedAccount.address, selectedAccount.signedMessages)
             $mdDialog.hide()
           },
-          function (error) {
-            accountCtrl.showMessage(error)
+          (error) => {
+            accountCtrl.showMessage(error) // eslint-disable-line no-undef
           }
         )
       }
@@ -70,10 +69,8 @@
         $mdDialog.hide()
       }
 
-      const passphrases = accountService.getPassphrases(selectedAccount.address)
-
       $scope.sign = {
-        passphrase: passphrases[0] ? passphrases[0] : '',
+        passphrase: '',
         sign,
         cancel,
         selectedAccount
@@ -94,7 +91,6 @@
     }
 
     this.verifyMessage = signedMessage => {
-
       function verify () {
         console.log($scope.verify)
         const message = $scope.verify.message
@@ -109,16 +105,8 @@
       function verifyText () {
         const list = JSON.parse($scope.verify.message)
         const res = accountService.verifyMessage(list['message'], list['publickey'], list['signature'])
-
-        let message = gettextCatalog.getString('Error in signature processing')
-
         $mdDialog.hide()
-        if (res) {
-          message = gettextCatalog.getString('The message is verified successfully')
-        } else {
-          message = gettextCatalog.getString('The message is NOT verified')
-        }
-        this.accountCtrl.showMessage(message, res)
+        showMessage(res)
       }
 
       function cancel () {
@@ -145,5 +133,4 @@
       }
     }
   }
-
 })()

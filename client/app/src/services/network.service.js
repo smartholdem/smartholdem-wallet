@@ -9,17 +9,25 @@
    * @constructor
    */
   function NetworkService ($q, $http, $timeout, storageService, timeService, toastService) {
-    var network = switchNetwork(storageService.getContext())
+    const _path = require('path')
+    const sth = require(_path.resolve(__dirname, '../node_modules/sthjs'))
+    const mainNetSmartHoldemJsNetworkKey = 'smartholdem'
+    const devNetSmartHoldemJsNetworkKey = 'testnet'
+
+    let network = switchNetwork(storageService.getContext())
 
     if (!network) {
       network = switchNetwork()
     }
-    var smartholdemj = require('../node_modules/sthjs')
-    smartholdemj.crypto.setNetworkVersion(network.version || 63)
+    sth.crypto.setNetworkVersion(network.version || 63)
 
-    var clientVersion = require('../../package.json').version
+    const momentTimezone = require('moment-timezone')
+    const momentRange = require('moment-range')
+    const moment = momentRange.extendMoment(momentTimezone)
 
-    var peer = {
+    const clientVersion = require(_path.resolve(__dirname, '../../package.json')).version
+
+    let peer = {
       ip: network.peerseed,
       network: storageService.getContext(),
       isConnected: false,
@@ -28,27 +36,27 @@
       price: storageService.getGlobal('peerCurrencies') || { btc: '0.0' }
     }
 
-    var connection = $q.defer()
+    const connection = $q.defer()
 
     connection.notify(peer)
 
     function setNetwork (name, newnetwork) {
-      var n = storageService.getGlobal('networks')
+      const n = storageService.getGlobal('networks')
       n[name] = newnetwork
       storageService.setGlobal('networks', n)
     }
 
     function removeNetwork (name) {
-      var n = storageService.getGlobal('networks')
+      const n = storageService.getGlobal('networks')
       delete n[name]
       storageService.setGlobal('networks', n)
+      storageService.deleteState()
     }
 
     function createNetwork (data) {
-      var n = storageService.getGlobal('networks')
-      var newnetwork = data
-      var deferred = $q.defer()
-      if (n[data.name]) {
+      const networks = storageService.getGlobal('networks')
+      const deferred = $q.defer()
+      if (networks[data.name]) {
         deferred.reject("Network name '" + data.name + "' already taken, please choose another one")
       } else {
         $http({
@@ -56,17 +64,16 @@
           method: 'GET',
           timeout: 5000
         }).then(
-          function (resp) {
-            newnetwork = resp.data.network
-            newnetwork.forcepeer = data.forcepeer
-            newnetwork.peerseed = data.peerseed
-            newnetwork.slip44 = 1 // default to testnet slip44
-            newnetwork.cmcTicker = data.cmcTicker
-            n[data.name] = newnetwork
-            storageService.setGlobal('networks', n)
-            deferred.resolve(n[data.name])
+          (resp) => {
+            const newNetwork = resp.data.network
+            newNetwork.isUnsaved = true
+            newNetwork.forcepeer = data.forcepeer
+            newNetwork.peerseed = data.peerseed
+            newNetwork.slip44 = 1 // default to testnet slip44
+            newNetwork.cmcTicker = data.cmcTicker
+            deferred.resolve({name: data.name, network: newNetwork})
           },
-          function (resp) {
+          (resp) => {
             deferred.reject('Cannot connect to peer to autoconfigure the network')
           }
         )
@@ -75,11 +82,11 @@
     }
 
     function switchNetwork (newnetwork, reload) {
-      var n
+      let n
       if (!newnetwork) { // perform round robin
         n = storageService.getGlobal('networks')
-        var keys = Object.keys(n)
-        var i = keys.indexOf(storageService.getContext()) + 1
+        const keys = Object.keys(n)
+        let i = keys.indexOf(storageService.getContext()) + 1
         if (i === keys.length) {
           i = 0
         }
@@ -90,34 +97,8 @@
       n = storageService.getGlobal('networks')
       if (!n) {
         n = {
-
-          mainnet: { // main blockchain
-            nethash: 'fc46bfaf9379121dd6b09f5014595c7b7bd52a0a6d57c5aff790b42a73c76da7',
-            peerseed: 'http://213.239.207.170:6100',
-            forcepeer: false,
-            token: 'SmartHoldem',
-            symbol: 'COINS',
-            version: 63,
-            slip44: 255, // 0x800000ff
-            explorer: 'https://blockexplorer.smartholdem.io',
-            background: 'url(assets/images/textures/Fabric.png)',
-            theme: 'default',
-            themeDark: true
-          },
-
-          testnet: {
-            nethash: 'e1882350a56f22a79d62b903dc2d0fc03c6aae88c6f09908ee3e2d6f1da7e2b3',
-            peerseed: 'http://194.87.232.27:4100',
-            // forcepeer: false,
-            token: 'TSTH',
-            symbol: 'TS',
-            version: 66,
-            slip44: 1, // all coin testnet
-            explorer: 'http://texplorer.smartholdem.io',
-            background: 'grey',
-            theme: 'solarized',
-            themeDark: true
-          }
+          mainnet: createNetworkFromSmartHoldemJs(mainNetSmartHoldemJsNetworkKey, 0x3f, 255, 'url(assets/images/images/Gold.jpg)'),
+          devnet: createNetworkFromSmartHoldemJs(devNetSmartHoldemJsNetworkKey, 30, 1, '#222299')
         }
         storageService.setGlobal('networks', n)
       }
@@ -127,8 +108,44 @@
       return n[newnetwork]
     }
 
+    function createNetworkFromSmartHoldemJs (SmartHoldemJsNetworkKey, version, slip44, background) {
+      const SmartHoldemJsNetwork = sth.networks[SmartHoldemJsNetworkKey]
+
+      return {
+        smartholdemJsKey: SmartHoldemJsNetworkKey,
+        nethash: SmartHoldemJsNetwork.nethash,
+        peerseed: 'http://' + SmartHoldemJsNetwork.activePeer.ip + ':' + SmartHoldemJsNetwork.activePeer.port,
+        token: SmartHoldemJsNetwork.token,
+        symbol: SmartHoldemJsNetwork.symbol,
+        explorer: SmartHoldemJsNetwork.explorer,
+        version: version,
+        slip44: slip44,
+        forcepeer: false,
+        background: background,
+        theme: 'evelynn',
+        themeDark: true
+      }
+    }
+
+    function tryGetPeersFromSmartHoldemJs () {
+      if (!network.smartholdemJsKey) {
+        return
+      }
+
+      const SmartHoldemJsNetwork = sth.networks[network.smartholdemJsKey]
+      if (!SmartHoldemJsNetwork) {
+        return
+      }
+
+      return SmartHoldemJsNetwork.peers
+    }
+
     function getNetwork () {
       return network
+    }
+
+    function getNetworkName () {
+      return storageService.getContext()
     }
 
     function getNetworks () {
@@ -154,36 +171,31 @@
         return
       }
 
-      $http.get('https://api.coinmarketcap.com/v1/ticker/' + (network.cmcTicker || 'STHE'), { timeout: 2000 })
-      .then(function (res) {
-        if (res.data[0] && res.data[0].price_btc) {
-          res.data[0].price_btc = convertToSatoshi(res.data[0].price_btc) // store BTC price in satoshi
-        }
-        updatePeerWithCurrencies(peer, res)
-          .then((prices) => {
-            res.data[0].price = prices
-            peer.market = res.data[0]
-          })
-          .catch(() => {
-            peer.market = res.data[0]
-          })
-        storageService.set('lastPrice', { market: peer.market, date: new Date() })
-      }, failedTicker)
-      .catch(failedTicker)
-      $timeout(function () {
+      $http.get('https://api.coinmarketcap.com/v1/ticker/' + (network.cmcTicker || 'STHE'), { timeout: 5000 })
+        .then((res) => {
+          if (res.data[0] && res.data[0].price_btc) {
+            res.data[0].price_btc = convertToSatoshi(res.data[0].price_btc) // store BTC price in satoshi
+          }
+          peer.market = res.data[0]
+          peer = updatePeerWithCurrencies(peer, res)
+          storageService.set('lastPrice', { market: peer.market, date: new Date() })
+        }, failedTicker)
+        .catch(failedTicker)
+
+      $timeout(() => {
         getPrice()
       }, 5 * 60000)
     }
 
     function listenNetworkHeight () {
-      $http.get(peer.ip + '/api/blocks/getheight', { timeout: 5000 }).then(function (resp) {
+      $http.get(peer.ip + '/api/blocks/getheight', { timeout: 5000 }).then((resp) => {
         timeService.getTimestamp().then(
-          function (timestamp) {
+          (timestamp) => {
             peer.lastConnection = timestamp
             if (resp.data && resp.data.success) {
               if (peer.height === resp.data.height) {
                 peer.isConnected = false
-                peer.error = 'Node is experiencing sychronisation issues'
+                peer.error = 'Node is experiencing synchronisation issues'
                 connection.notify(peer)
                 pickRandomPeer()
               } else {
@@ -199,13 +211,13 @@
           }
         )
       })
-      $timeout(function () {
+      $timeout(() => {
         listenNetworkHeight()
       }, 60000)
     }
 
     function getFromPeer (api) {
-      var deferred = $q.defer()
+      const deferred = $q.defer()
       peer.lastConnection = new Date()
       $http({
         url: peer.ip + api,
@@ -219,13 +231,13 @@
         },
         timeout: 5000
       }).then(
-        function (resp) {
+        (resp) => {
           deferred.resolve(resp.data)
           peer.isConnected = true
           peer.delay = new Date().getTime() - peer.lastConnection.getTime()
           connection.notify(peer)
         },
-        function (resp) {
+        (resp) => {
           deferred.reject('Peer disconnected')
           peer.isConnected = false
           peer.error = resp.statusText || 'Peer Timeout after 5s'
@@ -237,14 +249,14 @@
     }
 
     function broadcastTransaction (transaction, max) {
-      var peers = storageService.get('peers')
+      const peers = storageService.get('peers')
       if (!peers) {
         return
       }
       if (!max) {
         max = 10
       }
-      for (var i = 0; i < max; i++) {
+      for (let i = 0; i < max; i++) {
         if (i < peers.length) {
           postTransaction(transaction, 'http://' + peers[i].ip + ':' + peers[i].port)
         }
@@ -252,8 +264,8 @@
     }
 
     function postTransaction (transaction, ip) {
-      var deferred = $q.defer()
-      var peerip = ip
+      const deferred = $q.defer()
+      let peerip = ip
       if (!peerip) {
         peerip = peer.ip
       }
@@ -268,7 +280,7 @@
           'port': 1,
           'nethash': network.nethash
         }
-      }).then(function (resp) {
+      }).then((resp) => {
         if (resp.data.success) {
           // we make sure that tx is well broadcasted
           if (!ip) {
@@ -278,52 +290,67 @@
         } else {
           deferred.reject(resp.data)
         }
-      })
+      }, (error) => deferred.reject(error))
       return deferred.promise
     }
 
     function pickRandomPeer () {
-      if (!network.forcepeer) {
-        getFromPeer('/api/peers')
-          .then((response) => {
-            if (response.success) {
-              getFromPeer('/api/peers/version').then(function (versionResponse) {
-                if (versionResponse.success) {
-                  let peers = response.peers.filter(function (peer) {
-                    return peer.status === 'OK' && peer.version === versionResponse.version
-                  })
-                  storageService.set('peers', peers)
-                  findGoodPeer(peers, 0)
-                } else {
-                  findGoodPeer(storageService.get('peers'), 0)
-                }
-              })
-            } else {
-              findGoodPeer(storageService.get('peers'), 0)
-            }
-          }, () => findGoodPeer(storageService.get('peers'), 0))
-      }
-    }
-
-    function findGoodPeer (peers, index) {
-      if (index > peers.length - 1) {
-        // peer.ip=network.peerseed
+      if (network.forcepeer) {
         return
       }
-      if (index === 0) {
-        peers = peers.sort(function (a, b) {
-          return b.height - a.height || a.delay - b.delay
-        })
+      getFromPeer('/api/peers')
+        .then((response) => {
+          if (response.success) {
+            getFromPeer('/api/peers/version').then((versionResponse) => {
+              if (versionResponse.success) {
+                const peers = response.peers.filter((peer) => {
+                  return peer.status === 'OK' && peer.version === versionResponse.version
+                })
+                storageService.set('peers', peers)
+                findGoodPeer(peers, 0)
+              } else {
+                findGoodPeer(storageService.get('peers'), 0)
+              }
+            })
+          } else {
+            findGoodPeer(storageService.get('peers'), 0)
+          }
+        }, () => findGoodPeer(storageService.get('peers'), 0))
+    }
+
+    function findGoodPeer (peers, index, isStaticPeerList) {
+      const isPeerListValid = () => peers && index <= peers.length - 1
+
+      if (!isStaticPeerList && !isPeerListValid()) {
+        // we don't have any peers, that means the app is probably started for the first time
+        // (and therefore we do not have a peer list in our storage)
+        // and getting a peer list failed (the peerseed server may be down)
+        // in this case we try to get a peer from the hardcoded list in the sthjs config
+        peers = tryGetPeersFromSmartHoldemJs()
+        isStaticPeerList = true
+      } else if (index === 0) {
+        peers = peers.sort((a, b) => b.height - a.height || a.delay - b.delay).filter(p => p.ip !== '127.0.0.1')
       }
+
+      // check again or we may have an exception in the case when we couldn't get the static peer list from sthjs
+      if (!isPeerListValid()) {
+        return
+      }
+
       peer.ip = 'http://' + peers[index].ip + ':' + peers[index].port
       getFromPeer('/api/blocks/getheight')
         .then((response) => {
           if (response.success && response.height < peer.height) {
-            findGoodPeer(peers, index + 1)
+            findGoodPeer(peers, index + 1, isStaticPeerList)
           } else {
             peer.height = response.height
+            // if we had a static peer list, we now try to get a dynamic peer list
+            // because now we know the current peer does work and we don't want to keep the hardcoded peers
+            if (isStaticPeerList) {
+              pickRandomPeer()
+            }
           }
-        }, () => findGoodPeer(peers, index + 1))
+        }, () => findGoodPeer(peers, index + 1, isStaticPeerList))
     }
 
     function getPeer () {
@@ -335,12 +362,12 @@
     }
 
     function getLatestClientVersion () {
-      var deferred = $q.defer()
-      var url = 'https://api.github.com/repos/smartholdem/smartholdem-wallet/releases/latest'
+      const deferred = $q.defer()
+      const url = 'https://api.github.com/repos/smartholdem/smartholdem-wallet/releases/latest'
       $http.get(url, { timeout: 5000 })
-        .then(function (res) {
+        .then((res) => {
           deferred.resolve(res.data.tag_name)
-        }, function (e) {
+        }, (e) => {
           // deferred.reject(gettextCatalog.getString("Cannot get latest version"))
         })
       return deferred.promise
@@ -353,28 +380,64 @@
 
     // Updates peer with all currency values relative to the USD price.
     function updatePeerWithCurrencies (peer, res) {
-      let deferred = $q.defer()
-      const currencies = ['AUD', 'BRL', 'CAD', 'CHF', 'CNY', 'EUR', 'GBP', 'HKD', 'IDR', 'INR', 'JPY', 'KRW', 'MXN', 'RUB']
-      var currencyConversionRequest = createCurrencyConversionApiCall(currencies)
-      $http.get(currencyConversionRequest, {timeout: 2000}).then(function (result) {
-        const USD_PRICE = Number(res.data[0].price_usd)
-        var prices = {}
-        currencies.forEach(function (currency) {
-          prices[currency.toLowerCase()] = result.data.rates[currency] * USD_PRICE
-        })
-        prices['btc'] = res.data[0].price_btc
-        prices['usd'] = res.data[0].price_usd
-        storageService.setGlobal('peerCurrencies', prices)
-        deferred.resolve(prices)
-      }, () => {
-        deferred.reject(false)
+      peer = updateCurrencyConversionRates(peer)
+      const USD_PRICE = Number(res.data[0].price_usd)
+      const currencies = ['CNY', 'EUR', 'GBP', 'JPY', 'RUB']
+      const prices = {}
+      currencies.forEach((currency) => {
+        prices[currency.toLowerCase()] = peer.market.conversionRates[currency] * USD_PRICE
       })
+      prices['btc'] = res.data[0].price_btc
+      prices['usd'] = res.data[0].price_usd
+      storageService.setGlobal('peerCurrencies', prices)
+      peer.market.price = prices
+      return peer
+    }
 
-      return deferred.promise
+    // Updates the currency conversion rates IF necessary
+    // Necessary if it isn't stored, or if the stored value is too old
+    function updateCurrencyConversionRates (peer) {
+      const priceObj = storageService.getGlobal('conversionRates')
+      if (priceObj !== undefined && priceObj !== null) {
+        peer.market.conversionRates = priceObj.rates
+        let storedDateString = priceObj.date
+        let storedDate = new Date(storedDateString)
+        const updateCurrencies = checkToUpdateConversionRates(storedDate)
+        if (updateCurrencies) {
+          getConversionRatesApiCall(peer)
+        }
+      } else {
+        getConversionRatesApiCall(peer)
+      }
+      return peer
+    }
+
+    // api call to get the conversion rates for currencies
+    function getConversionRatesApiCall (peer) {
+      const currencies = ['CNY', 'EUR', 'GBP', 'JPY', 'RUB']
+      const apiCall = createCurrencyConversionApiCall(currencies)
+      $http.get(apiCall, {timeout: 2000}).then((result) => {
+        storageService.setGlobal('conversionRates', { rates: result.data.rates, date: new Date() })
+        peer.market.conversionRates = result.data.rates
+      })
+      return peer
+    }
+
+    // Checks if the stored time and the current time has crossed 4pm CET time
+    function checkToUpdateConversionRates (storedDate) {
+      storedDate = moment(storedDate.getTime()).utcOffset(60)
+      const endDate = moment(new Date().getTime()).utcOffset(60)
+      const API_UPDATE_HOUR = 9
+      const fourPMCET = moment({year: storedDate.year(), month: storedDate.month(), day: storedDate.date(), hour: API_UPDATE_HOUR}).utcOffset(60)
+      if (storedDate.hour() >= 16) {
+        fourPMCET.add(1, 'day')
+      }
+      const range = moment.range(storedDate, endDate)
+      return fourPMCET.within(range)
     }
 
     function createCurrencyConversionApiCall (currencies) {
-      var getRequest = 'https://api.fixer.io/latest?base=USD&symbols='
+      let getRequest = 'https://api.fixer.io/latest?base=USD&symbols='
       getRequest += currencies.toString()
       return getRequest
     }
@@ -384,20 +447,21 @@
     pickRandomPeer()
 
     return {
-      switchNetwork: switchNetwork,
-      setNetwork: setNetwork,
-      createNetwork: createNetwork,
-      removeNetwork: removeNetwork,
-      getNetwork: getNetwork,
-      getNetworks: getNetworks,
-      getPeer: getPeer,
-      getConnection: getConnection,
-      getFromPeer: getFromPeer,
-      postTransaction: postTransaction,
-      broadcastTransaction: broadcastTransaction,
-      pickRandomPeer: pickRandomPeer,
-      getLatestClientVersion: getLatestClientVersion,
-      getPrice: getPrice
+      switchNetwork,
+      setNetwork,
+      createNetwork,
+      removeNetwork,
+      getNetwork,
+      getNetworkName,
+      getNetworks,
+      getPeer,
+      getConnection,
+      getFromPeer,
+      postTransaction,
+      broadcastTransaction,
+      pickRandomPeer,
+      getLatestClientVersion,
+      getPrice
     }
   }
 })()

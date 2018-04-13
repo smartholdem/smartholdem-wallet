@@ -20,7 +20,7 @@
       },
 
       /**
-       * RSS of SmartHoldem.io
+       * Fetches and parses the RSS of SmartHoldem.io
        */
       fetchBlogEntries () {
         const rssUrl = 'https://community.smartholdem.io/category/1.rss'
@@ -28,5 +28,4 @@
       }
     }
   }
-
 })()

@@ -1,10 +1,10 @@
 'use strict'
 
-describe('networkService', function () {
+describe('networkService', () => {
   beforeEach(module('sthclient.services'))
 
-  describe('getConnection', function () {
-    it('returns a promise', function () {
+  describe('getConnection', () => {
+    xit('returns a promise', () => {
     })
   })
 })

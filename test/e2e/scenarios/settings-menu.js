@@ -1,6 +1,6 @@
 'use strict'
 
-const hooks = require('../hooks')
+const hooks = require(require('path').resolve(__dirname, '../hooks'))
 
 describe('Settings menu', function () {
   hooks.createApp.bind(this)()
@@ -13,7 +13,7 @@ describe('Settings menu', function () {
     return hooks.afterBlock.bind(this)()
   })
 
-  describe('setting to play sound', function () {
+  describe('setting to play sound', () => {
     const playSoundSelector = 'md-switch[aria-label="Play sound when receiving transactions?"]'
 
     before(function () {
@@ -29,7 +29,7 @@ describe('Settings menu', function () {
       })
     })
 
-    context('when is clicked', function () {
+    context('when is clicked', () => {
       let wasEnabled
 
       before(function () {

@@ -1,6 +1,6 @@
 'use strict'
 
-describe('AccountCardController', function () {
+describe('AccountCardController', () => {
   const expect = chai.expect
 
   let ctrl
@@ -14,11 +14,14 @@ describe('AccountCardController', function () {
   }
 
   const accountServiceMock = {
-    createTransaction: sinon.stub(),
     getUsername: sinon.stub(),
     setUsername: sinon.stub(),
     removeAccount: sinon.stub(),
     loadAllAccounts: sinon.stub()
+  }
+
+  const transactionBuilderServiceMock = {
+    createSendTransaction: sinon.stub()
   }
 
   const mdDialogMock = {
@@ -27,11 +30,13 @@ describe('AccountCardController', function () {
     show: sinon.stub()
   }
 
+  beforeEach(module('sthclient.constants'))
+
   beforeEach(() => {
     module('sthclient.components', $provide => {
       $provide.value('accountService', accountServiceMock)
+      $provide.value('transactionBuilderService', transactionBuilderServiceMock)
       $provide.value('$mdDialog', mdDialogMock)
-      $provide.value('SATOSHI_UNIT', Math.pow(10,8))
     })
 
     inject(_$componentController_ => {
@@ -42,16 +47,16 @@ describe('AccountCardController', function () {
   describe('accountMenuItems()', () => {
     let items
 
-    beforeEach(function () {
+    beforeEach(() => {
       items = ctrl.accountMenuItems({})
     })
 
-    it('includes an "Open in explorer" action', function () {
+    it('includes an "Open in explorer" action', () => {
       expect(items[0]).to.eql({ name: 'Open in explorer', icon: 'open_in_new' })
     })
 
     context("when the account doesn't use a Ledger", () => {
-      it('includes a "Remove" action', function () {
+      it('includes a "Remove" action', () => {
         expect(items[1]).to.eql({ name: 'Remove', icon: 'clear' })
 
         items = ctrl.accountMenuItems({ ledger: true })
@@ -60,7 +65,7 @@ describe('AccountCardController', function () {
     })
 
     context("when the account isn't a delegate", () => {
-      it('includes a "Label" action', function () {
+      it('includes a "Label" action', () => {
         expect(items[2]).to.eql({ name: 'Label', icon: 'local_offer' })
 
         items = ctrl.accountMenuItems({ delegate: true })
@@ -69,7 +74,7 @@ describe('AccountCardController', function () {
     })
 
     context("when the account doesn't use a Ledger and isn't a delegate", () => {
-      it('includes a "Label" action', function () {
+      it('includes a "Label" action', () => {
         expect(items[3]).to.eql({ name: 'Register Delegate', icon: 'perm_identity' })
 
         items = ctrl.accountMenuItems({ ledger: true })
@@ -79,14 +84,14 @@ describe('AccountCardController', function () {
       })
     })
 
-    it('shows a "Timestamp Document" action', function () {
-      it('includes a "Label" action', function () {
+    it('shows a "Timestamp Document" action', () => {
+      it('includes a "Label" action', () => {
         expect(items[4]).to.eql({ name: 'Timestamp Document', icon: 'verified_user' })
       })
     })
 
     context("when the account doesn't have a second signagure and doesn't use a Ledger", () => {
-      it('includes a "Label" action', function () {
+      it('includes a "Label" action', () => {
         expect(items[5]).to.eql({ name: 'Second Passphrase', icon: 'lock' })
 
         items = ctrl.accountMenuItems({ ledger: true })
@@ -100,11 +105,11 @@ describe('AccountCardController', function () {
   describe('confirmRemoval', () => {
     const account = { address: 'Axmp' }
 
-    afterEach(function () {
+    afterEach(() => {
       accountServiceMock.removeAccount.reset()
     })
 
-    it('removes the account', function () {
+    it('removes the account', () => {
       mdDialogMock.confirm.returns({})
       mdDialogMock.show.resolves()
       accountServiceMock.removeAccount.resolves()
@@ -118,13 +123,13 @@ describe('AccountCardController', function () {
   describe('promtpLabel()', () => {
     const account = { address: 'Axmp' }
 
-    afterEach(function () {
+    afterEach(() => {
       mdDialogMock.show.reset()
       mdDialogMock.prompt.reset()
       accountServiceMock.setUsername.reset()
     })
 
-    it('updates the label of the account', function () {
+    it('updates the label of the account', () => {
       mdDialogMock.show.resolves('New label')
 
       return ctrl.promptLabel(account).then(() => {
@@ -132,32 +137,13 @@ describe('AccountCardController', function () {
       })
     })
 
-    it('uses the current label of the account as the initial value', function () {
+    it('uses the current label of the account as the initial value', () => {
       accountServiceMock.getUsername.withArgs(account.address).returns('Old label')
       // Fake that works to not fail when calling `then`
       mdDialogMock.show.resolves()
 
       ctrl.promptLabel(account)
       expect(mdDialogMock.prompt.firstCall.args[0].initialValue).to.eql('Old label')
-    })
-  })
-
-  describe('submitTransaction()', () => {
-    afterEach(function () {
-      accountServiceMock.createTransaction.reset()
-    })
-
-    context('when the form amount is a float', () => {
-      it('uses the right amount to create the transaction', function () {
-        accountServiceMock.createTransaction.resolves({})
-        const stub = accountServiceMock.createTransaction
-
-        ctrl.submitTransaction({}, { amount: 1.0440473 })
-        expect(stub.firstCall.args[1].amount).to.equal(104404730)
-
-        ctrl.submitTransaction({}, { amount: 299.9 })
-        expect(stub.secondCall.args[1].amount).to.equal(29990000000)
-      })
     })
   })
 })

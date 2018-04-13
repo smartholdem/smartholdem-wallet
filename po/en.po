@@ -215,8 +215,8 @@ msgstr "Create a new virtual folder"
 msgid "Currency"
 msgstr "Currency"
 
-msgid "DS Mode"
-msgstr "DS Mode"
+msgid "Dark Mode"
+msgstr "Dark Mode"
 
 msgid "Date"
 msgstr "Date"
@@ -839,8 +839,8 @@ msgstr "Vote"
 msgid "Votes"
 msgstr "Votes"
 
-msgid "Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 51 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks. This page can be used to cast your vote for\n                a delegate that you support."
-msgstr "Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 51 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks. This page can be used to cast your vote for\n                a delegate that you support."
+msgid "Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 64 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks. This page can be used to cast your vote for\n                a delegate that you support."
+msgstr "Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 64 delegates with the most votes from the network are responsible for verifying and forging transactions into new blocks. This page can be used to cast your vote for\n                a delegate that you support."
 
 msgid "Word"
 msgstr "Word"

@@ -2,8 +2,9 @@ module.exports = {
   themes: {
     'default': {
       primary: 'teal',
-      accent: 'green',
-      warn: 'light-green'
+      accent: 'cyan',
+      warn: 'pink',
+      background: 'grey'
     },
     'caetano': {
       primary: 'teal',
@@ -22,9 +23,14 @@ module.exports = {
       warn: 'green'
     },
     'solarized': {
-      primary: 'red',
-      accent: 'orange',
+      primary: 'orange',
+      accent: 'yellow',
       warn: 'brown'
+    },
+    'amazonia': {
+      primary: 'green',
+      accent: 'lime',
+      warn: 'light-green'
     },
     'brazil': {
       primary: 'green',
