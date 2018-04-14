@@ -172,10 +172,6 @@
 				</md-button>
 				<md-menu-content flex width="6" style="min-height: 340px; overflow:hidden;">
 					<md-list class="left-list">
-						<md-list-item aria-label="Close App" ng-click="$ctrl.ul.closeApp()" id="exit-app-button">
-							<md-icon>exit_to_app</md-icon>
-							<p translate>Quit</p>
-						</md-list-item>
 						<md-list-item aria-label="Restart App" ng-click="$ctrl.ul.windowApp('reload')">
 							<md-icon>refresh</md-icon>
 							<p translate>Restart</p>
@@ -199,6 +195,18 @@
 							<md-icon>delete_forever</md-icon>
 							<p translate>Reset Data</p>
 						</md-list-item>
+            <md-list-item aria-label="Telegram">
+              <md-icon>link</md-icon>
+              <p translate open-external="'https://t.me/smartholdem'">Telegram</p>
+            </md-list-item>
+            <md-list-item aria-label="Community">
+              <md-icon>link</md-icon>
+              <p open-external="'https://community.smartholdem.io'" translate>Community</p>
+            </md-list-item>
+            <md-list-item aria-label="Close App" ng-click="$ctrl.ul.closeApp()" id="exit-app-button">
+              <md-icon>exit_to_app</md-icon>
+              <p translate>Quit</p>
+            </md-list-item>
 					</md-list>
 				</md-menu-content>
 			</md-menu>
