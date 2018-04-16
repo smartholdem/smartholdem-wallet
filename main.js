@@ -140,6 +140,23 @@ function createWindow () {
   })
 
   // Create the Application's main menu
+  /*
+  const about = {
+    role: 'about',
+    click: () => openAboutWindow({
+      icon_path: `${__dirname}/client/smartholdem.png`,
+      package_json_dir: __dirname,
+      copyright: '(c) 2017-2018 SmartHoldem Developers',
+      homepage: 'https://smarthodlem.io/',
+      bug_report_url: 'https://github.com/smartholdem/smartholdem-wallet/issues'
+    })
+  }
+
+  const screenshotProtection = {
+    label: getScreenshotProtectionLabel(),
+    click: () => { updateScreenshotProtectionItem() }
+  }
+  */
   template = [
     {
       label: 'Application',

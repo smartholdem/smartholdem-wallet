@@ -123,7 +123,7 @@ gettextCatalog.setStrings('en_US', {"- This also can help to prove if a file has
 		"Add Custom":"Добавить свой",
 		"Single":"Одиночная транзакция",
 		"It is possible to use a CSV file to send {{network.symbol}} to a list of addresses. Each of these transactions would have its own fee until the next version of the protocol. Currently is limited to {{maxTransactionsPerFile}} transactions per file. The format is: <pre>Address,Amount,Message</pre>":"Можно использовать CSV-файл для отправки STH в список адресов. Каждая из этих транзакций будет иметь свою собственную комиссию до следующей версии протокола. В настоящее время ограничено 20 транзакциями на файл. Формат:<pre>Адрес,Сумма,Примечание</pre>",
-		"Multiple":"Несколько",
+		"Multiple":"Мультиплатёжи",
 		"Show {{((!ul.showPublicKey) && 'public key' || 'address')}}":"Показать {{((!ul.showPublicKey) && 'public key' || 'address')}}",
 		"Copy":"Копировать",
 		"This address has not received any STH so it is not on the STH blockchain and can not be used for signing messages.":"Этот адрес не выполнял операция с STH, поэтому он не находится в BlockChain и не может использоваться для подписи сообщений.",
