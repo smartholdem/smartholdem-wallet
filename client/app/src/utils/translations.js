@@ -83,8 +83,9 @@ gettextCatalog.setStrings('en_US', {"- This also can help to prove if a file has
 		});
     gettextCatalog.setStrings('ru', {
 		"Accounts can only have 1 active delegate at a time":"Аккаунты могут иметь только одного делегата одновременно",
+		"The message is NOT verified":"Сообщение НЕ прошло верификацию",
 		"Unvote":"Отмена",
-		"Use a custom (non-BIP39) passphrase":"Использовать пользовательскую (НЕ-BIP39) фразу",
+		"Use a custom (non-BIP39) passphrase":"Использовать пользовательскую (НЕ BIP39) фразу",
 		"Yes":"Да",
 		"Quit SmartHoldem Client?":"Выход из клиента SmartHoldem?",
 		"Received {{vm.numberOfReceivedTransactions}} transactions.":"Получены {{vm.numberOfReceivedTransactions}} транзакций.",
@@ -145,7 +146,7 @@ gettextCatalog.setStrings('en_US', {"- This also can help to prove if a file has
 		"Verify":"Проверить",
 		"Verify Text":"Проверить Текст",
 		"Verify Message":"Проверить Сообщение",
-		"The message is verified successfully":"Сообщение успешно проверено",
+		"The message is verified successfully":"Сообщение успешно прошло проверку",
 		"Gaming Center":"Игровой Центр",
 		"Sign Message":"Подписать Сообщение",
 		"Total {{ul.network.symbol}}":"Всего {{ul.network.symbol}}",
