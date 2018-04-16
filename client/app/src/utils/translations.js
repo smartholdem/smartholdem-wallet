@@ -145,7 +145,7 @@ gettextCatalog.setStrings('en_US', {"- This also can help to prove if a file has
 		"Verify":"Проверить",
 		"Verify Text":"Проверить Текст",
 		"Verify Message":"Проверить Сообщение",
-		"The message is verified successfully":"Сообщение успешно проверено Bro",
+		"The message is verified successfully":"Сообщение успешно проверено",
 		"Gaming Center":"Игровой Центр",
 		"Sign Message":"Подписать Сообщение",
 		"Total {{ul.network.symbol}}":"Всего {{ul.network.symbol}}",
