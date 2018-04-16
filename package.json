@@ -110,7 +110,7 @@
       "icon": "build/smart.ico"
     },
     "linux": {
-      "icon": "build/1024x1024.png",
+      "icon": "build/icon.icns",
       "description": "A Lite Client used to securely connect to the SmartHoldem network and manage your STH assets.",
       "target": [
         "deb",
@@ -122,7 +122,8 @@
       "category": "Internet"
     },
     "deb": {
-      "synopsis": "SmartHoldem Desktop Client"
+      "synopsis": "SmartHoldem Desktop Client",
+      "icon": "build/icon.icns"
     },
     "dmg": {
       "icon": "build/icon.icns",
