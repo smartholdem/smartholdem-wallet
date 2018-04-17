@@ -122,8 +122,7 @@
       "category": "Internet"
     },
     "deb": {
-      "synopsis": "SmartHoldem Desktop Client",
-      "icon": "build/icons/logo128.png"
+      "synopsis": "SmartHoldem Desktop Client"
     },
     "dmg": {
       "icon": "build/icon.icns",
