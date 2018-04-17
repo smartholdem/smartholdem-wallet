@@ -69,7 +69,7 @@
             newNetwork.isUnsaved = true
             newNetwork.forcepeer = data.forcepeer
             newNetwork.peerseed = data.peerseed
-            newNetwork.slip44 = 1 // default to testnet slip44
+            newNetwork.slip44 = 1 // default to devnet slip44
             newNetwork.cmcTicker = data.cmcTicker
             deferred.resolve({name: data.name, network: newNetwork})
           },
