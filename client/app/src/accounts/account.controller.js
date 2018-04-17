@@ -1022,9 +1022,9 @@
       const backgrounds = {
         user: {},
         colors: {
-          'Smartnight': '#28384c',
-          'Asbestos': '#7f8c8d',
-          'Smartred': '#ff334d',
+          'SmartNight': '#28384c',
+          'Gray': '#7f8c8d',
+          'SmartRed': '#ff334d',
           'Seawave': '#17a2b8'
         },
         textures: {},
