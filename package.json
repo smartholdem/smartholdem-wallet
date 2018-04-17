@@ -114,9 +114,7 @@
       "description": "A Lite Client used to securely connect to the SmartHoldem network and manage your STH assets.",
       "target": [
         "deb",
-        "tar.xz",
-        "snap",
-        "AppImage"
+        "tar.xz"
       ],
       "desktop": {
         "MimeType": "x-scheme-handler/smartholdem;"
