@@ -4,7 +4,7 @@ const utils = require(require('path').resolve(__dirname, './utils'))
 
 const LedgerSmartHoldem = function (comm) {
   this.comm = comm
-  this.comm.setScrambleKey('w0w')
+  this.comm.setScrambleKey('w1w')
 }
 
 /* eslint-disable node/no-deprecated-api */
