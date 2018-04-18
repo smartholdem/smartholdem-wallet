@@ -10,35 +10,36 @@ module.exports = {
       warn: 'amber',
       background: 'grey'
     },
+    'bitforest': {
+      primary: 'teal',
+      accent: 'light-green',
+      warn: 'lime'
+    },
     'amber': {
-      primary: 'amber',
-      accent: 'blue',
+      primary: 'yellow',
+      accent: 'amber',
       warn: 'deep-orange'
     },
     'smart': {
       primary: 'pink',
-      accent: 'amber',
-      warn: 'lime'
+      accent: 'orange',
+      warn: 'red'
     },
-    'solarized': {
+    'solarus': {
       primary: 'orange',
       accent: 'yellow',
-      warn: 'brown'
+      warn: 'deep-orange'
     },
-    'amazonia': {
-      primary: 'green',
-      accent: 'lime',
-      warn: 'light-green'
+    'silicontree': {
+      primary: 'brown',
+      accent: 'light-green',
+      warn: 'green'
     },
-    'brazil': {
-      primary: 'green',
-      accent: 'yellow',
-      warn: 'blue'
-    },
-    'midnight': {
-      primary: 'indigo',
-      accent: 'deep-purple',
-      warn: 'blue'
+    'lunapark': {
+      primary: 'light-blue',
+      accent: 'teal',
+      warn: 'blue',
+      background: 'indigo'
     }
   },
   colors: {
