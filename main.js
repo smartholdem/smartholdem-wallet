@@ -159,7 +159,6 @@ function createWindow () {
         { label: getScreenshotProtectionLabel(), click: () => { updateScreenshotProtectionItem() }, enabled: process.platform !== 'linux' }
       ]
     },
-    /*
     {
       label: 'Edit',
       submenu: [
@@ -173,8 +172,7 @@ function createWindow () {
         { type: 'separator' },
         { label: 'Print Page', accelerator: 'CmdOrCtrl+P', click: function () { mainWindow.webContents.print({printBackground: true}) } }
       ]
-    }, 
-    */
+    },
     {
       role: 'window',
       submenu: [
