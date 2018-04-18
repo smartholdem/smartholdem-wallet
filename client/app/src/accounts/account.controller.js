@@ -105,7 +105,7 @@
 
     electron.ipcRenderer.on('uri', (event, uri) => {
       $timeout(() => {
-        const qrcodeElement = document.querySelector('smartholdem-qrcode')
+        const qrcodeElement = document.querySelector('smartholdem-qr')
         const scheme = qrcodeElement.deserializeURI(uri)
 
         if (!scheme) return toastService.error(gettext('Invalid URI'))
