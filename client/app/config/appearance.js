@@ -36,10 +36,10 @@ module.exports = {
       warn: 'green'
     },
     'lunapark': {
-      primary: 'light-blue',
-      accent: 'teal',
+      primary: 'indigo',
+      accent: 'light-blue',
       warn: 'blue',
-      background: 'indigo'
+      background: 'blue-grey'
     }
   },
   colors: {
