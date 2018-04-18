@@ -86,6 +86,7 @@
         { name: gettextCatalog.getString('Russian'), code: 'ru' },
         { name: gettextCatalog.getString('Bulgarian'), code: 'bg_BG' },
         { name: gettextCatalog.getString('Serbian'), code: 'sr' },
+        { name: gettextCatalog.getString('Deutschland'), code: 'de' },
         { name: gettextCatalog.getString('Spanish'), code: 'es_419' },
         { name: gettextCatalog.getString('Portuguese - Brazil'), code: 'pt_BR' },
         { name: gettextCatalog.getString('Japanese'), code: 'ja' },
