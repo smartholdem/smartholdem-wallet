@@ -1,20 +1,24 @@
+/*
+red, pink, purple, deep-purple, indigo, blue, light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange, deep-orange, brown, grey, blue-grey
+ */
+
 module.exports = {
   themes: {
     'default': {
-      primary: 'teal',
+      primary: 'blue-grey',
       accent: 'cyan',
-      warn: 'pink',
+      warn: 'amber',
       background: 'grey'
     },
-    'evelynn': {
-      primary: 'pink',
+    'amber': {
+      primary: 'amber',
       accent: 'blue',
       warn: 'deep-orange'
     },
-    'rok': {
-      primary: 'blue',
+    'smart': {
+      primary: 'pink',
       accent: 'amber',
-      warn: 'green'
+      warn: 'lime'
     },
     'solarized': {
       primary: 'orange',
@@ -38,5 +42,9 @@ module.exports = {
     }
   },
   colors: {
+    'SmartNight': '#28384c',
+    'SmartGray': '#7f8c8d',
+    'SmartRed': '#ff334d',
+    'SeaWave': '#17a2b8'
   }
 }

@@ -1023,9 +1023,9 @@
         user: {},
         colors: {
           'SmartNight': '#28384c',
-          'Gray': '#7f8c8d',
+          'SmartGray': '#7f8c8d',
           'SmartRed': '#ff334d',
-          'Seawave': '#17a2b8'
+          'SeaWave': '#17a2b8'
         },
         textures: {},
         images: {}
@@ -1128,8 +1128,8 @@
       function selectTheme (theme) {
         generateDarkTheme(theme)
         $scope.send.selectedTheme = theme
+        // currentNetwork.themeDark = theme
         currentNetwork.theme = theme
-        // currentNetwork.themeDark
         setDarkMode()
       }
 
@@ -1194,7 +1194,7 @@
     }
 
     function showExchangeRate () {
-      return self.network.cmcTicker || self.network.token === 'STHE'
+      return self.network.cmcTicker || self.network.token === 'STH'
     }
 
     function manageNetworks () {
