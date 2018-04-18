@@ -69,6 +69,7 @@
 				</md-button>
 				<md-menu-content flex width="6" ng-style="$ctrl.ul.showExchangeRate() && {'min-height': '540px'} || {'min-height': '480px'}"; style="overflow:hidden;">
 					<md-list class="left-list">
+            <!--
 						<md-list-item ng-if="$ctrl.ul.showExchangeRate()">
 							<md-icon>attach_money</md-icon>
 							<p translate>Currency</p>
@@ -76,6 +77,7 @@
 								<md-option ng-value="opt" ng-repeat="opt in $ctrl.ul.currencies track by opt.symbol" style="text-transform: uppercase">{{ opt.name }}</md-option>
 							</md-select>
 						</md-list-item>
+            -->
 						<md-list-item>
 							<md-icon>flag</md-icon>
 							<p translate>Language</p>
