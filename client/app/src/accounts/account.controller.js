@@ -83,12 +83,13 @@
       self.languages = [
         { name: gettextCatalog.getString('Arabic'), code: 'ar' },
         { name: gettextCatalog.getString('English'), code: 'en' },
+        { name: gettextCatalog.getString('Russian'), code: 'ru' },
+        { name: gettextCatalog.getString('Bulgarian'), code: 'bg_BG' },
+        { name: gettextCatalog.getString('Serbian'), code: 'sr' },
         { name: gettextCatalog.getString('Spanish'), code: 'es_419' },
+        { name: gettextCatalog.getString('Portuguese - Brazil'), code: 'pt_BR' },
         { name: gettextCatalog.getString('Japanese'), code: 'ja' },
         { name: gettextCatalog.getString('Korean'), code: 'ko' },
-        { name: gettextCatalog.getString('Portuguese - Brazil'), code: 'pt_BR' },
-        { name: gettextCatalog.getString('Russian'), code: 'ru' },
-        { name: gettextCatalog.getString('Serbian'), code: 'sr' },
         { name: gettextCatalog.getString('Chinese - China'), code: 'zh_CN' },
         { name: gettextCatalog.getString('Chinese - Taiwan'), code: 'zh_TW' }
       ].sort((a, b) => a.name.localeCompare(b.name))
