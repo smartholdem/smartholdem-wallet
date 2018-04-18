@@ -199,8 +199,8 @@ function createWindow () {
           label: 'Paper Wallet',
           click () { require('electron').shell.openExternal('https://paperwallet.smartholdem.io/') }
         },
-        { label: 'Reload App', accelerator: 'CmdOrCtrl+R', click: function () { mainWindow.reload() } },
-        { label: 'Open Dev Tools', accelerator: 'CmdOrCtrl+D', click: function () { mainWindow.webContents.openDevTools() } }
+        { label: 'Reload App', accelerator: 'CmdOrCtrl+R', click: function () { mainWindow.reload() } }
+        /* ,{ label: 'Open Dev Tools', accelerator: 'CmdOrCtrl+D', click: function () { mainWindow.webContents.openDevTools() } } */
       ]
     }
   ]
