@@ -107,6 +107,7 @@ gettextCatalog.setStrings('en_US', {"- This also can help to prove if a file has
 		"Depending on your history, this may take a while.":"В зависимости от вашей истории это может занять некоторое время.",
 		"Once a delegate is selected for this account, it will appear here.":"Когда делегат будет выбран для этой учетной записи, он появится здесь.",
 		"This account does not have any selected delegates":"В этой учетной записи нет делегатов",
+		"This address is your own address. Are you sure you want to send to your own address?":"Это ваш собственный адрес. Вы действительно хотите отправить этот адрес?",
 		"Start export":"Начать Экспорт",
 		"Force?":"Обязательно?",
 		"Background":"Фон",
