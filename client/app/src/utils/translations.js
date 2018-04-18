@@ -110,6 +110,7 @@ gettextCatalog.setStrings('en_US', {"- This also can help to prove if a file has
 		"Start export":"Начать Экспорт",
 		"Force?":"Обязательно?",
 		"Background":"Фон",
+		"Theme":"Цветовая схема",
 		"Show":"Показать",
 		"Explorer":"Обозреватель",
 		"Token name":"Имя монеты",
