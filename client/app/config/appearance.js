@@ -6,12 +6,6 @@ module.exports = {
       warn: 'pink',
       background: 'grey'
     },
-    'caetano': {
-      primary: 'teal',
-      accent: 'cyan',
-      warn: 'pink',
-      background: 'blue-grey'
-    },
     'evelynn': {
       primary: 'pink',
       accent: 'blue',
