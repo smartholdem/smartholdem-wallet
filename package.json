@@ -122,6 +122,7 @@
       }
     },
     "deb": {
+      "icon": "build/icon.icns",
       "synopsis": "SmartHoldem Desktop Client"
     },
     "dmg": {
