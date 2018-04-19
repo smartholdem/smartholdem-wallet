@@ -140,7 +140,6 @@ function createWindow () {
   })
 
   // Create the Application's main menu
- 
   template = [
     {
       label: 'Application',
