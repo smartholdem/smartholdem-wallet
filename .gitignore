@@ -1,3 +1,4 @@
+.idea/
 node_modules
 *.swp
 *.un~
@@ -8,5 +9,4 @@ dist/
 npm-debug.log
 logs/*.log
 dependencies.min.js
-.idea/
 .DS_Store
