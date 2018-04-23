@@ -2,7 +2,7 @@ node_modules
 *.swp
 *.un~
 *.zip
-Ark\ Client-*
+SmartHoldem\ Client-*
 .tags
 dist/
 npm-debug.log
