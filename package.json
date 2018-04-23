@@ -127,7 +127,7 @@
     },
     "dmg": {
       "icon": "build/icon.icns",
-      "background": "build/Gold.jpg",
+      "background": "build/Gold.png",
       "contents": [
         {
           "x": 130,
