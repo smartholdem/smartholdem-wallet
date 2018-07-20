@@ -131,6 +131,10 @@
       "background": "build/bg.png",
       "contents": [
         {
+          "x": 130,
+          "y": 220
+        },
+        {
           "x": 410,
           "y": 220,
           "type": "link",

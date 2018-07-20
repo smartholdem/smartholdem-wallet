@@ -10,7 +10,7 @@
     const currencies = ['BTC', 'CNY', 'EUR', 'RUB', 'USD']
     const storageKey = 'marketTicker'
     const network = networkService.getNetwork()
-    const symbol = network.cmcTicker || 'STH'
+    const symbol = network.cmcTicker || 'DDSTH'
 
     const saveTicker = (ticker) => {
       const symbol = ticker.symbol
@@ -28,7 +28,7 @@
     }
 
     const getPrice = (currency = 'BTC') => {
-      if (!network.cmcTicker && network.token !== 'STH') return
+      if (!network.cmcTicker && network.token !== 'DDSTH') return
 
       const storage = storageService.get(storageKey)
       const isValid = typeof storage === 'object' && Object.keys(storage).length > 0
