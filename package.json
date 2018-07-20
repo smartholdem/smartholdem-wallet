@@ -32,9 +32,9 @@
     "Electron"
   ],
   "author": {
-    "name": "Fx Thoorens",
-    "email": "fixcrypt@gmail.com",
-    "url": "https://github.com/fix"
+    "name": "SmartHoldem",
+    "email": "dev@smartholdem.io",
+    "url": "https://github.com/smartholdem"
   },
   "contributors": [
     {
@@ -97,7 +97,7 @@
     "spectron": "^3.7.2"
   },
   "build": {
-    "appId": "com.smartholdemwallet.liteclient",
+    "appId": "io.smartholdemwallet.client",
     "protocols": {
       "name": "SmartHoldem URI scheme",
       "schemes": [
