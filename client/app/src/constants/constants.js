@@ -12,6 +12,6 @@
     })
 
   angular.module('sthclient.constants')
-  // all SmartHoldem timestamps start at 2017/11/21 13:00
+  // all sth timestamps start at 2017/11/21 13:00
     .constant('STH_LAUNCH_DATE', new Date(Date.UTC(2017, 10, 21, 13, 0, 0, 0)))
 })()

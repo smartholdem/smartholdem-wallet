@@ -17,8 +17,8 @@
             let totalBalance = scope.send ? scope.send.totalBalance : scope.totalBalance
             totalBalance = Number(utilityService.sthToSatoshi(totalBalance))
 
-            let remainingBalance = utilityService.satoshiToSTH(totalBalance - num, true)
-            remainingBalance = isNaN(remainingBalance) ? utilityService.satoshiToSTH(totalBalance, true) : remainingBalance
+            let remainingBalance = utilityService.satoshiToSth(totalBalance - num, true)
+            remainingBalance = isNaN(remainingBalance) ? utilityService.satoshiToSth(totalBalance, true) : remainingBalance
             if (scope.send) {
               scope.send.remainingBalance = remainingBalance
             } else {

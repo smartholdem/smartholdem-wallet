@@ -76,9 +76,9 @@
           <md-input-container class="md-block" style="width: 100%">
                 <label>{{'Amount'|translate}} ({{network.token}})</label>
                 <input style="width: 100%" ng-model="data.amount" type="number" step="0.00000001" min="0.00000001" max="100000000000000" valid-amount autocomplete="off" ng-required="true" tabIndex="2">
-            <div class="hint">
-                  <!--{{ac.currency.symbol}} {{data.amount | amountToCurrency:this}}-->
-            </div>
+            <!--<div class="hint">
+                  {{ac.currency.symbol}} {{data.amount | amountToCurrency:this}}
+            </div>-->
           </md-input-container>
 
           <md-input-container class="md-block">
@@ -89,8 +89,8 @@
         </div>
 
         <md-input-container md-no-float class="md-block">
-              <label>{{'Message'|translate}} ({{'Optional'|translate}})</label>
-              <input ng-model="data.smartmessage" type="text" ng-required="false" maxlength="64" tabIndex="3">
+              <label>{{'SmartMessage'|translate}} ({{'Optional'|translate}})</label>
+              <input ng-model="data.smartbridge" type="text" ng-required="false" maxlength="64" tabIndex="3">
         </md-input-container>
 
             <passphrase-field ng-if="!data.ledger" ng-model="data.passphrase" label="{{'Passphrase' | translate}}" tab-index="4"></passphrase-field>
@@ -111,7 +111,7 @@
               <md-card-title>
                 <md-card-title-text>
                   <span translate>
-                    It is possible to use a CSV file to send {{network.symbol}} to a list of addresses. Each of these transactions would have its own fee until the next version of the protocol. Currently is limited to {{maxTransactionsPerFile}} transactions per file. The format is: <pre>Address,Amount,Message</pre>
+                    It is possible to use a CSV file to send {{network.symbol}} to a list of addresses. Each of these transactions would have its own fee until the next version of the protocol. Currently is limited to {{maxTransactionsPerFile}} transactions per file. The format is: <pre>Address,Amount,SmartMessage</pre>
                   </span>
                 </md-card-title-text>
               </md-card-title>
@@ -126,7 +126,7 @@
             <md-input-container md-no-float class="md-block">
               <md-icon style="cursor: pointer;outline: none" ng-click="selectFile()" md-font-library="material-icons">attach_file</md-icon>
               <label>{{'File'|translate}}</label>
-              <input ng-model="data.file" ng-click="selectFile()" type="text" ng-required="true" maxlength="64" tabIndex="1">
+              <input ng-model="data.file" ng-click="selectFile()" type="text" ng-required="true" maxlength="64" tabIndex="1" name="file">
             </md-input-container>
 
             <passphrase-field ng-if="!data.ledger" ng-model="data.passphrase" label="{{'Passphrase' | translate}}" tab-index="2"></passphrase-field>
@@ -151,7 +151,7 @@
 
     <md-button type="submit"
                ng-click="submit(tab)"
-               ng-disabled="(tab == 'single' && singleForm.$invalid || receiverValidation.failType === 'error' || !data.toAddress) || (tab == 'multiple' && multipleForm.$invalid)"
+               ng-disabled="((tab === 'single' && (singleForm.$invalid || receiverValidation.failType === 'error' || !data.toAddress)) || (tab === 'multiple' && multipleForm.$invalid === true))"
                tabIndex="6">
       <translate ng-if="!data.ledger">Next</translate>
       <translate ng-if="data.ledger">Sign with Ledger</translate>

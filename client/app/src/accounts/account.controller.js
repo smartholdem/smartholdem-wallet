@@ -28,6 +28,7 @@
       '$rootScope',
       'transactionBuilderService',
       'utilityService',
+      'marketService',
       AccountController
     ])
 
@@ -62,7 +63,8 @@
     $window,
     $rootScope,
     transactionBuilderService,
-    utilityService
+    utilityService,
+    marketService
   ) {
     const _path = require('path')
     const electron = require('electron')
@@ -82,15 +84,32 @@
 
       self.languages = [
         { name: gettextCatalog.getString('Arabic'), code: 'ar' },
-        { name: gettextCatalog.getString('English'), code: 'en' },
-        { name: gettextCatalog.getString('Russian'), code: 'ru' },
         { name: gettextCatalog.getString('Bulgarian'), code: 'bg_BG' },
-        { name: gettextCatalog.getString('Serbian'), code: 'sr' },
-        { name: gettextCatalog.getString('Deutschland'), code: 'de' },
+        { name: gettextCatalog.getString('Czech'), code: 'cs' },
+        { name: gettextCatalog.getString('German'), code: 'de' },
+        { name: gettextCatalog.getString('Greek'), code: 'el' },
+        { name: gettextCatalog.getString('English'), code: 'en' },
         { name: gettextCatalog.getString('Spanish'), code: 'es_419' },
-        { name: gettextCatalog.getString('Portuguese - Brazil'), code: 'pt_BR' },
+        { name: gettextCatalog.getString('Persian - Iran'), code: 'fa_IR' },
+        { name: gettextCatalog.getString('Finish'), code: 'fi' },
+        { name: gettextCatalog.getString('French'), code: 'fr' },
+        { name: gettextCatalog.getString('Croatian'), code: 'hr' },
+        { name: gettextCatalog.getString('Hungarish'), code: 'hu' },
+        { name: gettextCatalog.getString('Indonesian'), code: 'id' },
+        { name: gettextCatalog.getString('Italian'), code: 'it' },
         { name: gettextCatalog.getString('Japanese'), code: 'ja' },
         { name: gettextCatalog.getString('Korean'), code: 'ko' },
+        { name: gettextCatalog.getString('Dutch'), code: 'nl' },
+        { name: gettextCatalog.getString('Norwegian Nynorsk'), code: 'nn' },
+        { name: gettextCatalog.getString('Polish'), code: 'pl' },
+        { name: gettextCatalog.getString('Portuguese - Brazil'), code: 'pt_BR' },
+        { name: gettextCatalog.getString('Portuguese - Portugal'), code: 'pt_PT' },
+        { name: gettextCatalog.getString('Romanian'), code: 'ro' },
+        { name: gettextCatalog.getString('Russian'), code: 'ru' },
+        { name: gettextCatalog.getString('Slovak'), code: 'sk' },
+        { name: gettextCatalog.getString('Slovenian'), code: 'sl' },
+        { name: gettextCatalog.getString('Serbian'), code: 'sr' },
+        { name: gettextCatalog.getString('Swedish'), code: 'sv' },
         { name: gettextCatalog.getString('Chinese - China'), code: 'zh_CN' },
         { name: gettextCatalog.getString('Chinese - Taiwan'), code: 'zh_TW' }
       ].sort((a, b) => a.name.localeCompare(b.name))
@@ -101,11 +120,32 @@
 
     self.setLanguage()
 
+    self.getWordlistLanguage = function () {
+      return storageService.get('wordlistLanguage') || 'english'
+    }
+
+    self.setWordlistLanguage = function () {
+      storageService.set('wordlistLanguage', self.wordlistLanguage)
+    }
+
+    self.wordlistLanguages = {
+      'english': 'English',
+      //'french': 'French',
+      //'spanish': 'Spanish',
+      //'italian': 'Italian',
+      'japanese': 'Japanese',
+      'korean': 'Korean',
+      'chinese_simplified': 'Chinese simplified',
+      'chinese_traditional': 'Chinese traditional'
+    }
+
+    self.wordlistLanguage = self.getWordlistLanguage()
+
     pluginLoader.triggerEvent('onStart')
 
     electron.ipcRenderer.on('uri', (event, uri) => {
       $timeout(() => {
-        const qrcodeElement = document.querySelector('smartholdem-qr')
+        const qrcodeElement = document.querySelector('sth-qrcode')
         const scheme = qrcodeElement.deserializeURI(uri)
 
         if (!scheme) return toastService.error(gettext('Invalid URI'))
@@ -117,11 +157,9 @@
     self.currencies = [
       { name: 'btc', symbol: 'Ƀ' },
       { name: 'usd', symbol: '$' },
-      { name: 'cad', symbol: 'Can$' },
       { name: 'cny', symbol: 'CN¥' },
       { name: 'eur', symbol: '€' },
       { name: 'gbp', symbol: '£' },
-      { name: 'jpy', symbol: 'JP¥' },
       { name: 'rub', symbol: '\u20BD' }
     ]
 
@@ -216,6 +254,7 @@
     self.toggleCurrency = self.bitcoinCurrency
 
     self.connectedPeer = { isConnected: false }
+    self.market = marketService.getPrice(self.currency.name)
 
     if (!self.network.theme) self.network.theme = 'default'
     if (!self.network.themeDark) self.network.themeDark = false
@@ -285,6 +324,23 @@
       }
     }, 2 * 1000)
 
+    function updateTicker () {
+      const update = () => {
+        const currencyName = self.btcValueActive ? 'btc' : self.currency.name
+        self.market = marketService.getPrice(currencyName)
+      }
+
+      const refresh = () => {
+        marketService.updateTicker().then(update)
+      }
+
+      refresh()
+      $scope.$watch(() => self.currency, update)
+      $interval(refresh, 6 * 10000)
+    }
+
+    updateTicker()
+
     // TODO Used in dashboard navbar and accountBox
     self.selectLedgerAccount = function (account) {
       if (!account && self.ledgerAccounts) {
@@ -348,6 +404,10 @@
     }
 
     function openExplorer (uri) {
+      if (!self.network.explorer) {
+        return
+      }
+
       require('electron').shell.openExternal(self.network.explorer + uri)
     }
 
@@ -867,14 +927,14 @@
         }
 
         $mdDialog.hide()
-        const smartmessage = $scope.send.data.smartmessage
+        const smartbridge = $scope.send.data.smartbridge
         transactionBuilderService.createSendTransaction({
           ledger: selectedAccount.ledger,
           publicKey: selectedAccount.publicKey,
           fromAddress: $scope.send.data.fromAddress,
           toAddress: $scope.send.data.fromAddress,
           amount: 1,
-          smartmessage: smartmessage,
+          smartbridge: smartbridge,
           masterpassphrase: $scope.send.data.passphrase,
           secondpassphrase: $scope.send.data.secondpassphrase
         }).then(
@@ -895,13 +955,13 @@
           const algo = 'sha256'
           const shasum = crypto.createHash(algo)
           $scope.send.data.filename = fileName
-          $scope.send.data.smartmessage = 'Calculating signature....'
+          $scope.send.data.smartbridge = 'Calculating signature....'
           const s = fs.ReadStream(fileName)
 
           s.on('data', (d) => { shasum.update(d) })
           s.on('end', () => {
             const d = shasum.digest('hex')
-            $scope.send.data.smartmessage = d
+            $scope.send.data.smartbridge = d
           })
         })
       }
@@ -984,8 +1044,8 @@
           darkVibrantRatio[color] = darkVibrantDiff
         })
 
-        const isSmartHoldemJpg = _path.basename(url) === 'SmartHoldem.jpg'
-        let primaryColor = isSmartHoldemJpg ? 'red' : sortObj(darkVibrantRatio)[0]
+        const isSthJpg = _path.basename(url) === 'CryptoPunks.jpg'
+        let primaryColor = isSthJpg ? 'red' : sortObj(darkVibrantRatio)[0]
         let accentColor = sortObj(vibrantRatio)[0]
 
         primaryColor = primaryColor === 'grey' ? 'blue-grey' : primaryColor
@@ -1024,10 +1084,10 @@
       const backgrounds = {
         user: {},
         colors: {
-          'SmartNight': '#28384c',
-          'SmartGray': '#7f8c8d',
-          'SmartRed': '#ff334d',
-          'SeaWave': '#17a2b8'
+          'Smartnight': '#28384c',
+          'Beton': '#7f8c8d',
+          'Smartred': '#ff334d',
+          'Seawave': '#17a2b8'
         },
         textures: {},
         images: {}
@@ -1111,7 +1171,7 @@
         delete backgrounds['user'][name]
 
         if (image === initialBackground) {
-          selectBackground(backgrounds['images']['SmartHoldem'])
+          selectBackground(backgrounds['images']['CryptoPunks'])
         } else {
           selectBackground(initialBackground)
         }
@@ -1130,8 +1190,8 @@
       function selectTheme (theme) {
         generateDarkTheme(theme)
         $scope.send.selectedTheme = theme
-        // currentNetwork.themeDark = theme
         currentNetwork.theme = theme
+        // currentNetwork.themeDark
         setDarkMode()
       }
 
@@ -1266,6 +1326,14 @@
         })
       }
 
+      function canCreateNetwork (network) {
+        return network && network.name && network.peerseed
+      }
+
+      function canUpdateNetwork (network) {
+        return network && network.token && network.symbol && network.version && network.nethash && network.slip44 && network.peerseed
+      }
+
       let activeNetworkIndex = 0
       const activeNetworkName = networkService.getNetworkName()
       const networkKeys = Object.keys(networks).map((networkName, index) => {
@@ -1282,7 +1350,9 @@
         createNetwork,
         removeNetwork,
         cancel,
-        save
+        save,
+        canUpdateNetwork,
+        canCreateNetwork
       }
 
       $mdDialog.show({
@@ -1346,7 +1416,7 @@
     // TODO Used in dashboard navbar and accountBox
     function createAccount () {
       const bip39 = require('bip39')
-      const data = { passphrase: bip39.generateMnemonic() }
+      const data = { passphrase: bip39.generateMnemonic(null, null, bip39.wordlists[self.getWordlistLanguage()]) }
 
       function next () {
         if (!$scope.createAccountDialog.data.showRepassphrase) {
@@ -1475,13 +1545,13 @@
 
       function warnAboutSecondPassphraseFee () {
         accountService.getFees(true).then((fees) => {
-          const secondPhraseSatoshiVal = fees['secondsignature']
-          const secondPhraseSmartHoldemVal = utilityService.satoshiToSTH(secondPhraseSatoshiVal, true)
+          const secondPhraseSTHtoshiVal = fees['secondsignature']
+          const secondPhraseSTHVal = utilityService.satoshiToSth(secondPhraseSTHtoshiVal, true)
           const confirm = $mdDialog.confirm({
             title: gettextCatalog.getString('Second Passphrase fee ({{ currency }})', {currency: networkService.getNetwork().symbol}),
-            secondPhraseSmartHoldemVal: secondPhraseSmartHoldemVal,
+            secondPhraseSTHVal: secondPhraseSTHVal,
             textContent: gettextCatalog.getString('WARNING! Second passphrase creation costs {{ cost }} {{ currency }}',
-                                                  {cost: secondPhraseSmartHoldemVal, currency: networkService.getNetwork().token}),
+                                                  {cost: secondPhraseSTHVal, currency: networkService.getNetwork().token}),
             ok: gettextCatalog.getString('Continue'),
             cancel: gettextCatalog.getString('Cancel')
           })
@@ -1598,8 +1668,8 @@
         transaction,
         label: transactionLabel,
         // to avoid small transaction to be displayed as 1e-8
-        humanAmount: utilityService.satoshiToSTH(transaction.amount),
-        totalAmount: utilityService.satoshiToSTH(parseFloat(transaction.amount) + transaction.fee, true)
+        humanAmount: utilityService.satoshiToSth(transaction.amount),
+        totalAmount: utilityService.satoshiToSth(parseFloat(transaction.amount) + transaction.fee, true)
       }
 
       const contacts = self.searchContactOrAccount(transaction.recipientId, true)
@@ -1615,7 +1685,7 @@
 
     function isBIP39 (mnemonic) {
       const bip39 = require('bip39')
-      let valid = bip39.validateMnemonic(mnemonic)
+      let valid = bip39.validateMnemonic(mnemonic) || bip39.validateMnemonic(mnemonic, bip39.wordlists[self.getWordlistLanguage()])
       return valid
     }
   }

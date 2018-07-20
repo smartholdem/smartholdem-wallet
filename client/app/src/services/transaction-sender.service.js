@@ -19,11 +19,11 @@
      * TODO because currently it depends on the original implementation of AccountController too
      */
     const openDialogIn = ($scope, accountCtrl, selectedAccount, uriScheme) => {
-      $scope.maxTransactionsPerFile = 20
+      $scope.maxTransactionsPerFile = 10
 
       const getTotalBalance = fee => {
         const balance = selectedAccount.balance
-        return utilityService.satoshiToSTH(fee ? balance - fee : balance)
+        return utilityService.satoshiToSth(fee ? balance - fee : balance)
       }
 
       const parseTransactionsFile = (filePath, callback) => {
@@ -49,7 +49,7 @@
           return {
             address: d[0],
             amount: Number(utilityService.sthToSatoshi(parseFloat(d[1]), 0)),
-            smartmessage: d[2]
+            smartbridge: d[2]
           }
         })
       }
@@ -85,7 +85,7 @@
 
         if (uriScheme) {
           data.amount = uriScheme.amount
-          data.smartmessage = uriScheme.vendorField
+          data.smartbridge = uriScheme.vendorField
         }
 
         if ($scope.data.secondPassphrase) {
@@ -97,7 +97,7 @@
         if (tab === 'single') {
           data.toAddress = $scope.data.toAddress.trim()
           data.amount = Number(utilityService.sthToSatoshi(parseFloat($scope.data.amount), 0))
-          data.smartmessage = $scope.data.smartmessage
+          data.smartbridge = $scope.data.smartbridge
 
           prepareTransaction(selectedAccount, data)
         } else if (tab === 'multiple') {
@@ -126,6 +126,8 @@
       if (uriScheme) {
         $timeout(() => {
           $scope.data.selectedAddress = {address: uriScheme.address}
+          $scope.data.smartbridge = uriScheme.vendorField
+          $scope.data.amount = uriScheme.amount
         }, 0)
       }
 
@@ -216,14 +218,15 @@
           $scope.receiverValidation.failType = 'info'
         })
 
+		/*
         neoApiService.doesAddressExist(input).then(exists => {
           if (currentCycle !== receiverValidationCycle || !exists) {
             return
           }
-
           $scope.receiverValidation.message = gettextCatalog.getString('It looks like this is a \'NEO\' address. Are you sure it\'s correct?')
           $scope.receiverValidation.failType = 'warning'
         })
+		*/
       }
 
       $scope.checkContacts = input => {

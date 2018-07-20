@@ -125,10 +125,10 @@
         cancel,
         senderAddress: selectedAccount.address,
         transactions,
-        humanAmount: utilityService.satoshiToSTH(amount).toString(),
-        totalFees: utilityService.satoshiToSTH(fees).toString(),
-        totalAmount: utilityService.satoshiToSTH(total).toString(),
-        remainingBalance: utilityService.satoshiToSTH(balance).toString()
+        humanAmount: utilityService.satoshiToSth(amount).toString(),
+        totalFees: utilityService.satoshiToSth(fees).toString(),
+        totalAmount: utilityService.satoshiToSth(total).toString(),
+        remainingBalance: utilityService.satoshiToSth(balance).toString()
       }
 
       dialogService.open({

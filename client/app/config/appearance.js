@@ -1,51 +1,48 @@
-/*
-red, pink, purple, deep-purple, indigo, blue, light-blue, cyan, teal, green, light-green, lime, yellow, amber, orange, deep-orange, brown, grey, blue-grey
- */
-
 module.exports = {
-  themes: {
+   themes: {
     'default': {
-      primary: 'blue-grey',
+      primary: 'teal',
       accent: 'cyan',
-      warn: 'amber',
+      warn: 'pink',
       background: 'grey'
     },
-    'bitforest': {
+    'caetano': {
       primary: 'teal',
-      accent: 'light-green',
-      warn: 'lime'
+      accent: 'cyan',
+      warn: 'pink',
+      background: 'blue-grey'
     },
-    'amber': {
-      primary: 'yellow',
-      accent: 'amber',
-      warn: 'deep-orange'
-    },
-    'smart': {
+    'evelynn': {
       primary: 'pink',
-      accent: 'orange',
-      warn: 'red'
-    },
-    'solarus': {
-      primary: 'orange',
-      accent: 'yellow',
+      accent: 'blue',
       warn: 'deep-orange'
     },
-    'silicontree': {
-      primary: 'brown',
-      accent: 'light-green',
+    'rock': {
+      primary: 'blue',
+      accent: 'amber',
       warn: 'green'
     },
-    'lunapark': {
+    'solarized': {
+      primary: 'orange',
+      accent: 'yellow',
+      warn: 'brown'
+    },
+    'amazonia': {
+      primary: 'green',
+      accent: 'lime',
+      warn: 'light-green'
+    },
+    'brazil': {
+      primary: 'green',
+      accent: 'yellow',
+      warn: 'blue'
+    },
+    'midnight': {
       primary: 'indigo',
-      accent: 'light-blue',
-      warn: 'blue',
-      background: 'blue-grey'
+      accent: 'deep-purple',
+      warn: 'blue'
     }
   },
   colors: {
-    'SmartNight': '#28384c',
-    'SmartGray': '#7f8c8d',
-    'SmartRed': '#ff334d',
-    'SeaWave': '#17a2b8'
   }
 }

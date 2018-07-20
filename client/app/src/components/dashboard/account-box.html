@@ -46,7 +46,7 @@
 
   <md-content style="min-height: 70px;" flex>
     <md-list md-no-ink>
-      <md-list-item ng-click="$ctrl.ac.selectLedgerAccount()" ng-if="$ctrl.ac.ledger.connected && ctrl.selectedAccountType === $ctrl.myAccountsType">
+      <md-list-item ng-click="$ctrl.ac.selectLedgerAccount()" ng-if="$ctrl.ac.ledger.connected && $ctrl.selectedAccountType === $ctrl.myAccountsType">
         <span>
           <md-icon md-svg-icon="ledger"></md-icon>
           Ledger Nano S
@@ -65,7 +65,7 @@
           {{it.username || it.address}}  <span ng-if="it.delegate">({{it.delegate.rate}})</span>
         </span>
         <span class="md-secondary">
-          {{$ctrl.ac.network.symbol}} {{it.balance | convertToSTHValue}}
+          {{$ctrl.ac.network.symbol}} {{it.balance | convertToSthValue}}
         </span>
       </md-list-item>
 
@@ -77,7 +77,7 @@
             {{it.name || it.address}}
           </span>
           <span class="md-secondary">
-            {{$ctrl.ac.network.symbol}} {{it.balance | convertToSTHValue}}
+            {{$ctrl.ac.network.symbol}} {{it.balance | convertToSthValue}}
           </span>
         </md-list-item>
     </md-list>

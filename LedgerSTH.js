@@ -2,13 +2,13 @@
 
 const utils = require(require('path').resolve(__dirname, './utils'))
 
-const LedgerSmartHoldem = function (comm) {
+const LedgerSTH = function (comm) {
   this.comm = comm
-  this.comm.setScrambleKey('w1w')
+  this.comm.setScrambleKey('w0w')
 }
 
 /* eslint-disable node/no-deprecated-api */
-LedgerSmartHoldem.prototype.getAddress_async = function (path) {
+LedgerSTH.prototype.getAddress_async = function (path) {
   const splitPath = utils.splitPath(path)
   const buffer = new Buffer(5 + 1 + splitPath.length * 4)
   buffer[0] = 0xe0
@@ -32,7 +32,7 @@ LedgerSmartHoldem.prototype.getAddress_async = function (path) {
   })
 }
 
-LedgerSmartHoldem.prototype.signTransaction_async = function (path, rawTxHex) {
+LedgerSTH.prototype.signTransaction_async = function (path, rawTxHex) {
   const splitPath = utils.splitPath(path)
   const rawTx = Buffer.from(rawTxHex, 'hex')
   const self = this
@@ -59,7 +59,7 @@ LedgerSmartHoldem.prototype.signTransaction_async = function (path, rawTxHex) {
     p1 = '80'
   }
 
-  console.log(data1.toString("hex"))
+  // console.log(data1.toString("hex"))
 
   data1HeaderLength[0] = pathLength + data1.length
   data1HeaderLength[1] = splitPath.length
@@ -67,19 +67,19 @@ LedgerSmartHoldem.prototype.signTransaction_async = function (path, rawTxHex) {
     data2HeaderLength[0] = data2.length
   }
 
-  console.log("> ",data1_headerlength.toString("hex"))
-  console.log("> ",path.toString("hex"))
+  // console.log("> ",data1_headerlength.toString("hex"))
+  // console.log("> ",path.toString("hex"))
 
   apdus.push('e004' + p1 + '40' + data1HeaderLength.toString('hex') + path.toString('hex') + data1.toString('hex'))
   if (data2) {
     apdus.push('e0048140' + data2HeaderLength.toString('hex') + data2.toString('hex'))
   }
-   console.log(apdus)
+  // console.log(apdus)
   return utils.foreach(apdus, (apdu) => {
-     console.log(apdu)
+    // console.log(apdu)
     return self.comm.exchange(apdu, [0x9000]).then((apduResponse) => {
       response = apduResponse
-     console.log(apduResponse)
+    // console.log(apduResponse)
     })
   }).then(() => {
     // console.log(response)
@@ -89,7 +89,7 @@ LedgerSmartHoldem.prototype.signTransaction_async = function (path, rawTxHex) {
   })
 }
 
-LedgerSmartHoldem.prototype.getAppConfiguration_async = function () {
+LedgerSTH.prototype.getAppConfiguration_async = function () {
   const buffer = new Buffer(5)
   buffer[0] = 0xe0
   buffer[1] = 0x06
@@ -105,7 +105,7 @@ LedgerSmartHoldem.prototype.getAppConfiguration_async = function () {
   })
 }
 
-LedgerSmartHoldem.prototype.signPersonalMessage_async = function (path, messageHex) {
+LedgerSTH.prototype.signPersonalMessage_async = function (path, messageHex) {
   const splitPath = utils.splitPath(path)
   let offset = 0
   const message = Buffer.from(messageHex, 'hex')
@@ -149,4 +149,4 @@ LedgerSmartHoldem.prototype.signPersonalMessage_async = function (path, messageH
 }
 /* eslint-enable node/no-deprecated-api */
 
-module.exports = LedgerSmartHoldem
+module.exports = LedgerSTH

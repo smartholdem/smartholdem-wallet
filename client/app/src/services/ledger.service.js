@@ -96,7 +96,7 @@
       const accounts = []
       let accountIndex = 0
       const addressIndex = 0
-      const path = `44'/${slip44 || '255'}'/`
+      const path = `44'/${slip44 || '111'}'/`
       let empty = false
 
       while (!empty) {

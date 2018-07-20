@@ -13,10 +13,10 @@
         accountCtrl: '=',
         addressbookCtrl: '='
       },
-      controller: ['$scope', 'networkService', 'accountService', 'utilityService', 'gettextCatalog', 'gettext', 'toastService', '$timeout', AccountBoxController]
+      controller: ['$scope', 'networkService', 'accountService', 'utilityService', 'gettextCatalog', 'gettext', 'toastService', '$timeout', 'marketService', AccountBoxController]
     })
 
-  function AccountBoxController ($scope, networkService, accountService, utilityService, gettextCatalog, gettext, toastService, $timeout) {
+  function AccountBoxController ($scope, networkService, accountService, utilityService, gettextCatalog, gettext, toastService, $timeout, marketService) {
     this.$onInit = () => {
       // Alias that is used on the template
       this.ac = this.accountCtrl
@@ -88,7 +88,7 @@
         return
       }
 
-      networkService.getPrice()
+      marketService.updateTicker()
 
       accounts.forEach(account => {
         const state = refreshState.create()
@@ -108,13 +108,12 @@
         return sum + parseInt(account.balance || 0)
       }, 0)
 
-      return utilityService.satoshiToSTH(total, true, 2)
+      return utilityService.satoshiToSth(total, true, 2)
     }
 
     this.currencyBalance = (accountType) => {
-      const market = this.accountCtrl.connectedPeer.market
-      const currencyName = this.accountCtrl.btcValueActive ? 'btc' : this.accountCtrl.currency.name
-      const price = market && market.price ? market.price[currencyName] : 0
+      const market = this.accountCtrl.market
+      const price = market && market.price ? market.price : 0
 
       return this.getTotalBalance(accountType) * price
     }

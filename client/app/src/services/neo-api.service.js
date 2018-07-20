@@ -28,7 +28,7 @@
     }
 
     function isValidAddress (address) {
-      // since NEO addresses are the same as SmartHoldem addresses, we can use the STH validateAddress method ;)
+      // since NEO addresses are the same as STH addresses, we can use the sth validateAddress method ;)
       // however we have to "hardcode the version", since it's not "network dependant" (e.g. devNet has another version)
       return sth.crypto.validateAddress(address, 0x3f)
     }

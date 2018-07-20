@@ -225,7 +225,7 @@
         transaction.total = -transaction.amount - transaction.fee
       }
       // to avoid small transaction to be displayed as 1e-8
-      transaction.humanTotal = utilityService.satoshiToSTH(transaction.total) + ''
+      transaction.humanTotal = utilityService.satoshiToSth(transaction.total) + ''
 
       return transaction
     }
@@ -237,7 +237,7 @@
         return deferred.promise
       }
 
-      networkService.getFromPeer('/api/blocks/getfees')
+      networkService.getFromPeer('/api/blocks/getFees')
         .then((resp) => {
           if (resp.success) {
             self.cachedFees = resp.fees
@@ -283,8 +283,8 @@
 
     // this methods only works correctly, as long as getAllTransactions returns the transactions ordered by new to old!
     function getRangedTransactions (address, startDate, endDate, onUpdate) {
-      const startStamp = utilityService.dateToSmartHoldemStamp(!startDate ? STH_LAUNCH_DATE : startDate)
-      const endStamp = utilityService.dateToSmartHoldemStamp(!endDate ? new Date(new Date().setHours(23, 59, 59, 59)) : endDate)
+      const startStamp = utilityService.dateToSthStamp(!startDate ? STH_LAUNCH_DATE : startDate)
+      const endStamp = utilityService.dateToSthStamp(!endDate ? new Date(new Date().setHours(23, 59, 59, 59)) : endDate)
 
       const deferred = $q.defer()
 
@@ -648,7 +648,7 @@
                   virtual[folder].amount = utilityService.sthToSatoshi(value)
                 }
               } else {
-                return virtual[folder].amount === null ? '' : utilityService.satoshiToSTH(virtual[folder].amount, true)
+                return virtual[folder].amount === null ? '' : utilityService.satoshiToSth(virtual[folder].amount, true)
               }
             }
           }
@@ -666,7 +666,7 @@
       return virtual
     }
 
-    const allowedDelegateNameChars = /^[a-z0-9!@$&_.]+$/g
+    const allowedDelegateNameChars = /^[a-z0-9!@$&_.]+$/
 
     function sanitizeDelegateName (delegateName) {
       if (!delegateName) {

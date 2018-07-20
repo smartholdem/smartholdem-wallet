@@ -18,7 +18,7 @@
           const defaultBackground = 'url(assets/images/images/Gold.jpg)'
           // This is the custom configuration of textures
           const textures = {
-            'fabric.png': {
+            'Fabric.jpg': {
               cssClass: ''
             }
           }

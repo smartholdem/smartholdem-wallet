@@ -3,19 +3,18 @@
 
   angular.module('sthclient.filters')
     .filter('exchangedate', () => exchangetime => new Date(exchangetime * 1000))
-    .filter('amountToCurrency', () => (amount, scope, bitcoinToggleIsActive) => {
+    .filter('amountToCurrency', ['marketService', (marketService) => (amount, scope, bitcoinToggleIsActive) => {
       if (typeof amount === 'undefined' || !amount) return 0
       // NOTE AccountController is being renaming to `ac` in refactored templates
       const ac = scope.ac || scope.ul
+      if (!ac.market) return
+
       const currencyName = bitcoinToggleIsActive && ac.btcValueActive ? 'btc' : ac.currency.name
+      const market = marketService.getPrice(currencyName)
 
-      if (!ac.connectedPeer.market || !ac.connectedPeer.market.price) {
-        return 0
-      }
-
-      const price = ac.connectedPeer.market.price[currencyName]
+      const price = market.price
       return (amount * price).toFixed(5)
-    })
+    }])
     .filter('formatCurrency', () => (val, self, bitcoinToggleIsActive) => {
       const currencyName = bitcoinToggleIsActive && self.btcValueActive ? 'btc' : self.currency.name
       const languageCode = self.language.replace('_', '-')
@@ -36,9 +35,9 @@
 
       return localeVersion
     })
-    // Converts satoshi into STH
-    .filter('convertToSTHValue', ['utilityService', utilityService => val => {
-      return utilityService.satoshiToSTH(val, true)
+    // Converts satoshi into sth
+    .filter('convertToSthValue', ['utilityService', utilityService => val => {
+      return utilityService.satoshiToSth(val, true)
     }])
     .filter('accountLabel', ['accountService', accountService => address => {
       if (!address) return address

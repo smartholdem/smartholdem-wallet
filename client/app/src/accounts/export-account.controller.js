@@ -98,7 +98,7 @@
       const eol = require('os').EOL
 
       $scope.fileContent = 'Account:,' + account.address + eol +
-                           'Balance:,' + utilityService.satoshiToSTH(account.balance) + eol +
+                           'Balance:,' + utilityService.satoshiToSth(account.balance) + eol +
                            'Transactions' + (isInComplete ? ' (INCOMPLETE):' : ':') + eol +
                            'ID,Confirmations,Date,Type,Amount,From,To,SmartMessage' + eol
       transactions.forEach(trns => {

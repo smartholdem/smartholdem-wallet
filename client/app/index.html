@@ -2,21 +2,25 @@
 <html lang="en">
 
 <head>
-  <title translate>SmartHoldem Wallet</title>
+  <title translate>SmartHoldem Client</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="">
+  <meta name="description" content="SmartHoldem">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
   <style type="text/css">
     html,
     body {
-      background-color: #343a40;
+      background-color: #353636;
+	  background-image: url("splashscreen.png");
+	  background-position: inherit;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     html {
-      border-radius: 10px;
+      border-radius: 5px;
     }
 
     .splash {
@@ -25,7 +29,7 @@
     }
 
     [ng-cloak].splash {
-      background-color: #343a40;
+      background-color: #353636;
       background-image: url("splashscreen.png");
       background-position: inherit;
       background-repeat: no-repeat;
@@ -58,7 +62,7 @@
     </div>
   </div>
 
-  <smartholdem-qr style="display: none"></smartholdem-qr>
+  <sth-qrcode style="display: none"></sth-qrcode>
 
   <div ng-cloak="" style="height: 100%" layout="column" ng-controller="AddressbookController as ab" >
 
@@ -81,12 +85,11 @@
               <transaction-tab account-ctrl="ul" transactions-ctrl="transactionsCtrl"></transaction-tab>
             </div>
             <votes-tab account="ul.selected" account-ctrl="ul" theme="ul.currentTheme"></votes-tab>
-            <delegate-tab account-ctrl="ul" ng-if="ul.selected.delegate"></delegate-tab>
+			<delegate-tab account-ctrl="ul" ng-if="ul.selected.delegate"></delegate-tab>
             <signing-tab account-ctrl="ul" ng-if="!ul.selected.ledger"></signing-tab>
-            <!--
-            <exchange-tab account-ctrl="ul"></exchange-tab>
-            <offchain-tab account-ctrl="ul"></offchain-tab>
-            -->
+            <exchange-tab account-ctrl="ul" ng-if="ul.showExchangeRate()"></exchange-tab>
+            <!--<offchain-tab account-ctrl="ul"></offchain-tab>-->
+            
           </md-tabs>
 
         </md-content>
@@ -100,7 +103,7 @@
   <link href="../node_modules/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="assets/app.css" />
 
-  <script src='../node_modules/smartholdem-qr/dist/sthqrcode.js'></script>
+  <script src='../node_modules/sth-qrcode/dist/sthqrcode.js'></script>
   <script src="dependencies.min.js"></script>
   <script src="src/utils/translations.js"></script>
 
@@ -114,6 +117,7 @@
   <script src="src/services/dialog.service.js"></script>
   <script src="src/services/storage.service.js"></script>
   <script src="src/services/network.service.js"></script>
+  <script src="src/services/market.service.js"></script>
   <script src="src/services/feed.service.js"></script>
   <script src="src/services/ledger.service.js"></script>
   <script src="src/services/time.service.js"></script>

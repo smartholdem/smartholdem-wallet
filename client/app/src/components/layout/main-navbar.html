@@ -3,7 +3,7 @@
     <md-button ng-if="$ctrl.ul.selected" class="md-icon-button md-primary menu" hide-gt-md ng-click="$ctrl.ul.toggleList()" aria-label="Show Account List">
       <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
-		<img src="logo261.png" alt="" height="40">
+		<img src="smartholdem.png" alt="" height="40">
 		<md-button ng-click="$ctrl.ul.selected?$ctrl.ul.selected=null:$ctrl.ul.selected=$ctrl.ul.accounts[0]"><strong>{{$ctrl.ul.network.token}} <translate>Client</translate> - {{$ctrl.ul.clientVersion}}</strong></md-button>
 		<md-button class="new-version-button" ng-if="$ctrl.ul.clientVersion!=$ctrl.ul.latestClientVersion" open-external="'https://github.com/smartholdem/smartholdem-wallet/releases'" aria-label="New version available!">
 			<translate>New version available!</translate>
@@ -28,37 +28,36 @@
 			</md-menu>
 		</any>
 
-    <any style="pointer-events: auto">
-      <md-tooltip>
-        <translate>Peer Status</translate>
-      </md-tooltip>
-      <md-menu>
-        <md-button aria-label="Show Network" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
-          <md-icon md-font-library="material-icons" ng-style="$ctrl.ul.connectedPeer.isConnected ? { color:'white' } : { color:'red'}">{{ $ctrl.ul.connectedPeer.isConnected?'cloud_done':'cloud_off' }}</md-icon>
-        </md-button>
-        <md-menu-content flex width="6">
-          <md-list>
-            <md-list-item>
-              <b translate>Peer</b>
-              <md-button class="md-secondary" aria-label="Pick Random Peer" md-prevent-menu-close ng-click="$ctrl.ul.pickRandomPeer()">{{$ctrl.ul.connectedPeer.ip}}</md-button>
-            </md-list-item>
-            <md-list-item>
-              <b translate>Height</b> <span class="md-secondary">{{$ctrl.ul.connectedPeer.height}}</span>
-            </md-list-item>
-            <md-list-item>
-              <b translate>Last checked</b> <span class="md-secondary">{{$ctrl.ul.connectedPeer.lastConnection | date:'shortTime'}}</span>
-            </md-list-item>
-            <md-list-item md-colors="{background:'default-red'}" ng-if="!$ctrl.ul.connectedPeer.isConnected">
-              {{$ctrl.ul.connectedPeer.error}}
-            </md-list-item>
-            <md-list-item md-colors="{background:'default-green'}" ng-if="$ctrl.ul.connectedPeer.isConnected">
-              <b translate>Delay</b> <span class="md-secondary">{{$ctrl.ul.connectedPeer.delay}}ms</span>
-            </md-list-item>
-          </md-list>
-        </md-menu-content>
-      </md-menu>
-    </any>
-
+		<any style="pointer-events: auto">
+			<md-tooltip>
+				<translate>Peer Status</translate>
+			</md-tooltip>
+			<md-menu>
+				<md-button aria-label="Show Network" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
+					<md-icon md-font-library="material-icons" ng-style="$ctrl.ul.connectedPeer.isConnected ? { color:'white' } : { color:'red'}">{{ $ctrl.ul.connectedPeer.isConnected?'cloud_done':'cloud_off' }}</md-icon>
+				</md-button>
+				<md-menu-content flex width="6">
+					<md-list>
+						<md-list-item>
+							<b translate>Peer</b>
+							<md-button class="md-secondary" aria-label="Pick Random Peer" md-prevent-menu-close ng-click="$ctrl.ul.pickRandomPeer()">{{$ctrl.ul.connectedPeer.ip}}</md-button>
+						</md-list-item>
+						<md-list-item>
+							<b translate>Height</b> <span class="md-secondary">{{$ctrl.ul.connectedPeer.height}}</span>
+						</md-list-item>
+						<md-list-item>
+							<b translate>Last checked</b> <span class="md-secondary">{{$ctrl.ul.connectedPeer.lastConnection | date:'shortTime'}}</span>
+						</md-list-item>
+						<md-list-item md-colors="{background:'default-red'}" ng-if="!$ctrl.ul.connectedPeer.isConnected">
+							{{$ctrl.ul.connectedPeer.error}}
+						</md-list-item>
+						<md-list-item md-colors="{background:'default-green'}" ng-if="$ctrl.ul.connectedPeer.isConnected">
+							<b translate>Delay</b> <span class="md-secondary">{{$ctrl.ul.connectedPeer.delay}}ms</span>
+						</md-list-item>
+					</md-list>
+				</md-menu-content>
+			</md-menu>
+		</any>
 		<any style="pointer-events: auto">
 			<md-tooltip>
 				<translate>Settings</translate>
@@ -67,9 +66,8 @@
 				<md-button aria-label="Show Settings" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
 					<md-icon md-font-library="material-icons">settings</md-icon>
 				</md-button>
-				<md-menu-content flex width="6" ng-style="$ctrl.ul.showExchangeRate() && {'min-height': '540px'} || {'min-height': '480px'}"; style="overflow:hidden;">
+				<md-menu-content flex width="6" ng-style="$ctrl.ul.showExchangeRate() && {'min-height': '530px'} || {'min-height': '480px'}" style="overflow:hidden;">
 					<md-list class="left-list">
-            <!--
 						<md-list-item ng-if="$ctrl.ul.showExchangeRate()">
 							<md-icon>attach_money</md-icon>
 							<p translate>Currency</p>
@@ -77,12 +75,18 @@
 								<md-option ng-value="opt" ng-repeat="opt in $ctrl.ul.currencies track by opt.symbol" style="text-transform: uppercase">{{ opt.name }}</md-option>
 							</md-select>
 						</md-list-item>
-            -->
 						<md-list-item>
 							<md-icon>flag</md-icon>
 							<p translate>Language</p>
 							<md-select aria-label="Language" class="md-secondary md-no-underline" ng-model="$ctrl.ul.language" ng-change="$ctrl.ul.setLanguage()">
 								<md-option ng-value="language.code" ng-repeat="language in $ctrl.ul.languages">{{ language.name }}</md-option>
+							</md-select>
+						</md-list-item>
+						<md-list-item>
+							<md-icon>import_contacts</md-icon>
+							<p translate>Passphrase Language</p>
+							<md-select aria-label="Passphrase Language" class="md-secondary md-no-underline" ng-model="$ctrl.ul.wordlistLanguage" ng-change="$ctrl.ul.setWordlistLanguage()">
+								<md-option ng-value="langCode" ng-repeat="(langCode, langDesc) in $ctrl.ul.wordlistLanguages">{{ langDesc }}</md-option>
 							</md-select>
 						</md-list-item>
 						<md-list-item aria-label="Play sound when receiving transactions?">
@@ -95,15 +99,11 @@
 							<p translate>Refresh accounts automatically?</p>
 							<md-switch ng-model="$ctrl.ul.refreshAccountsAutomatically" class="md-primary" md-no-ink aria-label="Refresh accounts automatically?" ng-change="$ctrl.ul.toggleRefreshAccountsAutomatically()" ng-init="$ctrl.ul.toggleRefreshAccountsAutomatically()"></md-switch>
 						</md-list-item>
-						<hr>
-						<md-list-item aria-label="Import Account" ng-click="$ctrl.ul.importAccount()">
-							<md-icon>file_download</md-icon>
-							<p translate>Import Account</p>
-						</md-list-item>
-						<md-list-item aria-label="Create Account" ng-click="$ctrl.ul.createAccount()">
-							<md-icon>account_box</md-icon>
-							<p translate>Create Account</p>
-						</md-list-item>
+            <hr>
+            <md-list-item aria-label="Import Account" ng-click="$ctrl.ul.importAccount()">
+              <md-icon>file_download</md-icon>
+              <p translate>Import Account</p>
+            </md-list-item>
 						<md-list-item aria-label="Add Contact" ng-controller="AddressbookController as ab" ng-click="ab.addAddressbookContact()">
 							<md-icon md-font-library="material-icons">library_add</md-icon>
 							<p translate>Add Contact</p>
@@ -120,18 +120,15 @@
 				</md-menu-content>
 			</md-menu>
 		</any>
-	
 		
-		<!--
 		<any style="pointer-events: auto">
 			<md-tooltip>
 				<translate>Market</translate>
 			</md-tooltip>
-			<md-menu ng-if="$ctrl.ul.connectedPeer.market.available_supply" md-offset="0 60">
+			<md-menu ng-if="$ctrl.ul.market" md-offset="0 60">
 				<md-button aria-label="Show market" ng-click="$ctrl.ul.openMenu($mdMenu.open, $event)">
 					<md-icon md-font-library="material-icons">insert_chart</md-icon>
 					<!--<md-icon md-colors="{'color' : $ctrl.ul.connectedPeer.market.change7h[$ctrl.ul.currency.name]<0?'red-200':'green-200' }" md-font-library="material-icons">arrow_{{$ctrl.ul.connectedPeer.market.change7h[$ctrl.ul.currency.name]<0?"down":"up"}}ward</md-icon>-->
-					<!--
 				</md-button>
 				<md-menu-content flex width="6">
 					<md-list>
@@ -140,14 +137,12 @@
 								<b><translate>Price</translate></b>
 							</div>
 
-							<span class="md-secondary">{{($ctrl.ul.btcValueActive ? $ctrl.ul.connectedPeer.market.price[$ctrl.ul.bitcoinCurrency.name] : $ctrl.ul.connectedPeer.market.price[$ctrl.ul.currency.name]) | formatCurrency:$ctrl.ul:$ctrl.ul.btcValueActive}}</span>
+							<span class="md-secondary">{{($ctrl.ul.market.price | formatCurrency:$ctrl.ul:$ctrl.ul.btcValueActive)}}</span>
 						</md-list-item>
 						<md-list-item>
-							<b translate>Change 1h/24h/7d</b>
+							<b translate>Change 24h</b>
 					        <span class="md-secondary">
-					          <span md-colors="{'color' : $ctrl.ul.connectedPeer.market.percent_change_1h>=0?'default-green':'default-red' }">{{$ctrl.ul.connectedPeer.market.percent_change_1h}}%</span> /
-					        <span md-colors="{'color' : $ctrl.ul.connectedPeer.market.percent_change_24h>=0?'default-green':'default-red' }">{{$ctrl.ul.connectedPeer.market.percent_change_24h}}%</span> /
-					        <span md-colors="{'color' : $ctrl.ul.connectedPeer.market.percent_change_7d>=0?'default-green':'default-red' }">{{$ctrl.ul.connectedPeer.market.percent_change_7d}}%</span>
+					        <span md-colors="{'color' : $ctrl.ul.market.change24h>=0?'default-green':'default-red' }">{{$ctrl.ul.market.change24h | number: 3}}%</span>
 					        </span>
 						</md-list-item>
 						<md-list-item>
@@ -155,16 +150,16 @@
 								<b><translate>Market Cap.</translate></b>
 							</div>
 
-							<span class="md-secondary">{{($ctrl.ul.connectedPeer.market.available_supply | amountToCurrency:$ctrl:$ctrl.ul.btcValueActive) | formatCurrency:$ctrl.ul:$ctrl.ul.btcValueActive}}</span>
+							<span class="md-secondary">{{($ctrl.ul.market.marketCap | formatCurrency:$ctrl.ul:$ctrl.ul.btcValueActive)}}</span>
 						</md-list-item>
 						<md-list-item ng-show="$ctrl.ul.connectedPeer.market.isOffline">
 							<b translate>Last checked</b> <span class="md-secondary">
-								{{$ctrl.ul.connectedPeer.market.lastUpdate | date:'shortTime'}}</span>
+								{{$ctrl.ul.market.timestamp | date:'shortTime'}}</span>
 						</md-list-item>
 					</md-list>
 				</md-menu-content>
 			</md-menu>
-		</any> -->
+		</any>
 		<any style="pointer-events: auto">
 			<md-tooltip>
 				<translate>Application</translate>
@@ -175,11 +170,14 @@
 				</md-button>
 				<md-menu-content flex width="6" style="min-height: 340px; overflow:hidden;">
 					<md-list class="left-list">
+						<md-list-item aria-label="Close App" ng-click="$ctrl.ul.closeApp()" id="exit-app-button">
+							<md-icon>exit_to_app</md-icon>
+							<p translate>Quit</p>
+						</md-list-item>
 						<md-list-item aria-label="Restart App" ng-click="$ctrl.ul.windowApp('reload')">
 							<md-icon>refresh</md-icon>
 							<p translate>Restart</p>
 						</md-list-item>
-						<!--
 						<md-list-item aria-label="Minimize App" ng-click="$ctrl.ul.windowApp('minimize')">
 							<md-icon>vertical_align_bottom</md-icon>
 							<p translate>Minimize</p>
@@ -188,36 +186,20 @@
 							<md-icon>open_with</md-icon>
 							<p translate>Maximize</p>
 						</md-list-item>
-						
 						<md-list-item md-colors="(($ctrl.ul.windowApp('isFullScreen')) && {background: 'accent'} || '')" aria-label="Full Screen App" ng-click="$ctrl.ul.windowApp('setFullScreen', !$ctrl.ul.windowApp('isFullScreen'))">
 							<md-icon>fullscreen</md-icon>
 							<p translate>Toggle Full Screen</p>
 						</md-list-item>
-						-->
 						<md-list-item aria-label="Reset Data" ng-click="$ctrl.ul.clearData()">
 							<md-icon>delete_forever</md-icon>
 							<p translate>Reset Data</p>
 						</md-list-item>
-            <md-list-item aria-label="Telegram">
-              <md-icon>link</md-icon>
-              <p translate open-external="'https://t.me/smartholdem'">Telegram</p>
-            </md-list-item>
-            <md-list-item aria-label="Twitter">
-              <md-icon>link</md-icon>
-              <p translate open-external="'https://twitter.com/smartholdem'">Twitter</p>
-            </md-list-item>
-            <md-list-item aria-label="Community">
-              <md-icon>link</md-icon>
-              <p open-external="'https://community.smartholdem.io'" translate>Community</p>
-            </md-list-item>
-            <md-list-item aria-label="Close App" ng-click="$ctrl.ul.closeApp()" id="exit-app-button">
-              <md-icon>exit_to_app</md-icon>
-              <p translate>Quit</p>
-            </md-list-item>
 					</md-list>
 				</md-menu-content>
 			</md-menu>
 		</any>
-	
+		<!-- <md-button ng-click="$ctrl.ul.closeApp()">
+			 <md-icon md-font-library="material-icons">power_settings_new</md-icon>
+		 </md-button> -->
 	</div>
 </md-toolbar>

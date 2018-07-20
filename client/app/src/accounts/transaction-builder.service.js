@@ -73,7 +73,7 @@
                           fees.send,
                           () => sth.transaction.createTransaction(config.toAddress,
                                                                   config.amount,
-                                                                  config.smartmessage,
+                                                                  config.smartbridge,
                                                                   config.masterpassphrase,
                                                                   config.secondpassphrase,
                                                                   undefined,
@@ -82,8 +82,8 @@
     }
 
     /**
-     * Each transaction is expected to be `{ address, amount, smartmessage }`,
-     * where amount is expected to be in sthtoshi
+     * Each transaction is expected to be `{ address, amount, smartbridge }`,
+     * where amount is expected to be in satoshi
      */
     function createMultipleSendTransactions ({ publicKey, fromAddress, transactions, masterpassphrase, secondpassphrase, ledger }) {
       const network = networkService.getNetwork()
@@ -111,9 +111,9 @@
           }
 
           const processed = Promise.all(
-            transactions.map(({ address, amount, smartmessage }, i) => {
+            transactions.map(({ address, amount, smartbridge }, i) => {
               return new Promise((resolve, reject) => {
-                const transaction = sth.transaction.createTransaction(address, amount, smartmessage, masterpassphrase, secondpassphrase, undefined, fees.send)
+                const transaction = sth.transaction.createTransaction(address, amount, smartbridge, masterpassphrase, secondpassphrase, undefined, fees.send)
 
                 transaction.fee = fees.send
                 transaction.senderId = fromAddress
@@ -161,7 +161,7 @@
               {
                 currency: networkService.getNetwork().token,
                 address: config.fromAddress,
-                amount: satoshiToSTH(fees.secondsignature)
+                amount: satoshiToSth(fees.secondsignature)
               }
           ))
           return
@@ -182,7 +182,7 @@
             {
               currency: networkService.getNetwork().token,
               address: config.fromAddress,
-              amount: satoshiToSTH(fees.delegate)
+              amount: satoshiToSth(fees.delegate)
             }
           ))
           return
@@ -203,7 +203,7 @@
             {
               currency: networkService.getNetwork().token,
               address: config.fromAddress,
-              amount: satoshiToSTH(fees.vote)
+              amount: satoshiToSth(fees.vote)
             }
           ))
           return
@@ -217,8 +217,8 @@
       })
     }
 
-    function satoshiToSTH (value) {
-      return utilityService.satoshiToSTH(value) + ' ' + networkService.getNetwork().token
+    function satoshiToSth (value) {
+      return utilityService.satoshiToSth(value) + ' ' + networkService.getNetwork().token
     }
 
     return {

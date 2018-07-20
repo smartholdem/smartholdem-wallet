@@ -6,7 +6,7 @@
 
   // this service should not have any dependencies to other services!
   function UtilityService (SATOSHI_UNIT, STH_LAUNCH_DATE) {
-    function satoshiToSTH (amount, keepPrecise, numberOfDecimals) {
+    function satoshiToSth (amount, keepPrecise, numberOfDecimals) {
       if (!amount) {
         return 0
       }
@@ -62,7 +62,7 @@
       return splitted[0] + '.' + newDecimals
     }
 
-    function dateToSmartHoldemStamp (date) {
+    function dateToSthStamp (date) {
       if (!date) {
         return null
       }
@@ -150,11 +150,11 @@
     }
 
     return {
-      satoshiToSTH: satoshiToSTH,
+      satoshiToSth: satoshiToSth,
       sthToSatoshi: sthToSatoshi,
       numberStringToFixed: numberStringToFixed,
 
-      dateToSmartHoldemStamp: dateToSmartHoldemStamp,
+      dateToSthStamp: dateToSthStamp,
       sthStampToDate: sthStampToDate,
 
       createRefreshState: createRefreshState

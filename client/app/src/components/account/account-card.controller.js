@@ -39,7 +39,7 @@
       add(gettext('Open in explorer'), 'open_in_new')
 
       if (!account.ledger) {
-        add(gettext('Remove'), 'clear')
+        add(gettext('Remove'), 'delete')
       }
       if (!account.delegate) {
         add(gettext('Label'), 'local_offer')
@@ -49,7 +49,7 @@
         }
       }
 
-      // add(gettext('Timestamp Document'), 'verified_user')
+      add(gettext('Timestamp Document'), 'verified_user')
 
       if (!account.secondSignature && !account.ledger) {
         add(gettext('Second Passphrase'), 'lock')

@@ -70,9 +70,9 @@
       </md-icon>
       </span>
       <span class="md-subhead description">
-        <translate class="balance">Balance</translate> {{$ctrl.ul.network.symbol}} {{$ctrl.ul.selected.balance | convertToSTHValue}}
+        <translate class="balance">Balance</translate> {{$ctrl.ul.network.symbol}} {{$ctrl.ul.selected.balance | convertToSthValue}}
         {{$ctrl.ul.network.cmcTicker}}
-        <md-button ng-click="$ctrl.ul.selectCurrency($event)" ng-show="$ctrl.ul.showExchangeRate()">{{$ctrl.ul.selected.balance | convertToSTHValue | amountToCurrency:$ctrl:true | formatCurrency:$ctrl.ul:true }}
+        <md-button ng-click="$ctrl.ul.selectCurrency($event)" ng-show="$ctrl.ul.showExchangeRate()">{{$ctrl.ul.selected.balance | convertToSthValue | amountToCurrency:$ctrl:true | formatCurrency:$ctrl.ul:true }}
           <md-tooltip md-direction="top">
             <translate>Click: Next Currency; Shift+Click: Previous Currency</translate>
           </md-tooltip>

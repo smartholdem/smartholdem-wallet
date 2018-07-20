@@ -239,7 +239,7 @@
             return prev + el
           })
 
-          stats.income.amount = utilityService.satoshiToSTH(incomeAmount, false, 2)
+          stats.income.amount = utilityService.satoshiToSth(incomeAmount, false, 2)
         }
 
         if (expendTx.length > 0) {
@@ -249,7 +249,7 @@
             return prev + el
           })
 
-          stats.expend.amount = utilityService.satoshiToSTH(expendAmount, false, 2)
+          stats.expend.amount = utilityService.satoshiToSth(expendAmount, false, 2)
         }
       }
 

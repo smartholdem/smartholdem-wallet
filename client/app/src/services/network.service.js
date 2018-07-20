@@ -12,7 +12,7 @@
     const _path = require('path')
     const sth = require(_path.resolve(__dirname, '../node_modules/sthjs'))
     const mainNetSmartHoldemJsNetworkKey = 'smartholdem'
-    const devNetSmartHoldemJsNetworkKey = 'testnet'
+    const devNetSmartHoldemJsNetworkKey = 'devnet'
 
     let network = switchNetwork(storageService.getContext())
 
@@ -23,7 +23,7 @@
 
     const momentTimezone = require('moment-timezone')
     const momentRange = require('moment-range')
-    const moment = momentRange.extendMoment(momentTimezone)
+    momentRange.extendMoment(momentTimezone)
 
     const clientVersion = require(_path.resolve(__dirname, '../../package.json')).version
 
@@ -41,6 +41,8 @@
     connection.notify(peer)
 
     function setNetwork (name, newnetwork) {
+      ensureValidPeerSeed(newnetwork)
+
       const n = storageService.getGlobal('networks')
       n[name] = newnetwork
       storageService.setGlobal('networks', n)
@@ -54,6 +56,7 @@
     }
 
     function createNetwork (data) {
+      ensureValidPeerSeed(data)
       const networks = storageService.getGlobal('networks')
       const deferred = $q.defer()
       if (networks[data.name]) {
@@ -69,7 +72,7 @@
             newNetwork.isUnsaved = true
             newNetwork.forcepeer = data.forcepeer
             newNetwork.peerseed = data.peerseed
-            newNetwork.slip44 = 1 // default to devnet slip44
+            newNetwork.slip44 = 1 // default to testnet slip44
             newNetwork.cmcTicker = data.cmcTicker
             deferred.resolve({name: data.name, network: newNetwork})
           },
@@ -79,6 +82,14 @@
         )
       }
       return deferred.promise
+    }
+
+    function ensureValidPeerSeed (network) {
+      if (!network || !network.peerseed) {
+        return
+      }
+
+      network.peerseed = network.peerseed.replace(/\/$/, '')
     }
 
     function switchNetwork (newnetwork, reload) {
@@ -108,36 +119,36 @@
       return n[newnetwork]
     }
 
-    function createNetworkFromSmartHoldemJs (SmartHoldemJsNetworkKey, version, slip44, background) {
-      const SmartHoldemJsNetwork = sth.networks[SmartHoldemJsNetworkKey]
+    function createNetworkFromSmartHoldemJs (sthJsNetworkKey, version, slip44, background) {
+      const sthJsNetwork = sth.networks[sthJsNetworkKey]
 
       return {
-        smartholdemJsKey: SmartHoldemJsNetworkKey,
-        nethash: SmartHoldemJsNetwork.nethash,
-        peerseed: 'http://' + SmartHoldemJsNetwork.activePeer.ip + ':' + SmartHoldemJsNetwork.activePeer.port,
-        token: SmartHoldemJsNetwork.token,
-        symbol: SmartHoldemJsNetwork.symbol,
-        explorer: SmartHoldemJsNetwork.explorer,
+        sthJsKey: sthJsNetworkKey,
+        nethash: sthJsNetwork.nethash,
+        peerseed: 'http://' + sthJsNetwork.activePeer.ip + ':' + sthJsNetwork.activePeer.port,
+        token: sthJsNetwork.token,
+        symbol: sthJsNetwork.symbol,
+        explorer: sthJsNetwork.explorer,
         version: version,
         slip44: slip44,
         forcepeer: false,
         background: background,
-        theme: 'evelynn',
+        theme: 'default',
         themeDark: true
       }
     }
 
     function tryGetPeersFromSmartHoldemJs () {
-      if (!network.smartholdemJsKey) {
+      if (!network.sthJsKey) {
         return
       }
 
-      const SmartHoldemJsNetwork = sth.networks[network.smartholdemJsKey]
-      if (!SmartHoldemJsNetwork) {
+      const sthjsNetwork = sth.networks[network.sthJsKey]
+      if (!sthjsNetwork) {
         return
       }
 
-      return SmartHoldemJsNetwork.peers
+      return sthjsNetwork.peers
     }
 
     function getNetwork () {
@@ -152,50 +163,15 @@
       return storageService.getGlobal('networks')
     }
 
-    function getPrice () {
-      let failedTicker = () => {
-        let lastPrice = storageService.get('lastPrice')
-
-        if (typeof lastPrice === 'undefined') {
-          peer.market = { price: { btc: '0.0' } }
-          return
-        }
-
-        peer.market = lastPrice.market
-        peer.market.lastUpdate = lastPrice.date
-        peer.market.isOffline = true
-      }
-
-      if (!network.cmcTicker && network.token !== 'STHE') {
-        failedTicker()
-        return
-      }
-
-      $http.get('https://api.coinmarketcap.com/v1/ticker/' + (network.cmcTicker || 'STHE'), { timeout: 5000 })
-        .then((res) => {
-          if (res.data[0] && res.data[0].price_btc) {
-            res.data[0].price_btc = convertToSatoshi(res.data[0].price_btc) // store BTC price in satoshi
-          }
-          peer.market = res.data[0]
-          peer = updatePeerWithCurrencies(peer, res)
-          storageService.set('lastPrice', { market: peer.market, date: new Date() })
-        }, failedTicker)
-        .catch(failedTicker)
-
-      $timeout(() => {
-        getPrice()
-      }, 5 * 60000)
-    }
-
     function listenNetworkHeight () {
-      $http.get(peer.ip + '/api/blocks/getheight', { timeout: 5000 }).then((resp) => {
+      $http.get(peer.ip + '/api/blocks/getHeight', { timeout: 5000 }).then((resp) => {
         timeService.getTimestamp().then(
           (timestamp) => {
             peer.lastConnection = timestamp
             if (resp.data && resp.data.success) {
               if (peer.height === resp.data.height) {
                 peer.isConnected = false
-                peer.error = 'Node is experiencing synchronisation issues'
+                peer.error = 'Node is experiencing sychronisation issues'
                 connection.notify(peer)
                 pickRandomPeer()
               } else {
@@ -301,17 +277,12 @@
       getFromPeer('/api/peers')
         .then((response) => {
           if (response.success) {
-            getFromPeer('/api/peers/version').then((versionResponse) => {
-              if (versionResponse.success) {
-                const peers = response.peers.filter((peer) => {
-                  return peer.status === 'OK' && peer.version === versionResponse.version
-                })
-                storageService.set('peers', peers)
-                findGoodPeer(peers, 0)
-              } else {
-                findGoodPeer(storageService.get('peers'), 0)
-              }
+            const regex127 = RegExp(/^(?!127\.).*/) // does not start with '127.'
+            const peers = response.peers.filter((peer) => {
+              return peer.status === 'OK' && regex127.test(peer.ip)
             })
+            storageService.set('peers', peers)
+            findGoodPeer(peers, 0)
           } else {
             findGoodPeer(storageService.get('peers'), 0)
           }
@@ -338,7 +309,7 @@
       }
 
       peer.ip = 'http://' + peers[index].ip + ':' + peers[index].port
-      getFromPeer('/api/blocks/getheight')
+      getFromPeer('/api/blocks/getHeight')
         .then((response) => {
           if (response.success && response.height < peer.height) {
             findGoodPeer(peers, index + 1, isStaticPeerList)
@@ -363,8 +334,8 @@
 
     function getLatestClientVersion () {
       const deferred = $q.defer()
-      const url = 'https://api.github.com/repos/smartholdem/smartholdem-wallet/releases/latest'
-      $http.get(url, { timeout: 5000 })
+      const url = 'https://api.github.com/repos/SmartHoldem/smartholdem-wallet/releases/latest'
+      $http.get(url, { timeout: 6000 })
         .then((res) => {
           deferred.resolve(res.data.tag_name)
         }, (e) => {
@@ -373,77 +344,7 @@
       return deferred.promise
     }
 
-    // Returns the BTC value in satoshi
-    function convertToSatoshi (val) {
-      return Number(val).toFixed(8)
-    }
-
-    // Updates peer with all currency values relative to the USD price.
-    function updatePeerWithCurrencies (peer, res) {
-      peer = updateCurrencyConversionRates(peer)
-      const USD_PRICE = Number(res.data[0].price_usd)
-      const currencies = ['CNY', 'EUR', 'GBP', 'JPY', 'RUB']
-      const prices = {}
-      currencies.forEach((currency) => {
-        prices[currency.toLowerCase()] = peer.market.conversionRates[currency] * USD_PRICE
-      })
-      prices['btc'] = res.data[0].price_btc
-      prices['usd'] = res.data[0].price_usd
-      storageService.setGlobal('peerCurrencies', prices)
-      peer.market.price = prices
-      return peer
-    }
-
-    // Updates the currency conversion rates IF necessary
-    // Necessary if it isn't stored, or if the stored value is too old
-    function updateCurrencyConversionRates (peer) {
-      const priceObj = storageService.getGlobal('conversionRates')
-      if (priceObj !== undefined && priceObj !== null) {
-        peer.market.conversionRates = priceObj.rates
-        let storedDateString = priceObj.date
-        let storedDate = new Date(storedDateString)
-        const updateCurrencies = checkToUpdateConversionRates(storedDate)
-        if (updateCurrencies) {
-          getConversionRatesApiCall(peer)
-        }
-      } else {
-        getConversionRatesApiCall(peer)
-      }
-      return peer
-    }
-
-    // api call to get the conversion rates for currencies
-    function getConversionRatesApiCall (peer) {
-      const currencies = ['CNY', 'EUR', 'GBP', 'JPY', 'RUB']
-      const apiCall = createCurrencyConversionApiCall(currencies)
-      $http.get(apiCall, {timeout: 2000}).then((result) => {
-        storageService.setGlobal('conversionRates', { rates: result.data.rates, date: new Date() })
-        peer.market.conversionRates = result.data.rates
-      })
-      return peer
-    }
-
-    // Checks if the stored time and the current time has crossed 4pm CET time
-    function checkToUpdateConversionRates (storedDate) {
-      storedDate = moment(storedDate.getTime()).utcOffset(60)
-      const endDate = moment(new Date().getTime()).utcOffset(60)
-      const API_UPDATE_HOUR = 9
-      const fourPMCET = moment({year: storedDate.year(), month: storedDate.month(), day: storedDate.date(), hour: API_UPDATE_HOUR}).utcOffset(60)
-      if (storedDate.hour() >= 16) {
-        fourPMCET.add(1, 'day')
-      }
-      const range = moment.range(storedDate, endDate)
-      return fourPMCET.within(range)
-    }
-
-    function createCurrencyConversionApiCall (currencies) {
-      let getRequest = 'https://api.fixer.io/latest?base=USD&symbols='
-      getRequest += currencies.toString()
-      return getRequest
-    }
-
     listenNetworkHeight()
-    getPrice()
     pickRandomPeer()
 
     return {
@@ -460,8 +361,7 @@
       postTransaction,
       broadcastTransaction,
       pickRandomPeer,
-      getLatestClientVersion,
-      getPrice
+      getLatestClientVersion
     }
   }
 })()

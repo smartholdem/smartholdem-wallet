@@ -10,7 +10,7 @@ const ipcMain = electron.ipcMain
 const Menu = electron.Menu
 
 const ledger = require('ledgerco')
-const LedgerSmartHoldem = require(_path.resolve(__dirname, './LedgerSmartHoldem'))
+const LedgerSTH = require(_path.resolve(__dirname, './LedgerSTH'))
 const fork = require('child_process').fork
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -92,7 +92,7 @@ function createWindow () {
         event.returnValue = 'connection not initialised'
       } else {
         try {
-          let sth = new LedgerSmartHoldem(ledgercomm)
+          let sth = new LedgerSTH(ledgercomm)
           if (arg.action === 'signMessage') {
             sth.signPersonalMessage_async(arg.path, Buffer.from(arg.data)
               .toString('hex'))
@@ -140,25 +140,31 @@ function createWindow () {
   })
 
   // Create the Application's main menu
+  const about = {
+    role: 'about',
+    click: () => openAboutWindow({
+      icon_path: `${__dirname}/client/smartholdem.png`,
+      package_json_dir: __dirname,
+      copyright: 'Copyright (c) 2017-2018 SmartHoldem',
+      homepage: 'https://smartholdem.io',
+      bug_report_url: 'https://github.com/smartholdem/smartholdem-wallet/issues'
+    })
+  }
+
+  const screenshotProtection = {
+    label: getScreenshotProtectionLabel(),
+    click: () => { updateScreenshotProtectionItem() }
+  }
+
   template = [
     {
-      label: 'Application',
+      label: 'File',
       submenu: [
-        {
-          role: 'about',
-          click: () => openAboutWindow({
-            icon_path: `${__dirname}/client/smartholdem.png`,
-            package_json_dir: __dirname,
-            copyright: '(c) 2017-2018 SmartHoldem Developers',
-            homepage: 'https://smarthodlem.io/',
-            bug_report_url: 'https://github.com/smartholdem/smartholdem-wallet/issues'
-          })
-        },
+        screenshotProtection,
         { type: 'separator' },
-        { label: getScreenshotProtectionLabel(), click: () => { updateScreenshotProtectionItem() }, enabled: process.platform !== 'linux' }
+        { role: 'quit' }
       ]
-    },
-    {
+    }, {
       label: 'Edit',
       submenu: [
         { role: 'undo' },
@@ -171,8 +177,7 @@ function createWindow () {
         { type: 'separator' },
         { label: 'Print Page', accelerator: 'CmdOrCtrl+P', click: function () { mainWindow.webContents.print({printBackground: true}) } }
       ]
-    },
-    {
+    }, {
       role: 'window',
       submenu: [
         { role: 'minimize' },
@@ -183,23 +188,11 @@ function createWindow () {
       role: 'help',
       submenu: [
         {
-          label: 'Web Site',
+          label: 'Learn More',
           click () { require('electron').shell.openExternal('https://smartholdem.io') }
         },
-        {
-          label: 'Community',
-          click () { require('electron').shell.openExternal('https://community.smartholdem.io') }
-        },
-        {
-          label: 'BlockExplorer',
-          click () { require('electron').shell.openExternal('https://blockexplorer.smartholdem.io') }
-        },
-        {
-          label: 'Paper Wallet',
-          click () { require('electron').shell.openExternal('https://paperwallet.smartholdem.io/') }
-        },
-        { label: 'Reload App', accelerator: 'CmdOrCtrl+R', click: function () { mainWindow.reload() } }
-        /* ,{ label: 'Open Dev Tools', accelerator: 'CmdOrCtrl+D', click: function () { mainWindow.webContents.openDevTools() } } */
+        { label: 'Reload App', accelerator: 'CmdOrCtrl+R', click: function () { mainWindow.reload() } },
+        { label: 'Open Dev Tools', accelerator: 'CmdOrCtrl+D', click: function () { mainWindow.webContents.openDevTools() } }
       ]
     }
   ]
@@ -208,7 +201,9 @@ function createWindow () {
     template[0] = {
       label: app.getName(),
       submenu: [
-        ...template[0].submenu,
+        about,
+        { type: 'separator' },
+        screenshotProtection,
         { type: 'separator' },
         { role: 'services', submenu: [] },
         { type: 'separator' },
@@ -224,6 +219,16 @@ function createWindow () {
       { role: 'zoom' },
       { role: 'togglefullscreen' }
     ]
+  } else if (process.platform === 'linux') {
+    template[0] = {
+      label: 'File',
+      submenu: [
+        { role: 'quit' }
+      ]
+    }
+    template[3].submenu.unshift(about, { type: 'separator' })
+  } else {
+    template[3].submenu.unshift(about, { type: 'separator' })
   }
 
   menu = Menu.buildFromTemplate(template)
@@ -255,7 +260,7 @@ function shouldDisableScreenshotProtection (arugments) {
   return arugments && arugments.some(v => v && typeof v === 'string' && v.toLowerCase() === '--disablescreenshotprotection')
 }
 
-app.setAsDefaultProtocolClient('smartholdem', process.execPath, ['--'])
+app.setAsDefaultProtocolClient('sth', process.execPath, ['--'])
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -305,11 +310,9 @@ function updateScreenshotProtectionItem () {
 
   enableScreenshotProtection = !enableScreenshotProtection
   mainWindow.setContentProtection(enableScreenshotProtection)
-  if (enableScreenshotProtection) {
-    template[0].submenu[2].label = 'Disable screenshot protection (unsafe)'
-  } else {
-    template[0].submenu[2].label = 'Enable screenshot protection (recommended)'
-  }
+
+  let index = process.platform === 'darwin' ? 2 : 0
+  template[0].submenu[index].label = getScreenshotProtectionLabel()
 
   menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)

@@ -1,8 +1,8 @@
 {
   "name": "SmartHoldemClient",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "productName": "SmartHoldemClient",
-  "description": "SmartHoldem Wallet",
+  "description": "SmartHoldem Desktop Wallet",
   "main": "main.js",
   "scripts": {
     "postinstall": "cd client && npm install && npm run bundle && cd .. && electron-builder install-app-deps && npm run rebuild",
@@ -13,10 +13,10 @@
     "pack": "build --dir",
     "dist": "npm run dist:win && npm run dist:macos && npm run dist:linux && npm run dist:win32",
     "dist-quick": "npm run dist:win && npm run dist:macos && npm run dist:linux",
-    "dist:win": "build --win",
-    "dist:win32": "build --win --ia32",
-    "dist:macos": "build --macos",
-    "dist:linux": "build --linux",
+    "dist:win": "electron-builder --win",
+    "dist:win32": "electron-builder --win --ia32",
+    "dist:macos": "electron-builder --macos",
+    "dist:linux": "electron-builder --linux",
     "test": "karma start test/karma.conf.js --single-run",
     "test-app": "mocha --recursive ./test/e2e/scenarios",
     "test-watch": "karma start test/karma.conf.js",
@@ -24,31 +24,33 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SmartHoldem/SmartHoldem-Wallet.git"
+    "url": "git+https://github.com/smartholdem/smartholdem-wallet.git"
   },
   "keywords": [
     "SmartHoldem",
-    "Client"
+    "Client",
+    "Electron"
   ],
   "author": {
-    "name": "Smartholdem Developers",
-    "email": "dev@smartholdem.io",
-    "url": "https://github.com/smartholdem"
+    "name": "Fx Thoorens",
+    "email": "fixcrypt@gmail.com",
+    "url": "https://github.com/fix"
   },
   "contributors": [
     {
-      "name": "SmartHoldem",
-      "email": "dev@SmartHoldem.io",
-      "url": "https://github.com/SmartHoldem"
+      "name": "SmartHoldem Team",
+      "email": "team@smartholdem.io",
+      "url": "https://github.com/smartholdem"
     }
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SmartHoldem/SmartHoldem-Wallet/issues"
+    "url": "https://github.com/smartholdem/smartholdem-wallet/issues"
   },
-  "homepage": "https://github.com/SmartHoldem/SmartHoldem-Wallet#readme",
+  "homepage": "https://github.com/smartholdem/smartholdem-wallet#readme",
   "dependencies": {
-    "about-window": "~1.8.0",
+    "@destinationstransfers/ntp": "^1.1.0",
+    "about-window": "^1.11.0",
     "async": "^2.5.0",
     "csv-parse": "^2.0.0",
     "electron-window-state": "^4.1.1",
@@ -56,7 +58,7 @@
     "ledgerco": "github:ledgerhq/ledger-node-js-api#6cde5978b9d0a4922f0d33520b16cc2184559ebc",
     "moment-range": "^3.1.0",
     "moment-timezone": "^0.5.14",
-    "npm": "^5.8.0",
+    "npm": "^6.2.0",
     "q": "^1.5.0"
   },
   "devDependencies": {
@@ -67,9 +69,9 @@
     "chai-as-promised": "^7.1.1",
     "cross-env": "^5.0.5",
     "devtron": "^1.4.0",
-    "electron": "^1.8.4",
-    "electron-builder": "^20.9.2",
-    "electron-rebuild": "^1.6.0",
+    "electron": "^1.8.7",
+    "electron-builder": "^20.15.0",
+    "electron-rebuild": "^1.7.2",
     "eslint": "^4.14.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
@@ -79,16 +81,17 @@
     "grunt": "~1.0.1",
     "grunt-angular-gettext": "^2.3.6",
     "grunt-contrib-jshint": "~1.1.0",
-    "grunt-contrib-nodeunit": "~1.0.0",
+    "grunt-contrib-nodeunit": "^2.0.0",
     "grunt-contrib-uglify": "~3.1.0",
-    "karma": "^1.7.1",
+    "karma": "^2.0.2",
     "karma-babel-preprocessor": "^7.0.0",
     "karma-coverage": "^1.1.1",
     "karma-electron": "^5.2.1",
     "karma-mocha": "^1.3.0",
     "karma-sinon": "^1.0.5",
     "karma-sinon-chai": "^1.3.3",
-    "mocha": "3.5.3",
+    "mocha": "^5.2.0",
+    "node-hid": "^0.7.2",
     "sinon": "^4.1.1",
     "sinon-chai": "^2.14.0",
     "spectron": "^3.7.2"
@@ -98,7 +101,7 @@
     "protocols": {
       "name": "SmartHoldem URI scheme",
       "schemes": [
-        "smartholdem"
+        "sth"
       ],
       "role": "Viewer"
     },
@@ -107,39 +110,24 @@
     },
     "win": {
       "target": "nsis",
-      "icon": "build/smart.ico"
+      "icon": "build/icon.ico"
     },
     "linux": {
-      "category": "Utility",
-      "icon": "build/smart.icns",
-      "description": "A Client used to securely connect to the SmartHoldem network and manage your assets.",
+      "description": "A Lite Client used to securely connect to the SmartHoldem network and manage your STH assets.",
       "target": [
         "deb",
         "tar.xz"
       ],
       "desktop": {
-        "MimeType": "x-scheme-handler/smartholdem;"
-      }
+        "MimeType": "x-scheme-handler/sth;"
+      },
+      "category": "Network"
     },
     "deb": {
-      "icon": "build/smart.icns",
-      "synopsis": "SmartHoldem Desktop Client"
+      "synopsis": "SmartHoldem Desktop Wallet"
     },
     "dmg": {
-      "icon": "build/icon.icns",
-      "background": "build/Gold.png",
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
+      "icon": "build/icon.icns"
     },
     "nsis": {
       "perMachine": true,
