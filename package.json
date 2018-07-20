@@ -127,7 +127,16 @@
       "synopsis": "SmartHoldem Desktop Wallet"
     },
     "dmg": {
-      "icon": "build/icon.icns"
+      "icon": "build/icon.icns",
+      "background": "build/bg.png",
+      "contents": [
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
     },
     "nsis": {
       "perMachine": true,
