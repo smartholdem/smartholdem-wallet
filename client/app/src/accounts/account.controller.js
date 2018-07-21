@@ -130,9 +130,10 @@
 
     self.wordlistLanguages = {
       'english': 'English',
-      //'french': 'French',
-      //'spanish': 'Spanish',
-      //'italian': 'Italian',
+	  'russian': 'Russian',
+      'french': 'French',
+      'spanish': 'Spanish',
+      'italian': 'Italian',
       'japanese': 'Japanese',
       'korean': 'Korean',
       'chinese_simplified': 'Chinese simplified',
