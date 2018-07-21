@@ -1257,7 +1257,7 @@
     }
 
     function showExchangeRate () {
-      return self.network.cmcTicker || self.network.token === 'DDSTH'
+      return self.network.cmcTicker || self.network.token === 'DSTH'
     }
 
     function manageNetworks () {

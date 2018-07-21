@@ -34,7 +34,7 @@
       const refId = merchantId
 
       let from = 'BTC'
-      let to = 'DDSTH'
+      let to = 'DSTH'
       let address = ''
       let amount = 0.1
 
@@ -42,7 +42,7 @@
         to = this.ul.network.token
 
         // Use the current address to receive the STHs
-        if (to === 'DDSTH') {
+        if (to === 'DSTH') {
           address = this.ul.selected.address
         }
 

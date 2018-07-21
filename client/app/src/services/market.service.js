@@ -10,7 +10,7 @@
     const currencies = ['BTC', 'CNY', 'EUR', 'RUB', 'USD']
     const storageKey = 'marketTicker'
     const network = networkService.getNetwork()
-    const symbol = network.cmcTicker || 'DDSTH'
+    const symbol = network.cmcTicker || 'DSTH'
 
     const saveTicker = (ticker) => {
       const symbol = ticker.symbol
@@ -28,7 +28,7 @@
     }
 
     const getPrice = (currency = 'BTC') => {
-      if (!network.cmcTicker && network.token !== 'DDSTH') return
+      if (!network.cmcTicker && network.token !== 'DSTH') return
 
       const storage = storageService.get(storageKey)
       const isValid = typeof storage === 'object' && Object.keys(storage).length > 0
@@ -41,6 +41,7 @@
     }
 
     const fetchTicker = () => {
+		/*
       const deferred = $q.defer()
       const uri = `${baseUrl}/${tickerEndpoint}?fsyms=${symbol}&tsyms=${currencies.join(',')}`
       $http.get(uri, {headers: {'Cache-Control': 'no-cache'}})
@@ -55,6 +56,8 @@
         })
         .catch(err => deferred.reject(err))
       return deferred.promise
+	  */
+	  return false; //удалить после публикации в коинмаркет
     }
 
     const updateTicker = async () => {
