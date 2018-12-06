@@ -10,3 +10,4 @@ logs/*.log
 dependencies.min.js
 .idea/
 .DS_Store
+package-lock.json
