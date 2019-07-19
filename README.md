@@ -11,7 +11,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2018 SmartHoldem
+Copyright (c) 2017 SmartHoldem
 
 Copyright (c) 2017 Ark
 
