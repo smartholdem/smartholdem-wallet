@@ -1,6 +1,6 @@
 {
   "name": "SmartHoldemClient",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "productName": "SmartHoldemClient",
   "description": "SmartHoldem Desktop Wallet",
   "main": "main.js",
@@ -38,7 +38,7 @@
   },
   "contributors": [
     {
-      "name": "SmartHoldem Team",
+      "name": "SmartHoldem",
       "email": "dev@smartholdem.io",
       "url": "https://github.com/smartholdem"
     }
