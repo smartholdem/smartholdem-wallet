@@ -934,7 +934,7 @@
           publicKey: selectedAccount.publicKey,
           fromAddress: $scope.send.data.fromAddress,
           toAddress: $scope.send.data.fromAddress,
-          amount: 1,
+          amount: 100000000,
           smartbridge: smartbridge,
           masterpassphrase: $scope.send.data.passphrase,
           secondpassphrase: $scope.send.data.secondpassphrase
